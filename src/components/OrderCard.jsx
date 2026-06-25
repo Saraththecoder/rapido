@@ -8,33 +8,35 @@ const OrderCard = ({ order, type = 'food' }) => {
   const isParcel = type === 'parcel';
 
   return (
-    <div className="bg-white rounded-2xl shadow-sm border border-gray-100/60 p-4 space-y-4">
+    <div className="bg-white rounded-xl border border-zinc-200 p-4 space-y-4 text-left">
       {/* Header Info */}
       <div className="flex justify-between items-start">
         <div className="flex gap-3">
-          <div className={`p-2.5 rounded-xl ${isFood ? 'bg-orange-50 text-primary' : 'bg-blue-50 text-blue-600'}`}>
-            {isFood ? <ShoppingBag size={20} /> : <Package size={20} />}
+          <div className="p-2.5 rounded-lg bg-zinc-100 text-zinc-800 shrink-0">
+            {isFood ? <ShoppingBag size={18} /> : <Package size={18} />}
           </div>
-          <div>
-            <h4 className="font-bold text-dark text-base">
+          <div className="min-w-0">
+            <h4 className="font-bold text-zinc-900 text-sm truncate">
               {isFood ? order.restaurantName : `Parcel to: ${order.receiverName}`}
             </h4>
-            <p className="text-xs text-gray-400 mt-0.5">
-              ID: <span className="font-semibold text-gray-500">{order.id}</span> • {order.date}
+            <p className="text-[10px] text-zinc-400 font-semibold mt-0.5">
+              ID: <span className="font-bold text-zinc-650">{order.id}</span> • {order.date}
             </p>
           </div>
         </div>
-        <StatusBadge status={order.status} />
+        <div className="shrink-0">
+          <StatusBadge status={order.status} />
+        </div>
       </div>
 
       {/* Item list / Routes */}
       {isFood && (
-        <div className="text-sm text-gray-600 pl-1">
+        <div className="text-xs text-zinc-600 pl-1">
           <ul className="space-y-1">
             {order.items?.map((item) => (
               <li key={item.id} className="flex justify-between">
-                <span>{item.name} <strong className="text-dark">x{item.quantity}</strong></span>
-                <span className="text-gray-500">₹{item.price * item.quantity}</span>
+                <span>{item.name} <strong className="text-zinc-900">x{item.quantity}</strong></span>
+                <span className="text-zinc-500 font-bold">₹{item.price * item.quantity}</span>
               </li>
             ))}
           </ul>
@@ -42,40 +44,39 @@ const OrderCard = ({ order, type = 'food' }) => {
       )}
 
       {isParcel && (
-        <div className="bg-slate-50 rounded-xl p-3 text-xs space-y-2 border border-slate-100">
-          <div className="flex items-start gap-1.5 text-gray-600">
-            <MapPin size={14} className="text-gray-400 shrink-0 mt-0.5" />
-            <div>
-              <p className="font-medium text-dark">Drop Location</p>
-              <p className="text-gray-500 mt-0.5">{order.receiverAddress}</p>
+        <div className="bg-zinc-50 rounded-lg p-3 text-xs space-y-2 border border-zinc-150">
+          <div className="flex items-start gap-1.5 text-zinc-600">
+            <MapPin size={13} className="text-zinc-400 shrink-0 mt-0.5" />
+            <div className="min-w-0">
+              <p className="font-bold text-zinc-800">Drop Location</p>
+              <p className="text-zinc-500 mt-0.5 truncate">{order.receiverAddress}</p>
             </div>
           </div>
-          <div className="pt-2 border-t border-slate-200/60 flex justify-between text-gray-500">
-            <span>Weight: <strong className="text-dark">{order.weight}</strong></span>
-            <span>Content: <strong className="text-dark truncate max-w-[120px]">{order.description}</strong></span>
+          <div className="pt-2 border-t border-zinc-200 flex justify-between text-zinc-500 text-[11px] font-semibold">
+            <span>Weight: <strong className="text-zinc-800 font-bold">{order.weight}</strong></span>
+            <span>Content: <strong className="text-zinc-800 font-bold truncate max-w-[120px]">{order.description}</strong></span>
           </div>
         </div>
       )}
 
       {/* Summary Footer */}
-      <div className="flex items-center justify-between border-t border-gray-50 pt-3 mt-1">
+      <div className="flex items-center justify-between border-t border-zinc-100 pt-3 mt-1 gap-2">
         <div>
-          <p className="text-[10px] text-gray-400 font-semibold uppercase tracking-wider">Total Charged</p>
-          <p className="font-extrabold text-dark text-lg">₹{order.total || order.price}</p>
+          <p className="text-[9px] text-zinc-400 font-bold uppercase tracking-wider">Total Charged</p>
+          <p className="font-extrabold text-zinc-900 text-base">₹{order.total || order.price}</p>
         </div>
 
-        {/* Dynamic CTA button based on status */}
         {order.status !== 'delivered' && order.status !== 'completed' && order.status !== 'cancelled' ? (
           <Link
             to={isFood ? `/user/track/food-${order.id}` : `/user/track/parcel-${order.id}`}
-            className="flex items-center gap-1.5 bg-primary hover:bg-primary-hover text-white px-4 py-2 rounded-xl text-sm font-bold shadow-sm transition duration-200"
+            className="flex items-center gap-1 bg-zinc-900 hover:bg-zinc-800 text-white px-3 py-1.5 rounded-lg text-xs font-bold transition shrink-0"
           >
             <span>Track Order</span>
-            <ChevronRight size={16} />
+            <ChevronRight size={14} />
           </Link>
         ) : (
-          <span className="text-xs text-gray-400 font-medium italic">
-            Order Complete
+          <span className="text-xs text-zinc-400 font-medium italic shrink-0">
+            Complete
           </span>
         )}
       </div>

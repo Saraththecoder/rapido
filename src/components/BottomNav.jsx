@@ -21,7 +21,7 @@ const BottomNav = () => {
   const isRider = currentUser.role === 'rider';
   const isUser = currentUser.role === 'user';
 
-  if (!isUser && !isRider) return null; // No bottom nav for Admin
+  if (!isUser && !isRider) return null;
 
   const userItems = [
     { name: 'Home', path: '/user/dashboard', icon: Home },
@@ -38,13 +38,13 @@ const BottomNav = () => {
     { name: 'Wallet', path: '/rider/wallet', icon: Wallet },
   ];
 
-  const activeStyle = "text-primary flex flex-col items-center justify-center w-full h-full py-1 text-[10px] font-semibold";
-  const inactiveStyle = "text-gray-400 hover:text-gray-600 flex flex-col items-center justify-center w-full h-full py-1 text-[10px] font-medium";
+  const activeStyle = "text-zinc-950 flex flex-col items-center justify-center w-full h-full py-1 text-[9px] font-bold uppercase tracking-wider transition-colors";
+  const inactiveStyle = "text-zinc-400 hover:text-zinc-600 flex flex-col items-center justify-center w-full h-full py-1 text-[9px] font-medium uppercase tracking-wider transition-colors";
 
   const items = isRider ? riderItems : userItems;
 
   return (
-    <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 z-50 h-16 shadow-[0_-4px_12px_rgba(0,0,0,0.03)] px-2">
+    <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-zinc-200 z-50 h-15 px-2">
       <div className="grid grid-cols-5 h-full max-w-md mx-auto items-center">
         {items.map((item) => {
           const Icon = item.icon;
@@ -54,18 +54,17 @@ const BottomNav = () => {
               to={item.path}
               className={({ isActive }) => isActive ? activeStyle : inactiveStyle}
             >
-              <Icon size={20} className="mb-0.5" />
-              <span className="truncate max-w-[60px]">{item.name}</span>
+              <Icon size={16} className="mb-0.5" />
+              <span className="truncate max-w-[50px]">{item.name}</span>
             </NavLink>
           );
         })}
-        {/* If rider, they have 4 items. Let's add a Profile link as the 5th item */}
         {isRider && (
           <NavLink
-            to="/rider/dashboard" // Rider uses Dashboard for details
+            to="/rider/dashboard"
             className={({ isActive }) => isActive ? activeStyle : inactiveStyle}
           >
-            <User size={20} className="mb-0.5" />
+            <User size={16} className="mb-0.5" />
             <span>Profile</span>
           </NavLink>
         )}

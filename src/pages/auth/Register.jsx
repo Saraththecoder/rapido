@@ -38,35 +38,35 @@ const Register = () => {
   };
 
   return (
-    <div className="flex-1 flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8 bg-lightbg">
+    <div className="flex-1 flex flex-col justify-center py-16 px-4 sm:px-6 lg:px-8 bg-zinc-50">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <div className="flex justify-center">
-          <span className="bg-primary text-white p-3 rounded-2xl flex items-center justify-center font-bold text-2xl shadow-md">
+          <span className="bg-zinc-950 text-white px-3 py-1.5 rounded-lg flex items-center justify-center font-bold text-xl tracking-tight">
             SG
           </span>
         </div>
-        <h2 className="mt-6 text-center text-3xl font-display font-extrabold text-dark">
-          Create your account
+        <h2 className="mt-5 text-center text-2.5xl font-display font-black text-zinc-900 tracking-tight">
+          Create Account
         </h2>
-        <p className="mt-2 text-center text-sm text-gray-500 font-medium">
+        <p className="mt-1.5 text-center text-xs text-zinc-450 font-semibold uppercase tracking-wider">
           Already have an account?{' '}
-          <Link to="/login" className="font-bold text-primary hover:text-primary-hover transition">
-            Sign in
+          <Link to="/login" className="text-zinc-900 border-b border-zinc-900 pb-0.5 font-bold">
+            Sign In
           </Link>
         </p>
       </div>
 
-      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="bg-white py-8 px-4 shadow-sm border border-gray-100/60 rounded-3xl sm:px-10">
-          <form className="space-y-5" onSubmit={handleSubmit}>
+      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md text-left">
+        <div className="bg-white py-8 px-4 border border-zinc-200 rounded-2xl sm:px-10">
+          <form className="space-y-4" onSubmit={handleSubmit}>
             {/* Full Name */}
             <div>
-              <label htmlFor="name" className="block text-xs font-bold text-gray-600 uppercase tracking-wider mb-2">
+              <label htmlFor="name" className="block text-[9px] font-bold text-zinc-400 uppercase tracking-wider mb-1.5">
                 Full Name
               </label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-400">
-                  <User size={18} />
+                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-zinc-400">
+                  <User size={16} />
                 </div>
                 <input
                   id="name"
@@ -75,19 +75,19 @@ const Register = () => {
                   placeholder="John Doe"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="block w-full pl-10 pr-4 py-3 border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary text-sm font-medium transition"
+                  className="block w-full pl-10 pr-4 py-2.5 border border-zinc-200 rounded-xl focus:outline-none focus:border-zinc-900 text-xs font-semibold transition"
                 />
               </div>
             </div>
 
             {/* Mobile Number */}
             <div>
-              <label htmlFor="phone" className="block text-xs font-bold text-gray-600 uppercase tracking-wider mb-2">
+              <label htmlFor="phone" className="block text-[9px] font-bold text-zinc-400 uppercase tracking-wider mb-1.5">
                 Mobile Number
               </label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-400">
-                  <Phone size={18} />
+                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-zinc-400">
+                  <Phone size={16} />
                 </div>
                 <input
                   id="phone"
@@ -96,19 +96,19 @@ const Register = () => {
                   placeholder="+91 98765 43210"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
-                  className="block w-full pl-10 pr-4 py-3 border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary text-sm font-medium transition"
+                  className="block w-full pl-10 pr-4 py-2.5 border border-zinc-200 rounded-xl focus:outline-none focus:border-zinc-900 text-xs font-semibold transition"
                 />
               </div>
             </div>
 
             {/* Email Address */}
             <div>
-              <label htmlFor="email" className="block text-xs font-bold text-gray-600 uppercase tracking-wider mb-2">
+              <label htmlFor="email" className="block text-[9px] font-bold text-zinc-400 uppercase tracking-wider mb-1.5">
                 Email Address
               </label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-400">
-                  <Mail size={18} />
+                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-zinc-400">
+                  <Mail size={16} />
                 </div>
                 <input
                   id="email"
@@ -117,19 +117,19 @@ const Register = () => {
                   placeholder="name@example.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="block w-full pl-10 pr-4 py-3 border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary text-sm font-medium transition"
+                  className="block w-full pl-10 pr-4 py-2.5 border border-zinc-200 rounded-xl focus:outline-none focus:border-zinc-900 text-xs font-semibold transition"
                 />
               </div>
             </div>
 
             {/* Password */}
             <div>
-              <label htmlFor="password" className="block text-xs font-bold text-gray-600 uppercase tracking-wider mb-2">
+              <label htmlFor="password" className="block text-[9px] font-bold text-zinc-400 uppercase tracking-wider mb-1.5">
                 Password
               </label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-400">
-                  <Lock size={18} />
+                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-zinc-400">
+                  <Lock size={16} />
                 </div>
                 <input
                   id="password"
@@ -138,25 +138,25 @@ const Register = () => {
                   placeholder="••••••••"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="block w-full pl-10 pr-4 py-3 border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary text-sm font-medium transition"
+                  className="block w-full pl-10 pr-4 py-2.5 border border-zinc-200 rounded-xl focus:outline-none focus:border-zinc-900 text-xs font-semibold transition"
                 />
               </div>
             </div>
 
             {/* Role dropdown */}
             <div>
-              <label htmlFor="role" className="block text-xs font-bold text-gray-600 uppercase tracking-wider mb-2">
+              <label htmlFor="role" className="block text-[9px] font-bold text-zinc-400 uppercase tracking-wider mb-1.5">
                 Join As
               </label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-400">
-                  <Briefcase size={18} />
+                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-zinc-400">
+                  <Briefcase size={16} />
                 </div>
                 <select
                   id="role"
                   value={role}
                   onChange={(e) => setRole(e.target.value)}
-                  className="block w-full pl-10 pr-4 py-3 border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary text-sm font-medium transition appearance-none bg-white"
+                  className="block w-full pl-10 pr-4 py-2.5 border border-zinc-200 rounded-xl focus:outline-none focus:border-zinc-900 text-xs font-semibold transition appearance-none bg-white"
                 >
                   <option value="user">Customer (User)</option>
                   <option value="rider">Delivery Executive (Rider)</option>
@@ -164,10 +164,10 @@ const Register = () => {
               </div>
             </div>
 
-            <div>
+            <div className="pt-2">
               <button
                 type="submit"
-                className="w-full flex justify-center py-3.5 px-4 border border-transparent rounded-2xl shadow-sm text-sm font-bold text-white bg-primary hover:bg-primary-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition duration-200"
+                className="w-full bg-zinc-900 hover:bg-zinc-800 text-white text-xs font-bold py-3 rounded-xl uppercase tracking-wider transition"
               >
                 Register Now
               </button>

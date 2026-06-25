@@ -7,6 +7,7 @@ import { Toaster } from 'react-hot-toast';
 import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
 import BottomNav from './components/BottomNav';
+import Footer from './components/Footer';
 
 // Public Pages
 import LandingPage from './pages/LandingPage';
@@ -114,6 +115,9 @@ const AppContent = () => {
               <Route path="*" element={currentUser ? <Navigate to={`/${currentUser.role}/dashboard`} replace /> : <Navigate to="/" replace />} />
             </Routes>
           </main>
+
+          {/* Render footer only on public landing page */}
+          {isLandingRoute && <Footer />}
 
           {/* Render mobile sticky bottom menu */}
           {!isAuthRoute && !isLandingRoute && <BottomNav />}

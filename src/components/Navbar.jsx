@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { AppContext } from '../context/AppContext';
-import { Menu, X, LogOut, Wallet, User, Car, Utensils, Package, BarChart2 } from 'lucide-react';
+import { Menu, X, LogOut, Wallet, User, Car, Utensils, Package } from 'lucide-react';
 
 const Navbar = () => {
   const { currentUser, logout } = useContext(AppContext);
@@ -17,64 +17,67 @@ const Navbar = () => {
 
   const isActive = (path) => location.pathname === path;
 
-  // Define nav links based on role
   const renderNavLinks = () => {
     if (!currentUser) {
       return (
-        <>
+        <div className="flex items-center gap-4">
           <Link
             to="/login"
-            className="text-gray-700 hover:text-primary font-medium transition duration-200"
+            className="text-zinc-550 hover:text-zinc-900 text-sm font-semibold transition"
           >
             Login
           </Link>
           <Link
             to="/register"
-            className="bg-primary hover:bg-primary-hover text-white px-5 py-2 rounded-xl font-medium shadow-sm transition duration-200"
+            className="bg-zinc-900 hover:bg-zinc-800 text-white px-4.5 py-2 rounded-xl text-sm font-semibold shadow-sm transition"
           >
             Register
           </Link>
-        </>
+        </div>
       );
     }
+
+    const baseClass = "text-xs font-semibold uppercase tracking-wider transition-colors py-1.5 ";
+    const activeClass = "text-zinc-900 border-b-2 border-primary";
+    const inactiveClass = "text-zinc-450 hover:text-zinc-900";
 
     if (currentUser.role === 'user') {
       return (
         <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-6">
           <Link
             to="/user/dashboard"
-            className={`font-medium transition duration-200 ${isActive('/user/dashboard') ? 'text-primary' : 'text-gray-600 hover:text-primary'}`}
+            className={`${baseClass} ${isActive('/user/dashboard') ? activeClass : inactiveClass}`}
             onClick={() => setIsOpen(false)}
           >
             Dashboard
           </Link>
           <Link
             to="/user/taxi"
-            className={`flex items-center gap-1 font-medium transition duration-200 ${isActive('/user/taxi') ? 'text-primary' : 'text-gray-600 hover:text-primary'}`}
+            className={`${baseClass} flex items-center gap-1.5 ${isActive('/user/taxi') ? activeClass : inactiveClass}`}
             onClick={() => setIsOpen(false)}
           >
-            <Car size={16} /> Taxi Ride
+            <Car size={13} /> Taxi Ride
           </Link>
           <Link
             to="/user/food"
-            className={`flex items-center gap-1 font-medium transition duration-200 ${isActive('/user/food') ? 'text-primary' : 'text-gray-600 hover:text-primary'}`}
+            className={`${baseClass} flex items-center gap-1.5 ${isActive('/user/food') ? activeClass : inactiveClass}`}
             onClick={() => setIsOpen(false)}
           >
-            <Utensils size={16} /> Food Delivery
+            <Utensils size={13} /> Food Delivery
           </Link>
           <Link
             to="/user/parcel"
-            className={`flex items-center gap-1 font-medium transition duration-200 ${isActive('/user/parcel') ? 'text-primary' : 'text-gray-600 hover:text-primary'}`}
+            className={`${baseClass} flex items-center gap-1.5 ${isActive('/user/parcel') ? activeClass : inactiveClass}`}
             onClick={() => setIsOpen(false)}
           >
-            <Package size={16} /> Parcel
+            <Package size={13} /> Parcel
           </Link>
           <Link
             to="/user/history"
-            className={`font-medium transition duration-200 ${isActive('/user/history') ? 'text-primary' : 'text-gray-600 hover:text-primary'}`}
+            className={`${baseClass} ${isActive('/user/history') ? activeClass : inactiveClass}`}
             onClick={() => setIsOpen(false)}
           >
-            Orders History
+            History
           </Link>
         </div>
       );
@@ -85,28 +88,28 @@ const Navbar = () => {
         <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-6">
           <Link
             to="/rider/dashboard"
-            className={`font-medium transition duration-200 ${isActive('/rider/dashboard') ? 'text-primary' : 'text-gray-600 hover:text-primary'}`}
+            className={`${baseClass} ${isActive('/rider/dashboard') ? activeClass : inactiveClass}`}
             onClick={() => setIsOpen(false)}
           >
             Rider Console
           </Link>
           <Link
             to="/rider/requests"
-            className={`font-medium transition duration-200 ${isActive('/rider/requests') ? 'text-primary' : 'text-gray-600 hover:text-primary'}`}
+            className={`${baseClass} ${isActive('/rider/requests') ? activeClass : inactiveClass}`}
             onClick={() => setIsOpen(false)}
           >
             Job Requests
           </Link>
           <Link
             to="/rider/earnings"
-            className={`font-medium transition duration-200 ${isActive('/rider/earnings') ? 'text-primary' : 'text-gray-600 hover:text-primary'}`}
+            className={`${baseClass} ${isActive('/rider/earnings') ? activeClass : inactiveClass}`}
             onClick={() => setIsOpen(false)}
           >
             Earnings
           </Link>
           <Link
             to="/rider/wallet"
-            className={`font-medium transition duration-200 ${isActive('/rider/wallet') ? 'text-primary' : 'text-gray-600 hover:text-primary'}`}
+            className={`${baseClass} ${isActive('/rider/wallet') ? activeClass : inactiveClass}`}
             onClick={() => setIsOpen(false)}
           >
             Wallet
@@ -120,7 +123,7 @@ const Navbar = () => {
         <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-6 md:hidden">
           <Link
             to="/admin/dashboard"
-            className="font-medium text-gray-600 hover:text-primary"
+            className="text-xs font-semibold uppercase tracking-wider text-zinc-450 hover:text-zinc-950"
             onClick={() => setIsOpen(false)}
           >
             Admin Panel
@@ -131,17 +134,17 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-white border-b border-gray-100 sticky top-0 z-50 shadow-sm">
+    <nav className="bg-white border-b border-zinc-150 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           {/* Logo and Brand */}
           <div className="flex items-center">
             <Link to="/" className="flex items-center gap-2">
-              <span className="bg-primary text-white p-2 rounded-xl flex items-center justify-center font-bold text-xl shadow-md shadow-orange-200">
+              <span className="bg-zinc-950 text-white px-2.5 py-1.5 rounded-lg flex items-center justify-center font-bold text-sm tracking-tight">
                 SG
               </span>
-              <span className="font-display font-extrabold text-2xl text-dark tracking-tight">
-                Swift<span className="text-primary">Go</span>
+              <span className="font-display font-extrabold text-xl text-zinc-950 tracking-tight">
+                SwiftGo<span className="text-primary">.</span>
               </span>
             </Link>
           </div>
@@ -158,20 +161,20 @@ const Navbar = () => {
                 {currentUser.role === 'user' && (
                   <Link
                     to="/user/wallet"
-                    className="flex items-center gap-2 bg-orange-50 text-primary border border-orange-100 px-4 py-2 rounded-xl hover:bg-orange-100 transition duration-200 font-medium"
+                    className="flex items-center gap-1.5 bg-zinc-50 hover:bg-zinc-100 text-zinc-700 border border-zinc-200 px-3.5 py-1.5 rounded-xl transition font-semibold text-xs"
                   >
-                    <Wallet size={16} />
+                    <Wallet size={14} className="text-zinc-450" />
                     <span>₹{currentUser.walletBalance?.toFixed(2)}</span>
                   </Link>
                 )}
                 {currentUser.role === 'rider' && (
-                  <div className="flex items-center gap-2">
-                    <span className={`h-2.5 w-2.5 rounded-full ${currentUser.isOnline ? 'bg-emerald-500 animate-pulse' : 'bg-gray-400'}`}></span>
-                    <span className="text-xs font-semibold text-gray-500 uppercase">{currentUser.isOnline ? 'Online' : 'Offline'}</span>
+                  <div className="flex items-center gap-2 border border-zinc-200 bg-zinc-50 px-3 py-1.5 rounded-xl">
+                    <span className={`h-2 w-2 rounded-full ${currentUser.isOnline ? 'bg-emerald-500' : 'bg-zinc-350'}`}></span>
+                    <span className="text-[10px] font-bold text-zinc-500 uppercase">{currentUser.isOnline ? 'Online' : 'Offline'}</span>
                   </div>
                 )}
                 
-                {/* User Avatar Dropdown placeholder / details */}
+                {/* User Avatar */}
                 <Link
                   to={currentUser.role === 'user' ? '/user/profile' : '#'}
                   className="flex items-center gap-2 hover:opacity-80 transition"
@@ -179,20 +182,20 @@ const Navbar = () => {
                   <img
                     src={currentUser.avatar || "https://placehold.co/100x100?text=User"}
                     alt={currentUser.name}
-                    className="w-9 h-9 rounded-xl object-cover ring-2 ring-orange-50 border border-white shadow-sm"
+                    className="w-8 h-8 rounded-lg object-cover border border-zinc-200"
                   />
                   <div className="text-left hidden lg:block">
-                    <p className="text-xs text-gray-400 font-medium leading-3">Welcome</p>
-                    <p className="text-sm font-semibold text-dark max-w-[120px] truncate">{currentUser.name}</p>
+                    <p className="text-[10px] text-zinc-400 font-bold uppercase leading-none">Welcome</p>
+                    <p className="text-xs font-bold text-zinc-800 max-w-[100px] truncate">{currentUser.name}</p>
                   </div>
                 </Link>
 
                 <button
                   onClick={handleLogout}
-                  className="text-gray-400 hover:text-rose-500 p-2 rounded-xl hover:bg-rose-50 transition duration-200"
+                  className="text-zinc-400 hover:text-zinc-900 p-2 rounded-lg hover:bg-zinc-50 transition"
                   title="Logout"
                 >
-                  <LogOut size={20} />
+                  <LogOut size={18} />
                 </button>
               </>
             )}
@@ -203,17 +206,17 @@ const Navbar = () => {
             {currentUser && currentUser.role === 'user' && (
               <Link
                 to="/user/wallet"
-                className="flex items-center gap-1.5 bg-orange-50 text-primary px-3 py-1.5 rounded-xl text-sm font-semibold border border-orange-100"
+                className="flex items-center gap-1 bg-zinc-50 text-zinc-700 px-2.5 py-1.5 rounded-xl text-xs font-bold border border-zinc-200"
               >
-                <Wallet size={14} />
+                <Wallet size={12} className="text-zinc-400" />
                 <span>₹{currentUser.walletBalance?.toFixed(0)}</span>
               </Link>
             )}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="p-2 rounded-xl text-gray-500 hover:text-primary hover:bg-slate-50 focus:outline-none transition duration-200"
+              className="p-1.5 rounded-lg text-zinc-500 hover:text-zinc-900 hover:bg-zinc-50 transition"
             >
-              {isOpen ? <X size={24} /> : <Menu size={24} />}
+              {isOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
           </div>
         </div>
@@ -221,22 +224,22 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden bg-white border-t border-gray-50 px-4 pt-2 pb-6 space-y-4 shadow-inner">
-          <div className="flex flex-col gap-3">
+        <div className="md:hidden bg-white border-t border-zinc-150 px-4 pt-2 pb-6 space-y-4 shadow-sm text-left">
+          <div className="flex flex-col gap-2">
             {renderNavLinks()}
           </div>
           
           {currentUser && (
-            <div className="pt-4 border-t border-gray-100 flex flex-col gap-4">
+            <div className="pt-4 border-t border-zinc-150 flex flex-col gap-4">
               <div className="flex items-center gap-3">
                 <img
                   src={currentUser.avatar || "https://placehold.co/100x100?text=User"}
                   alt={currentUser.name}
-                  className="w-10 h-10 rounded-xl object-cover"
+                  className="w-9 h-9 rounded-lg object-cover border border-zinc-200"
                 />
                 <div>
-                  <h4 className="text-sm font-bold text-dark">{currentUser.name}</h4>
-                  <p className="text-xs text-gray-500">{currentUser.email}</p>
+                  <h4 className="text-xs font-bold text-zinc-800">{currentUser.name}</h4>
+                  <p className="text-[10px] text-zinc-400 font-semibold">{currentUser.email}</p>
                 </div>
               </div>
 
@@ -245,16 +248,16 @@ const Navbar = () => {
                   <Link
                     to="/user/profile"
                     onClick={() => setIsOpen(false)}
-                    className="flex items-center justify-center gap-2 bg-slate-50 hover:bg-slate-100 text-gray-700 py-2.5 rounded-xl font-medium text-sm transition"
+                    className="flex items-center justify-center gap-1.5 bg-zinc-50 hover:bg-zinc-100 text-zinc-700 py-2 rounded-xl font-bold text-xs border border-zinc-200 transition"
                   >
-                    <User size={16} /> Profile
+                    <User size={14} /> Profile
                   </Link>
                 )}
                 <button
                   onClick={handleLogout}
-                  className="flex items-center justify-center gap-2 bg-rose-50 hover:bg-rose-100 text-rose-600 py-2.5 rounded-xl font-medium text-sm transition"
+                  className="flex items-center justify-center gap-1.5 bg-zinc-50 hover:bg-zinc-100 text-zinc-700 py-2 rounded-xl font-bold text-xs border border-zinc-200 transition"
                 >
-                  <LogOut size={16} /> Logout
+                  <LogOut size={14} /> Logout
                 </button>
               </div>
             </div>

@@ -38,35 +38,35 @@ const Login = () => {
   };
 
   return (
-    <div className="flex-1 flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8 bg-lightbg">
+    <div className="flex-1 flex flex-col justify-center py-16 px-4 sm:px-6 lg:px-8 bg-zinc-50">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <div className="flex justify-center">
-          <span className="bg-primary text-white p-3 rounded-2xl flex items-center justify-center font-bold text-2xl shadow-md">
+          <span className="bg-zinc-950 text-white px-3 py-1.5 rounded-lg flex items-center justify-center font-bold text-xl tracking-tight">
             SG
           </span>
         </div>
-        <h2 className="mt-6 text-center text-3xl font-display font-extrabold text-dark">
-          Sign in to your account
+        <h2 className="mt-5 text-center text-2.5xl font-display font-black text-zinc-900 tracking-tight">
+          Sign In
         </h2>
-        <p className="mt-2 text-center text-sm text-gray-500 font-medium">
+        <p className="mt-1.5 text-center text-xs text-zinc-450 font-semibold uppercase tracking-wider">
           Or{' '}
-          <Link to="/register" className="font-bold text-primary hover:text-primary-hover transition">
-            create a new account
+          <Link to="/register" className="text-zinc-900 border-b border-zinc-900 pb-0.5 font-bold">
+            Create Account
           </Link>
         </p>
       </div>
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="bg-white py-8 px-4 shadow-sm border border-gray-100/60 rounded-3xl sm:px-10 space-y-6">
-          <form className="space-y-5" onSubmit={handleSubmit}>
+        <div className="bg-white py-8 px-4 border border-zinc-200 rounded-2xl sm:px-10 space-y-6">
+          <form className="space-y-4" onSubmit={handleSubmit}>
             {/* Email field */}
-            <div>
-              <label htmlFor="email" className="block text-xs font-bold text-gray-600 uppercase tracking-wider mb-2">
+            <div className="text-left">
+              <label htmlFor="email" className="block text-[9px] font-bold text-zinc-400 uppercase tracking-wider mb-1.5">
                 Email Address
               </label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-400">
-                  <Mail size={18} />
+                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-zinc-400">
+                  <Mail size={16} />
                 </div>
                 <input
                   id="email"
@@ -76,19 +76,19 @@ const Login = () => {
                   placeholder="name@example.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="block w-full pl-10 pr-4 py-3 border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary text-sm font-medium transition"
+                  className="block w-full pl-10 pr-4 py-2.5 border border-zinc-200 rounded-xl focus:outline-none focus:border-zinc-900 text-xs font-semibold transition"
                 />
               </div>
             </div>
 
             {/* Password field */}
-            <div>
-              <label htmlFor="password" className="block text-xs font-bold text-gray-600 uppercase tracking-wider mb-2">
+            <div className="text-left">
+              <label htmlFor="password" className="block text-[9px] font-bold text-zinc-400 uppercase tracking-wider mb-1.5">
                 Password
               </label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-400">
-                  <Lock size={18} />
+                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-zinc-400">
+                  <Lock size={16} />
                 </div>
                 <input
                   id="password"
@@ -98,15 +98,15 @@ const Login = () => {
                   placeholder="••••••••"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="block w-full pl-10 pr-4 py-3 border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary text-sm font-medium transition"
+                  className="block w-full pl-10 pr-4 py-2.5 border border-zinc-200 rounded-xl focus:outline-none focus:border-zinc-900 text-xs font-semibold transition"
                 />
               </div>
             </div>
 
-            <div>
+            <div className="pt-2">
               <button
                 type="submit"
-                className="w-full flex justify-center py-3.5 px-4 border border-transparent rounded-2xl shadow-sm text-sm font-bold text-white bg-primary hover:bg-primary-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition duration-200"
+                className="w-full bg-zinc-900 hover:bg-zinc-800 text-white text-xs font-bold py-3 rounded-xl uppercase tracking-wider transition"
               >
                 Sign In
               </button>
@@ -114,42 +114,42 @@ const Login = () => {
           </form>
 
           {/* Quick Login Divider */}
-          <div className="relative my-6">
+          <div className="relative my-4">
             <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-gray-100"></div>
+              <div className="w-full border-t border-zinc-150"></div>
             </div>
-            <div className="relative flex justify-center text-xs uppercase">
-              <span className="bg-white px-3 text-gray-400 font-bold tracking-wider">Demo Quick Login</span>
+            <div className="relative flex justify-center text-[9px] uppercase tracking-wider font-bold">
+              <span className="bg-white px-2.5 text-zinc-400">Quick Demo Access</span>
             </div>
           </div>
 
           {/* Quick Logins Grid */}
-          <div className="grid grid-cols-3 gap-2.5">
+          <div className="grid grid-cols-3 gap-2">
             <button
               onClick={() => handleQuickLogin('user')}
-              className="flex flex-col items-center justify-center p-3 rounded-2xl border border-orange-100 bg-orange-50/40 hover:bg-orange-50 text-primary transition duration-200"
+              className="flex flex-col items-center justify-center p-2.5 rounded-xl border border-zinc-200 hover:bg-zinc-50 text-zinc-800 transition"
             >
-              <User size={20} className="mb-1" />
-              <span className="text-[10px] font-bold uppercase tracking-wider">As User</span>
+              <User size={16} className="mb-1 text-zinc-500" />
+              <span className="text-[9px] font-bold uppercase tracking-wider">User</span>
             </button>
             <button
               onClick={() => handleQuickLogin('rider')}
-              className="flex flex-col items-center justify-center p-3 rounded-2xl border border-emerald-100 bg-emerald-50/40 hover:bg-emerald-50 text-emerald-600 transition duration-200"
+              className="flex flex-col items-center justify-center p-2.5 rounded-xl border border-zinc-200 hover:bg-zinc-50 text-zinc-800 transition"
             >
-              <Bike size={20} className="mb-1" />
-              <span className="text-[10px] font-bold uppercase tracking-wider">As Rider</span>
+              <Bike size={16} className="mb-1 text-zinc-500" />
+              <span className="text-[9px] font-bold uppercase tracking-wider">Rider</span>
             </button>
             <button
               onClick={() => handleQuickLogin('admin')}
-              className="flex flex-col items-center justify-center p-3 rounded-2xl border border-indigo-100 bg-indigo-50/40 hover:bg-indigo-50 text-indigo-600 transition duration-200"
+              className="flex flex-col items-center justify-center p-2.5 rounded-xl border border-zinc-200 hover:bg-zinc-50 text-zinc-800 transition"
             >
-              <ShieldCheck size={20} className="mb-1" />
-              <span className="text-[10px] font-bold uppercase tracking-wider">As Admin</span>
+              <ShieldCheck size={16} className="mb-1 text-zinc-500" />
+              <span className="text-[9px] font-bold uppercase tracking-wider">Admin</span>
             </button>
           </div>
           
-          <div className="bg-slate-50 border border-slate-100 p-3.5 rounded-2xl text-[11px] text-gray-500 leading-relaxed font-medium">
-            💡 <strong>Passwords:</strong> You can type any password (e.g. <code>password</code>) or use the buttons above to log in instantly.
+          <div className="bg-zinc-50 border border-zinc-150 p-3 rounded-xl text-[10px] text-zinc-450 leading-relaxed font-semibold text-left">
+            💡 <strong>Passwords:</strong> You can type any value or use the quick buttons above to access mock databases instantly.
           </div>
         </div>
       </div>

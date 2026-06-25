@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { AppContext } from '../../context/AppContext';
-import { Search, Ban, CheckCircle, Trash2, ArrowLeft, ArrowRight, UserCheck } from 'lucide-react';
+import { Search, Ban, Trash2, ArrowLeft, ArrowRight, UserCheck } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 const UserManagement = () => {
@@ -36,18 +36,18 @@ const UserManagement = () => {
   };
 
   return (
-    <div className="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 space-y-6">
+    <div className="bg-white rounded-xl border border-zinc-200 p-6 space-y-6 text-zinc-900">
       
       {/* Title & Search */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-        <div>
-          <h2 className="font-display font-extrabold text-xl text-dark">User Account Records</h2>
-          <p className="text-xs text-gray-400 font-semibold mt-1 uppercase">Manage consumer and administrator login privileges.</p>
+        <div className="space-y-1">
+          <h2 className="text-xl font-bold tracking-tight text-zinc-900">User Account Records</h2>
+          <p className="text-xs text-zinc-500">Manage consumer and administrator login privileges.</p>
         </div>
 
         <div className="relative w-full sm:w-64">
-          <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-400">
-            <Search size={16} />
+          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-zinc-400">
+            <Search size={15} />
           </div>
           <input
             type="text"
@@ -57,7 +57,7 @@ const UserManagement = () => {
               setSearchQuery(e.target.value);
               setCurrentPage(1); // Reset page
             }}
-            className="block w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-transparent rounded-2xl focus:outline-none focus:bg-white focus:border-primary text-xs font-semibold transition"
+            className="block w-full pl-9 pr-4 py-2 bg-zinc-50 border border-zinc-200 rounded-lg focus:outline-none focus:bg-white focus:border-zinc-900 text-xs font-semibold transition text-zinc-900 placeholder-zinc-400"
           />
         </div>
       </div>
@@ -66,7 +66,7 @@ const UserManagement = () => {
       <div className="overflow-x-auto">
         <table className="w-full text-left border-collapse">
           <thead>
-            <tr className="border-b border-gray-100 text-xs font-bold text-gray-400 uppercase tracking-wider">
+            <tr className="border-b border-zinc-200 text-[10px] font-bold text-zinc-400 uppercase tracking-wider">
               <th className="pb-3">User ID</th>
               <th className="pb-3">Name</th>
               <th className="pb-3">Contact</th>
@@ -76,64 +76,55 @@ const UserManagement = () => {
               <th className="pb-3 text-right">Actions</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-50 text-xs font-medium text-gray-650">
+          <tbody className="divide-y divide-zinc-100 text-xs font-medium text-zinc-700">
             {paginatedUsers.length > 0 ? (
               paginatedUsers.map((user) => {
                 const isBlocked = user.status === 'blocked';
                 return (
-                  <tr key={user.id} className="hover:bg-slate-50/50 transition">
-                    <td className="py-3.5 font-mono font-bold text-gray-400">{user.id}</td>
+                  <tr key={user.id} className="hover:bg-zinc-50 transition">
+                    <td className="py-3.5 font-mono text-[11px] text-zinc-400">{user.id}</td>
                     <td className="py-3.5">
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-3">
                         <img 
                           src={user.avatar} 
                           alt={user.name} 
-                          className="w-8 h-8 rounded-lg object-cover bg-slate-100"
+                          className="w-8 h-8 rounded-lg border border-zinc-200 object-cover bg-zinc-50"
                         />
-                        <span className="font-bold text-dark">{user.name}</span>
+                        <span className="font-bold text-zinc-900">{user.name}</span>
                       </div>
                     </td>
                     <td className="py-3.5 space-y-0.5">
-                      <p className="text-dark font-bold">{user.phone}</p>
-                      <p className="text-[10px] text-gray-450 font-semibold">{user.email}</p>
+                      <p className="text-zinc-900 font-bold">{user.phone}</p>
+                      <p className="text-[10px] text-zinc-450 font-medium">{user.email}</p>
                     </td>
                     <td className="py-3.5">
-                      <span className={`px-2 py-0.5 rounded text-[9px] font-extrabold uppercase tracking-wider ${
-                        user.role === 'admin' ? 'bg-indigo-50 text-indigo-600 border' : 'bg-slate-100 text-gray-500'
-                      }`}>
+                      <span className="bg-zinc-50 border border-zinc-200 text-zinc-800 px-2 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider">
                         {user.role}
                       </span>
                     </td>
-                    <td className="py-3.5 font-bold text-dark">
-                      ₹{user.walletBalance?.toFixed(2) || '0.00'}
+                    <td className="py-3.5 font-bold text-zinc-900">
+                      ₹{(user.walletBalance || 0).toFixed(2)}
                     </td>
                     <td className="py-3.5">
-                      <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider border ${
-                        isBlocked 
-                          ? 'bg-rose-50 text-rose-500 border-rose-100' 
-                          : 'bg-emerald-50 text-emerald-600 border-emerald-100'
-                      }`}>
+                      <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider border border-zinc-200 text-zinc-800 bg-white">
+                        <span className={`w-1.5 h-1.5 rounded-full ${isBlocked ? 'bg-zinc-450' : 'bg-emerald-500'}`}></span>
                         {user.status || 'active'}
                       </span>
                     </td>
                     <td className="py-3.5 text-right space-x-1 shrink-0 whitespace-nowrap">
                       <button
                         onClick={() => handleToggleBlock(user.id, user.status)}
-                        className={`p-2 rounded-lg border transition ${
-                          isBlocked 
-                            ? 'bg-emerald-50 border-emerald-100 text-emerald-600 hover:bg-emerald-100' 
-                            : 'bg-rose-50 border-rose-100 text-rose-500 hover:bg-rose-100'
-                        }`}
+                        className="p-1.5 rounded-md border border-zinc-200 hover:border-zinc-900 text-zinc-500 hover:text-zinc-900 transition bg-white"
                         title={isBlocked ? "Activate User" : "Suspend User"}
                       >
-                        {isBlocked ? <UserCheck size={14} /> : <Ban size={14} />}
+                        {isBlocked ? <UserCheck size={13} /> : <Ban size={13} />}
                       </button>
                       <button
                         onClick={() => handleDelete(user.id, user.name)}
-                        className="p-2 bg-slate-50 border border-slate-200 text-gray-400 hover:text-rose-500 hover:border-rose-200 rounded-lg transition"
+                        className="p-1.5 rounded-md border border-zinc-200 hover:border-zinc-900 text-zinc-500 hover:text-zinc-900 transition bg-white"
                         title="Delete User"
                       >
-                        <Trash2 size={14} />
+                        <Trash2 size={13} />
                       </button>
                     </td>
                   </tr>
@@ -141,7 +132,7 @@ const UserManagement = () => {
               })
             ) : (
               <tr>
-                <td colSpan="7" className="text-center py-10 text-gray-450 font-semibold">
+                <td colSpan="7" className="text-center py-10 text-zinc-400 font-bold">
                   No records match search parameters.
                 </td>
               </tr>
@@ -152,32 +143,32 @@ const UserManagement = () => {
 
       {/* Pagination Controls */}
       {totalPages > 1 && (
-        <div className="flex items-center justify-between border-t border-gray-100 pt-4">
-          <p className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">
+        <div className="flex items-center justify-between border-t border-zinc-200 pt-4">
+          <p className="text-[10px] text-zinc-400 font-bold uppercase tracking-wider">
             Showing {startIndex + 1} to {Math.min(startIndex + itemsPerPage, customers.length)} of {customers.length} entries
           </p>
           <div className="flex gap-2">
             <button
               onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
               disabled={currentPage === 1}
-              className={`p-2 border rounded-xl transition ${
+              className={`p-1.5 border rounded-lg transition ${
                 currentPage === 1 
-                  ? 'text-gray-300 border-gray-100 cursor-not-allowed' 
-                  : 'text-gray-600 border-gray-200 hover:bg-slate-50'
+                  ? 'text-zinc-300 border-zinc-100 cursor-not-allowed' 
+                  : 'text-zinc-650 border-zinc-200 hover:bg-zinc-50 hover:border-zinc-950'
               }`}
             >
-              <ArrowLeft size={16} />
+              <ArrowLeft size={14} />
             </button>
             <button
               onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
               disabled={currentPage === totalPages}
-              className={`p-2 border rounded-xl transition ${
+              className={`p-1.5 border rounded-lg transition ${
                 currentPage === totalPages 
-                  ? 'text-gray-300 border-gray-100 cursor-not-allowed' 
-                  : 'text-gray-600 border-gray-200 hover:bg-slate-50'
+                  ? 'text-zinc-300 border-zinc-100 cursor-not-allowed' 
+                  : 'text-zinc-650 border-zinc-200 hover:bg-zinc-50 hover:border-zinc-950'
               }`}
             >
-              <ArrowRight size={16} />
+              <ArrowRight size={14} />
             </button>
           </div>
         </div>

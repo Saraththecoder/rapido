@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AppContext } from '../../context/AppContext';
-import { ClipboardList, TrendingUp, Wallet, Star, ShieldAlert, Award, Power, Car } from 'lucide-react';
+import { ClipboardList, TrendingUp, Wallet, Star, Power, Award } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 const RiderDashboard = () => {
@@ -12,9 +12,9 @@ const RiderDashboard = () => {
     const nextStatus = !currentUser.isOnline;
     updateRiderStatus(currentUser.id, nextStatus);
     if (nextStatus) {
-      toast.success("You are now ONLINE. Waiting for incoming orders...");
+      toast.success("Duty status ONLINE. Waiting for incoming orders...");
     } else {
-      toast.error("You are now OFFLINE. You won't receive job requests.");
+      toast.error("Duty status OFFLINE. Bids suspended.");
     }
   };
 
@@ -26,36 +26,45 @@ const RiderDashboard = () => {
   ];
 
   const quickNav = [
-    { name: 'Job Requests', path: '/rider/requests', icon: ClipboardList, color: 'bg-primary text-white', desc: 'Accept new bookings' },
-    { name: 'Earnings Summary', path: '/rider/earnings', icon: TrendingUp, color: 'bg-emerald-500 text-white', desc: 'Daily & Weekly reports' },
-    { name: 'My Wallet', path: '/rider/wallet', icon: Wallet, color: 'bg-indigo-500 text-white', desc: 'Deductions & withdrawals' }
+    { name: 'Job Requests', path: '/rider/requests', icon: ClipboardList, desc: 'Accept new bookings' },
+    { name: 'Earnings Summary', path: '/rider/earnings', icon: TrendingUp, desc: 'Daily & Weekly reports' },
+    { name: 'My Wallet', path: '/rider/wallet', icon: Wallet, desc: 'Deductions & withdrawals' }
   ];
 
   return (
-    <div className="flex-1 max-w-5xl mx-auto px-4 py-6 pb-24 md:pb-8 space-y-6">
+    <div className="flex-1 max-w-5xl mx-auto px-4 py-8 space-y-8 pb-24 md:pb-12 animate-fade-in text-left">
       
       {/* Online / Offline Toggle Banner */}
-      <div className="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <div className="flex items-center gap-3">
-          <div className={`p-3.5 rounded-2xl ${currentUser?.isOnline ? 'bg-emerald-50 text-emerald-600 animate-pulse' : 'bg-gray-100 text-gray-400'}`}>
-            <Power size={24} />
+      <div className="bg-white rounded-xl border border-zinc-200 p-5 md:p-6 flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm">
+        <div className="flex items-center gap-4">
+          <div className={`p-4 rounded-xl transition duration-200 ${
+            currentUser?.isOnline 
+              ? 'bg-zinc-900 text-white' 
+              : 'bg-zinc-100 text-zinc-500 border border-zinc-200'
+          }`}>
+            <Power size={20} />
           </div>
           <div>
-            <h3 className="font-display font-extrabold text-lg text-dark">
-              Duty Status: {currentUser?.isOnline ? 'ONLINE' : 'OFFLINE'}
-            </h3>
-            <p className="text-xs text-gray-500 font-medium">
-              {currentUser?.isOnline ? 'You are receiving nearby taxi, food and parcel bids.' : 'Turn on duty status to start accepting requests.'}
+            <div className="flex items-center gap-2">
+              <h3 className="font-display font-bold text-lg text-zinc-900">
+                Duty Status: {currentUser?.isOnline ? 'ONLINE' : 'OFFLINE'}
+              </h3>
+              <span className={`h-1.5 w-1.5 rounded-full ${currentUser?.isOnline ? 'bg-emerald-500 animate-pulse' : 'bg-rose-500'}`}></span>
+            </div>
+            <p className="text-xs text-zinc-500 font-semibold mt-1 leading-relaxed max-w-md">
+              {currentUser?.isOnline 
+                ? 'Your radar is active. Live customer ride requests and food delivery bids will alert below.' 
+                : 'Turn on duty status to start receiving incoming orders and ride requests.'}
             </p>
           </div>
         </div>
 
         <button
           onClick={handleToggleOnlineStatus}
-          className={`w-full sm:w-auto px-8 py-3.5 rounded-2xl font-bold text-sm shadow-sm transition duration-200 ${
+          className={`w-full md:w-auto px-6 py-2.5 rounded-lg font-bold text-xs uppercase tracking-wider transition ${
             currentUser?.isOnline
-              ? 'bg-rose-500 hover:bg-rose-600 text-white shadow-rose-500/10'
-              : 'bg-emerald-500 hover:bg-emerald-600 text-white shadow-emerald-500/10'
+              ? 'bg-rose-600 hover:bg-rose-700 text-white'
+              : 'bg-zinc-900 hover:bg-zinc-800 text-white'
           }`}
         >
           {currentUser?.isOnline ? 'Go Offline' : 'Go Online'}
@@ -63,86 +72,88 @@ const RiderDashboard = () => {
       </div>
 
       {/* Metrics Row */}
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-3 gap-4 md:gap-6">
         {/* Metric 1 */}
-        <div className="bg-white rounded-2xl border border-gray-100/60 p-4 text-center">
-          <p className="text-gray-400 text-[10px] font-bold uppercase tracking-wider">Today's Jobs</p>
-          <p className="text-2xl font-black text-dark font-display mt-1">8</p>
-          <span className="text-[9px] text-emerald-600 font-bold bg-emerald-50 px-1.5 py-0.5 rounded mt-1 inline-block">100% Accept</span>
+        <div className="bg-white rounded-xl border border-zinc-200 p-5 text-center shadow-sm">
+          <p className="text-zinc-400 text-[9px] font-bold uppercase tracking-wider">Today's Jobs</p>
+          <p className="text-2xl md:text-3xl font-black text-zinc-900 font-display mt-2 leading-none">8</p>
+          <span className="text-[9px] text-zinc-500 border border-zinc-200 font-bold bg-zinc-50 px-2 py-0.5 rounded-md mt-2.5 inline-block">100% Completed</span>
         </div>
         {/* Metric 2 */}
-        <div className="bg-white rounded-2xl border border-gray-100/60 p-4 text-center">
-          <p className="text-gray-400 text-[10px] font-bold uppercase tracking-wider">Today's Pay</p>
-          <p className="text-2xl font-black text-primary font-display mt-1">₹1,250</p>
-          <span className="text-[9px] text-gray-500 font-medium bg-slate-50 border px-1.5 py-0.5 rounded mt-1 inline-block">Inc: ₹200</span>
+        <div className="bg-white rounded-xl border border-zinc-200 p-5 text-center shadow-sm">
+          <p className="text-zinc-400 text-[9px] font-bold uppercase tracking-wider">Today's Pay</p>
+          <p className="text-2xl md:text-3xl font-black text-zinc-900 font-display mt-2 leading-none">₹1,250</p>
+          <span className="text-[9px] text-zinc-500 border border-zinc-200 font-bold bg-zinc-50 px-2 py-0.5 rounded-md mt-2.5 inline-block">Incentives Included</span>
         </div>
         {/* Metric 3 */}
-        <div className="bg-white rounded-2xl border border-gray-100/60 p-4 text-center">
-          <p className="text-gray-400 text-[10px] font-bold uppercase tracking-wider">Rating</p>
-          <p className="text-2xl font-black text-dark font-display mt-1 flex items-center justify-center gap-0.5">
-            4.8 <Star size={16} className="text-amber-500 fill-amber-500" />
+        <div className="bg-white rounded-xl border border-zinc-200 p-5 text-center shadow-sm">
+          <p className="text-zinc-400 text-[9px] font-bold uppercase tracking-wider">Customer Rating</p>
+          <p className="text-2xl md:text-3xl font-black text-zinc-900 font-display mt-2 leading-none flex items-center justify-center gap-0.5">
+            4.8 <Star size={18} className="text-zinc-850 fill-zinc-900" />
           </p>
-          <span className="text-[9px] text-indigo-600 font-bold bg-indigo-50 px-1.5 py-0.5 rounded mt-1 inline-block">Excellent</span>
+          <span className="text-[9px] text-zinc-500 border border-zinc-200 font-bold bg-zinc-50 px-2 py-0.5 rounded-md mt-2.5 inline-block">Top Partner</span>
         </div>
       </div>
 
       {/* Active Jobs Section */}
-      <div className="space-y-3">
-        <h3 className="font-display font-extrabold text-xl text-dark">Active Task Handlers</h3>
+      <div className="space-y-4">
+        <h3 className="font-display font-bold text-lg text-zinc-900 tracking-tight">Active Task Console</h3>
         {activeTrips.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {activeTrips.map((trip) => (
-              <div key={trip.id} className="bg-white rounded-2xl border border-gray-150 p-4 space-y-3 hover:border-gray-200 transition">
+              <div key={trip.id} className="bg-white rounded-xl border border-zinc-200 p-5 space-y-4 shadow-sm">
                 <div className="flex justify-between items-start">
                   <div>
-                    <span className="bg-orange-50 text-primary px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider">Active {trip.id.startsWith('FO') ? 'Food' : trip.id.startsWith('PA') ? 'Parcel' : 'Ride'}</span>
-                    <h4 className="font-bold text-dark text-sm mt-1.5">
+                    <span className="bg-zinc-900 text-white px-2 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider">
+                      Active {trip.id.startsWith('FO') ? 'Food' : trip.id.startsWith('PA') ? 'Courier' : 'Taxi'}
+                    </span>
+                    <h4 className="font-bold text-zinc-800 text-sm mt-3 leading-snug">
                       {trip.id.startsWith('FO') ? `Pickup: ${trip.restaurantName}` : `Pickup: ${trip.pickup || 'HSR Layout'}`}
                     </h4>
                   </div>
-                  <span className="text-base font-black text-dark">₹{trip.price || trip.fare}</span>
+                  <span className="text-base font-black text-zinc-900">₹{trip.price || trip.fare}</span>
                 </div>
                 
-                <p className="text-xs text-gray-500">
-                  Drop Location: <strong className="text-dark">{trip.receiverAddress || trip.drop || 'Office Location'}</strong>
+                <p className="text-xs text-zinc-500 font-semibold leading-normal">
+                  Drop Location: <strong className="text-zinc-800 font-bold">{trip.receiverAddress || trip.drop || 'Client Dropoff'}</strong>
                 </p>
 
-                <div className="flex gap-2 pt-2">
+                <div className="pt-2 border-t border-zinc-100">
                   <Link
                     to="/rider/requests"
-                    className="flex-1 bg-slate-50 hover:bg-slate-100 text-gray-700 font-bold text-xs py-2 rounded-xl text-center border transition"
+                    className="w-full bg-white hover:bg-zinc-50 text-zinc-800 font-bold text-xs py-2 rounded-lg text-center border border-zinc-200 block transition"
                   >
-                    Open Console
+                    Open Steering Console
                   </Link>
                 </div>
               </div>
             ))}
           </div>
         ) : (
-          <div className="bg-slate-50 rounded-3xl border border-slate-100 p-8 text-center text-gray-400 text-xs font-semibold">
-            No active jobs. Toggle online status and visit "Job Requests" to accept bids.
+          <div className="bg-zinc-50 rounded-xl border border-zinc-200 p-10 text-center text-zinc-400 text-xs font-semibold">
+            No active jobs at the moment. Toggle ONLINE status and navigate to "Job Requests" to accept orders.
           </div>
         )}
       </div>
 
-      {/* Quick Nav Drawer Grid */}
-      <div className="space-y-3">
-        <h3 className="font-display font-extrabold text-xl text-dark">Partner Actions</h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {/* Partner Actions */}
+      <div className="space-y-4">
+        <h3 className="font-display font-bold text-lg text-zinc-900 tracking-tight">Partner Console Links</h3>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
           {quickNav.map((nav, idx) => {
             const Icon = nav.icon;
             return (
               <Link 
                 key={idx}
                 to={nav.path}
-                className="bg-white rounded-3xl shadow-sm border border-gray-100/60 p-5 flex items-center gap-4 hover:shadow-md transition duration-200"
+                className="bg-white border border-zinc-200 rounded-xl p-5 flex items-center gap-4 hover:border-zinc-400 transition duration-150 group"
               >
-                <div className={`h-12 w-12 rounded-2xl ${nav.color} flex items-center justify-center shrink-0`}>
-                  <Icon size={22} />
+                <div className="h-10 w-10 rounded-lg bg-zinc-50 border border-zinc-200 text-zinc-800 flex items-center justify-center shrink-0">
+                  <Icon size={18} />
                 </div>
                 <div>
-                  <h4 className="font-bold text-dark text-base">{nav.name}</h4>
-                  <p className="text-gray-400 text-xs font-medium">{nav.desc}</p>
+                  <h4 className="font-display font-bold text-sm text-zinc-900 transition">{nav.name}</h4>
+                  <p className="text-zinc-400 text-[11px] font-semibold mt-0.5">{nav.desc}</p>
                 </div>
               </Link>
             );
@@ -150,15 +161,30 @@ const RiderDashboard = () => {
         </div>
       </div>
 
-      {/* Incentives / Target Progress */}
-      <div className="bg-gradient-to-br from-indigo-50 to-orange-50 border border-indigo-100 rounded-3xl p-6 flex flex-col md:flex-row items-center justify-between gap-4">
-        <div className="space-y-1.5 text-center md:text-left">
-          <span className="bg-indigo-600 text-white px-2 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider">Weekly Incentive</span>
-          <h4 className="font-display font-extrabold text-lg text-dark">Complete 10 rides to unlock a ₹200 bonus!</h4>
-          <p className="text-xs text-gray-500 font-medium">You have completed 8 of 10 rides. Only 2 more to go.</p>
-        </div>
-        <div className="shrink-0 w-24 h-24 relative flex items-center justify-center font-display font-black text-lg text-dark bg-white rounded-full border-4 border-indigo-500 shadow-sm">
-          80%
+      {/* Weekly Incentives Goal */}
+      <div className="bg-zinc-50 border border-zinc-200 text-zinc-900 rounded-xl p-6 md:p-8 relative overflow-hidden shadow-sm">
+        <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="space-y-2 flex-1">
+            <div className="flex items-center gap-1.5 text-zinc-500">
+              <Award size={16} />
+              <span className="text-[9px] font-bold uppercase tracking-wider">Performance Target</span>
+            </div>
+            <h3 className="font-display font-bold text-xl max-w-lg leading-snug">
+              Complete 10 rides to unlock a ₹200 weekly incentive bonus!
+            </h3>
+            <p className="text-xs text-zinc-550 font-semibold">
+              You completed <strong className="text-zinc-900">8 of 10</strong> runs. 2 more rides to secure the credit!
+            </p>
+            
+            <div className="pt-2 flex gap-4 text-[9px] text-zinc-400 font-bold uppercase tracking-wider">
+              <p>✓ Rating: <strong>4.8</strong> (Req: 4.5)</p>
+              <p>✓ Hours: <strong>21h</strong> (Req: 15h)</p>
+            </div>
+          </div>
+          
+          <div className="shrink-0 w-20 h-20 relative flex items-center justify-center font-display font-black text-lg text-zinc-900 bg-white border border-zinc-200 rounded-full">
+            80%
+          </div>
         </div>
       </div>
 

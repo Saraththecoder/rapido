@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { AppContext } from '../../context/AppContext';
-import { ArrowLeft, MapPin, Phone, MessageSquare, Shield, Clock, Navigation } from 'lucide-react';
+import { ArrowLeft, Clock } from 'lucide-react';
 import RideCard from '../../components/RideCard';
 import StatusBadge from '../../components/StatusBadge';
 
@@ -10,10 +10,9 @@ const TrackOrder = () => {
   const navigate = useNavigate();
   const { orders, parcels, bookings } = useContext(AppContext);
 
-  // We can parse service type from the orderId prefix e.g. 'food-FO101' or 'parcel-PA501' or 'ride-TX301'
   const idParts = orderId.split('-');
   const serviceType = idParts[0]; // 'food' or 'parcel' or 'ride'
-  const actualId = idParts[1] || orderId; // the actual ID
+  const actualId = idParts[1] || orderId;
 
   let orderData = null;
   if (serviceType === 'food') {
@@ -24,7 +23,6 @@ const TrackOrder = () => {
     orderData = bookings.find(b => b.id === actualId);
   }
 
-  // Fallbacks if not prefixed properly
   if (!orderData) {
     orderData = orders.find(o => o.id === orderId) || 
                 parcels.find(p => p.id === orderId) || 
@@ -33,14 +31,13 @@ const TrackOrder = () => {
 
   if (!orderData) {
     return (
-      <div className="flex-1 flex flex-col justify-center items-center py-20 space-y-4">
-        <p className="text-gray-500 font-bold">Order or Trip not found.</p>
-        <Link to="/user/dashboard" className="text-primary font-bold hover:underline">Back to Dashboard</Link>
+      <div className="flex-1 flex flex-col justify-center items-center py-20 space-y-4 text-left">
+        <p className="text-zinc-550 font-bold">Order not found.</p>
+        <Link to="/user/dashboard" className="text-zinc-900 font-bold hover:underline">Back to Dashboard</Link>
       </div>
     );
   }
 
-  // Determine steps and current index based on service type and status
   let steps = [];
   let activeIndex = 0;
   const status = orderData.status?.toLowerCase();
@@ -64,7 +61,6 @@ const TrackOrder = () => {
     activeIndex = steps.findIndex(s => s.key === status);
     if (status === 'delivered') activeIndex = 3;
   } else {
-    // Taxi booking
     steps = [
       { key: 'placed', label: 'Ride Booked' },
       { key: 'preparing', label: 'Rider Arrived' },
@@ -75,20 +71,20 @@ const TrackOrder = () => {
     if (status === 'delivered') activeIndex = 3;
   }
 
-  if (activeIndex === -1) activeIndex = 0; // Fallback
+  if (activeIndex === -1) activeIndex = 0;
 
   return (
-    <div className="flex-1 max-w-5xl mx-auto px-4 py-6 pb-24 md:pb-8 space-y-6">
+    <div className="flex-1 max-w-5xl mx-auto px-4 py-6 pb-24 md:pb-8 space-y-6 text-left">
       
       {/* Back to Dashboard */}
       <div className="flex items-center gap-3">
         <button 
           onClick={() => navigate('/user/dashboard')}
-          className="p-2.5 bg-white hover:bg-slate-50 text-gray-700 rounded-xl transition border border-gray-100/60"
+          className="p-2 bg-white hover:bg-zinc-50 text-zinc-700 rounded-lg border border-zinc-200 transition"
         >
-          <ArrowLeft size={16} />
+          <ArrowLeft size={15} />
         </button>
-        <span className="text-xs font-bold text-gray-500 uppercase tracking-wider">Back to Dashboard</span>
+        <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-wider">Back to Dashboard</span>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -97,68 +93,61 @@ const TrackOrder = () => {
         <div className="lg:col-span-2 space-y-6">
           
           {/* Simulated Premium SVG Map */}
-          <div className="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden relative">
-            <div className="p-4 border-b border-gray-100 flex justify-between items-center bg-slate-50">
-              <span className="text-xs font-bold text-gray-500 uppercase tracking-wider">Live Delivery Track</span>
-              <span className="flex items-center gap-1.5 text-xs font-semibold text-emerald-600">
-                <Clock size={14} /> ETA: 12 mins
+          <div className="bg-white rounded-xl border border-zinc-200 overflow-hidden relative shadow-sm">
+            <div className="p-4 border-b border-zinc-200 flex justify-between items-center bg-zinc-50">
+              <span className="text-[10px] font-bold text-zinc-450 uppercase tracking-wider">Live Delivery Track</span>
+              <span className="flex items-center gap-1.5 text-xs font-bold text-zinc-800">
+                <Clock size={13} className="text-zinc-650" /> ETA: 12 mins
               </span>
             </div>
 
             {/* Custom SVG Simulated Map */}
-            <div className="h-64 relative bg-slate-50 flex items-center justify-center p-4">
-              <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
-                {/* Grid patterns */}
-                <defs>
-                  <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
-                    <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#f1f5f9" strokeWidth="1" />
-                  </pattern>
-                </defs>
-                <rect width="100%" height="100%" fill="url(#grid)" />
+            <div className="relative w-full aspect-[400/200] bg-zinc-50 p-4">
+              <svg viewBox="0 0 580 220" className="absolute inset-0 w-full h-full p-3" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+                <rect width="100%" height="100%" fill="#fafafa" />
+                <line x1="100" y1="0" x2="100" y2="220" stroke="#f4f4f5" strokeWidth="1" />
+                <line x1="250" y1="0" x2="250" y2="220" stroke="#f4f4f5" strokeWidth="1" />
+                <line x1="400" y1="0" x2="400" y2="220" stroke="#f4f4f5" strokeWidth="1" />
+                <line x1="0" y1="110" x2="580" y2="110" stroke="#f4f4f5" strokeWidth="1" />
                 
                 {/* Road paths */}
-                <path d="M 50 120 C 150 120, 200 40, 300 80 C 400 120, 420 200, 520 180" fill="none" stroke="#cbd5e1" strokeWidth="12" strokeLinecap="round" />
-                <path d="M 50 120 C 150 120, 200 40, 300 80 C 400 120, 420 200, 520 180" fill="none" stroke="#e2e8f0" strokeWidth="8" strokeLinecap="round" />
+                <path d="M 50 120 C 150 120, 200 40, 300 80 C 400 120, 420 200, 520 180" fill="none" stroke="#e4e4e7" strokeWidth="10" strokeLinecap="round" />
                 
                 {/* Track active route color */}
-                <path d="M 50 120 C 150 120, 200 40, 300 80" fill="none" stroke="#ff9800" strokeWidth="6" strokeLinecap="round" strokeDasharray="6 4 animate-dash" />
+                <path d="M 50 120 C 150 120, 200 40, 300 80" fill="none" stroke="#18181b" strokeWidth="2" strokeLinecap="round" strokeDasharray="5 3" />
 
                 {/* Pickup marker */}
-                <circle cx="50" cy="120" r="10" fill="#10b981" fillOpacity="0.2" />
-                <circle cx="50" cy="120" r="5" fill="#10b981" />
+                <circle cx="50" cy="120" r="4" fill="#18181b" />
                 
                 {/* Drop marker */}
-                <circle cx="300" cy="80" r="12" fill="#f43f5e" fillOpacity="0.2" />
-                <circle cx="300" cy="80" r="6" fill="#f43f5e" />
+                <circle cx="300" cy="80" r="4" fill="#71717a" />
 
                 {/* Rider animation marker */}
                 {status !== 'delivered' && (
                   <g transform="translate(180, 75)">
-                    <circle r="14" fill="#ff9800" fillOpacity="0.3" className="animate-ping" />
-                    <circle r="8" fill="#ff9800" />
-                    <path d="M -3 -3 L 3 0 L -3 3 Z" fill="white" />
+                    <circle r="6" fill="#18181b" />
                   </g>
                 )}
               </svg>
 
               {/* Float Map Info Overlay */}
-              <div className="absolute bottom-3 left-3 bg-dark/90 text-white rounded-xl p-3 text-[10px] space-y-1 backdrop-blur-xs border border-gray-800 shadow-lg">
-                <p className="font-bold flex items-center gap-1"><span className="h-1.5 w-1.5 rounded-full bg-primary"></span> Rider En Route</p>
-                <p className="text-gray-400">Moving along HSR Main Road</p>
+              <div className="absolute bottom-3 left-3 bg-white border border-zinc-200 rounded-xl p-3 text-[10px] space-y-0.5 shadow-sm text-left">
+                <p className="font-bold text-zinc-900 flex items-center gap-1"><span className="h-1.5 w-1.5 rounded-full bg-zinc-950"></span> Rider En Route</p>
+                <p className="text-zinc-500 font-medium">Moving along HSR Main Road</p>
               </div>
             </div>
           </div>
 
           {/* Stepper Card */}
-          <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-6 space-y-6">
-            <h3 className="font-display font-extrabold text-lg text-dark">Track Progress</h3>
+          <div className="bg-white rounded-xl border border-zinc-200 p-6 space-y-6 shadow-sm">
+            <h3 className="font-display font-bold text-base text-zinc-900">Track Progress</h3>
             
             {/* Visual Stepper */}
             <div className="relative">
               {/* Stepper Line */}
-              <div className="absolute left-[15px] top-3 bottom-3 w-0.5 bg-gray-100 z-0">
+              <div className="absolute left-[15px] top-3 bottom-3 w-0.5 bg-zinc-150 z-0">
                 <div 
-                  className="bg-primary w-full transition-all duration-500" 
+                  className="bg-zinc-900 w-full transition-all duration-500" 
                   style={{ height: `${(activeIndex / (steps.length - 1)) * 100}%` }}
                 ></div>
               </div>
@@ -171,20 +160,20 @@ const TrackOrder = () => {
                   return (
                     <div key={step.key} className="flex items-center gap-4">
                       {/* Step Indicator Dot */}
-                      <span className={`h-8 w-8 rounded-full flex items-center justify-center font-bold text-xs border shrink-0 transition-colors duration-300 ${
+                      <span className={`h-8 w-8 rounded-full flex items-center justify-center font-bold text-xs border shrink-0 transition duration-150 ${
                         isCompleted 
-                          ? 'bg-primary border-primary text-white' 
+                          ? 'bg-zinc-900 border-zinc-900 text-white' 
                           : isActive 
-                            ? 'bg-orange-50 border-primary text-primary ring-4 ring-orange-100' 
-                            : 'bg-white border-gray-200 text-gray-400'
+                            ? 'bg-zinc-50 border-zinc-900 text-zinc-950 font-bold' 
+                            : 'bg-white border-zinc-200 text-zinc-400'
                       }`}>
                         {isCompleted ? '✓' : index + 1}
                       </span>
                       
                       {/* Step Label */}
                       <div>
-                        <h4 className={`text-sm font-bold ${isActive ? 'text-primary' : 'text-dark'}`}>{step.label}</h4>
-                        <p className="text-[10px] text-gray-400 font-medium">
+                        <h4 className={`text-xs font-bold uppercase tracking-wider ${isActive ? 'text-zinc-900' : 'text-zinc-450'}`}>{step.label}</h4>
+                        <p className="text-[9px] text-zinc-400 font-bold uppercase tracking-wider mt-0.5">
                           {isCompleted ? 'Completed' : isActive ? 'Active Now' : 'Pending'}
                         </p>
                       </div>
@@ -202,7 +191,7 @@ const TrackOrder = () => {
         <div className="space-y-6">
           {/* Assigned Rider Info */}
           <div>
-            <h3 className="font-display font-bold text-xs text-gray-400 uppercase tracking-wider mb-3">Assigned Executive</h3>
+            <h3 className="font-display font-bold text-[10px] text-zinc-400 uppercase tracking-wider mb-2">Assigned Executive</h3>
             <RideCard
               rider={orderData.rider}
               pickup={orderData.pickup || "HSR Layout Sector 3"}
@@ -214,23 +203,23 @@ const TrackOrder = () => {
           </div>
 
           {/* Details Summary */}
-          <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-5 space-y-4">
-            <h4 className="font-display font-bold text-sm text-dark border-b border-gray-50 pb-2">Order Breakdown</h4>
+          <div className="bg-white rounded-xl border border-zinc-200 p-5 space-y-4 text-left shadow-sm">
+            <h4 className="font-display font-bold text-xs text-zinc-900 uppercase tracking-wider border-b border-zinc-100 pb-2">Order Breakdown</h4>
             
-            <div className="text-xs space-y-2.5">
-              <div className="flex justify-between text-gray-500">
+            <div className="text-xs space-y-3 font-semibold">
+              <div className="flex justify-between text-zinc-500">
                 <span>Service Category:</span>
-                <span className="font-bold text-dark uppercase">{serviceType}</span>
+                <span className="font-bold text-zinc-900 uppercase">{serviceType}</span>
               </div>
-              <div className="flex justify-between text-gray-500">
+              <div className="flex justify-between text-zinc-500">
                 <span>Transaction Reference:</span>
-                <span className="font-mono font-bold text-dark">{orderData.id}</span>
+                <span className="font-mono font-bold text-zinc-900">{orderData.id}</span>
               </div>
               
               {serviceType === 'food' && (
-                <div className="pt-2 border-t border-slate-100">
-                  <p className="text-gray-400 font-semibold mb-1">Dishes ordered:</p>
-                  <ul className="space-y-1 text-gray-500">
+                <div className="pt-2 border-t border-zinc-100">
+                  <p className="text-zinc-400 font-bold uppercase text-[9px] tracking-wider mb-1.5">Dishes ordered:</p>
+                  <ul className="space-y-1.5 text-zinc-650">
                     {orderData.items?.map(i => (
                       <li key={i.id} className="flex justify-between">
                         <span>{i.name} x{i.quantity}</span>
@@ -241,10 +230,10 @@ const TrackOrder = () => {
               )}
 
               {serviceType === 'parcel' && (
-                <div className="pt-2 border-t border-slate-100 space-y-1 text-gray-500">
-                  <p>Weight Class: <strong className="text-dark">{orderData.weight}</strong></p>
-                  <p>Description: <strong className="text-dark">{orderData.description}</strong></p>
-                  <p>Tracking Ref: <strong className="text-primary font-mono">{orderData.trackingId}</strong></p>
+                <div className="pt-2 border-t border-zinc-100 space-y-1.5 text-zinc-650">
+                  <p>Weight Class: <strong className="text-zinc-800 font-bold">{orderData.weight}</strong></p>
+                  <p>Description: <strong className="text-zinc-800 font-bold">{orderData.description}</strong></p>
+                  <p>Tracking Ref: <strong className="text-zinc-800 font-mono font-bold">{orderData.trackingId}</strong></p>
                 </div>
               )}
             </div>

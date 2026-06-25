@@ -37,63 +37,61 @@ const Sidebar = () => {
 
   return (
     <>
-      {/* Mobile Top Header (only when sidebar is hidden on small screens) */}
-      <div className="lg:hidden bg-dark text-white flex justify-between items-center px-4 h-16 sticky top-0 z-40">
+      {/* Mobile Top Header */}
+      <div className="lg:hidden bg-white border-b border-zinc-200 text-zinc-900 flex justify-between items-center px-4 h-16 sticky top-0 z-45">
         <div className="flex items-center gap-2">
-          <span className="bg-primary text-white p-1.5 rounded-lg text-sm font-bold">SG</span>
-          <span className="font-display font-extrabold text-lg">SwiftGo <span className="text-xs text-primary font-normal">Admin</span></span>
+          <span className="bg-zinc-900 text-white px-2 py-0.5 rounded text-xs font-bold font-mono">SG</span>
+          <span className="font-display font-black text-base">SwiftGo <span className="text-[10px] text-zinc-400 font-bold uppercase tracking-wider">Admin</span></span>
         </div>
         <button 
           onClick={() => setMobileOpen(!mobileOpen)} 
-          className="p-2 text-gray-400 hover:text-white transition focus:outline-none"
+          className="p-1.5 text-zinc-500 hover:text-zinc-900 transition focus:outline-none"
         >
-          {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+          {mobileOpen ? <X size={20} /> : <Menu size={20} />}
         </button>
       </div>
 
       {/* Mobile Sidebar Overlay */}
       {mobileOpen && (
         <div 
-          className="lg:hidden fixed inset-0 bg-black/50 z-40 transition-opacity"
+          className="lg:hidden fixed inset-0 bg-black/10 z-40 transition-opacity backdrop-blur-sm"
           onClick={() => setMobileOpen(false)}
         />
       )}
 
       {/* Sidebar Container */}
       <aside className={`
-        fixed lg:sticky top-16 lg:top-0 left-0 h-[calc(100vh-4rem)] lg:h-screen bg-dark text-gray-300 z-40 flex flex-col justify-between border-r border-gray-800 transition-all duration-300
-        ${collapsed ? 'w-20' : 'w-64'}
-        ${mobileOpen ? 'translate-x-0 w-64' : '-translate-x-full lg:translate-x-0'}
+        fixed lg:sticky top-16 lg:top-0 left-0 h-[calc(100vh-4rem)] lg:h-screen bg-white text-zinc-650 z-40 flex flex-col justify-between border-r border-zinc-200 transition-all duration-300
+        ${collapsed ? 'w-16' : 'w-60'}
+        ${mobileOpen ? 'translate-x-0 w-60' : '-translate-x-full lg:translate-x-0'}
       `}>
-        <div>
-          {/* Brand header for desktop (non-navbar view) */}
-          <div className="hidden lg:flex items-center justify-between p-6 border-b border-gray-800">
+        <div className="text-left">
+          {/* Brand header for desktop */}
+          <div className="hidden lg:flex items-center justify-between p-5 border-b border-zinc-200">
             {!collapsed && (
               <div className="flex items-center gap-2">
-                <span className="bg-primary text-white p-2 rounded-xl flex items-center justify-center font-bold text-lg">
-                  SG
-                </span>
-                <span className="font-display font-extrabold text-xl text-white tracking-tight">
-                  SwiftGo <span className="text-primary text-xs font-semibold">Admin</span>
+                <span className="bg-zinc-900 text-white px-2 py-1 rounded text-sm font-bold font-mono">SG</span>
+                <span className="font-display font-black text-base text-zinc-900 tracking-tight">
+                  SwiftGo <span className="text-[10px] text-zinc-400 font-bold uppercase tracking-wider">Admin</span>
                 </span>
               </div>
             )}
             {collapsed && (
-              <span className="bg-primary text-white p-2 rounded-xl flex items-center justify-center font-bold text-lg mx-auto">
+              <span className="bg-zinc-900 text-white px-2 py-1 rounded text-xs font-bold font-mono mx-auto">
                 SG
               </span>
             )}
             
             <button 
               onClick={() => setCollapsed(!collapsed)}
-              className="text-gray-500 hover:text-white p-1.5 rounded-lg hover:bg-gray-800 hidden lg:block transition"
+              className="text-zinc-400 hover:text-zinc-900 p-1 rounded hover:bg-zinc-50 hidden lg:block transition"
             >
-              {collapsed ? <ChevronRight size={18} /> : <ChevronLeft size={18} />}
+              {collapsed ? <ChevronRight size={16} /> : <ChevronLeft size={16} />}
             </button>
           </div>
 
           {/* Navigation Links */}
-          <nav className="p-4 space-y-1.5 flex-1">
+          <nav className="p-3 space-y-1 flex-1">
             {navItems.map((item) => {
               const Icon = item.icon;
               return (
@@ -102,15 +100,15 @@ const Sidebar = () => {
                   to={item.path}
                   onClick={() => setMobileOpen(false)}
                   className={({ isActive }) => `
-                    flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200
+                    flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition duration-150
                     ${isActive 
-                      ? 'bg-primary text-white shadow-md shadow-orange-500/20' 
-                      : 'hover:bg-gray-800 hover:text-white text-gray-400'}
+                      ? 'bg-zinc-100 text-zinc-900 border border-zinc-200 shadow-sm' 
+                      : 'hover:bg-zinc-50 hover:text-zinc-900 text-zinc-450'}
                     ${collapsed ? 'justify-center px-0' : ''}
                   `}
                   title={collapsed ? item.name : ''}
                 >
-                  <Icon size={20} className="shrink-0" />
+                  <Icon size={16} className="shrink-0" />
                   {!collapsed && <span>{item.name}</span>}
                 </NavLink>
               );
@@ -119,17 +117,17 @@ const Sidebar = () => {
         </div>
 
         {/* Footer Admin Info & Logout */}
-        <div className="p-4 border-t border-gray-800 bg-dark-light/45">
+        <div className="p-3 border-t border-zinc-200 bg-zinc-50">
           {currentUser && !collapsed && (
-            <div className="flex items-center gap-3 mb-4 px-2">
+            <div className="flex items-center gap-3 mb-3 px-2 text-left">
               <img 
                 src={currentUser.avatar || "https://placehold.co/100x100?text=Admin"} 
                 alt="Admin Avatar"
-                className="w-10 h-10 rounded-xl object-cover border border-gray-700" 
+                className="w-8 h-8 rounded-lg object-cover border border-zinc-200" 
               />
-              <div className="truncate">
-                <h4 className="text-sm font-semibold text-white leading-4">{currentUser.name}</h4>
-                <span className="text-xs text-gray-500">Global Admin</span>
+              <div className="truncate min-w-0">
+                <h4 className="text-xs font-bold text-zinc-800 leading-none truncate">{currentUser.name}</h4>
+                <span className="text-[9px] text-zinc-400 font-bold uppercase tracking-wider">Global Admin</span>
               </div>
             </div>
           )}
@@ -137,12 +135,12 @@ const Sidebar = () => {
           <button
             onClick={handleLogout}
             className={`
-              w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-rose-400 hover:bg-rose-500/10 hover:text-rose-300 transition duration-200
+              w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider text-rose-500 hover:bg-rose-50 hover:text-rose-600 transition duration-150
               ${collapsed ? 'justify-center px-0' : ''}
             `}
             title={collapsed ? "Logout" : ""}
           >
-            <LogOut size={20} className="shrink-0" />
+            <LogOut size={16} className="shrink-0" />
             {!collapsed && <span>Logout</span>}
           </button>
         </div>
