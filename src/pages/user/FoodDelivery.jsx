@@ -24,10 +24,10 @@ const FoodDelivery = () => {
   });
 
   return (
-    <div className="flex-1 max-w-7xl mx-auto px-4 py-6 pb-24 md:pb-8 space-y-6 text-left">
+    <div className="flex-1 max-w-7xl mx-auto px-4 py-6 pb-24 md:pb-8 space-y-6 text-left animate-fade-in">
       
       {/* Search Header Banner */}
-      <div className="bg-zinc-50 border border-zinc-200 text-zinc-900 rounded-xl p-6 md:p-8 relative overflow-hidden">
+      <div className="bg-apollo-header border border-primary/10 rounded-2xl p-6 md:p-8 relative overflow-hidden shadow-sm">
         <div className="relative z-10 space-y-4 max-w-2xl">
           <span className="bg-primary text-white px-2.5 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider">
             SwiftGo Food
@@ -56,17 +56,17 @@ const FoodDelivery = () => {
 
       {/* Filter Chips Bar */}
       <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
-        <div className="bg-white p-2 rounded-xl border border-zinc-200 flex items-center justify-center shrink-0 text-zinc-400">
+        <div className="bg-accent-peach/30 p-2.5 rounded-xl border border-primary/10 flex items-center justify-center shrink-0 text-primary shadow-sm">
           <SlidersHorizontal size={14} />
         </div>
         {filters.map((filter) => (
           <button
             key={filter}
             onClick={() => setActiveFilter(filter)}
-            className={`px-4 py-2 rounded-xl text-xs font-bold transition shrink-0 border ${
+            className={`px-4 py-2 rounded-xl text-xs font-bold transition shrink-0 border shadow-sm ${
               activeFilter === filter
-                ? 'bg-primary border-primary text-white shadow-sm'
-                : 'bg-white border-zinc-200 text-zinc-650 hover:border-primary/20 hover:text-primary'
+                ? 'bg-primary border-primary text-white'
+                : 'bg-white border-zinc-150 text-zinc-650 hover:border-primary/20 hover:text-primary'
             }`}
           >
             {filter}
@@ -80,7 +80,7 @@ const FoodDelivery = () => {
           <h3 className="font-display font-bold text-lg text-zinc-900">
             {activeFilter === 'All' ? 'Popular Restaurants' : `${activeFilter} Spotlights`}
           </h3>
-          <span className="text-xs text-zinc-450 font-bold shrink-0">{filteredRestaurants.length} locations</span>
+          <span className="text-xs text-zinc-400 font-bold shrink-0">{filteredRestaurants.length} locations</span>
         </div>
 
         {filteredRestaurants.length > 0 ? (
@@ -90,8 +90,8 @@ const FoodDelivery = () => {
             ))}
           </div>
         ) : (
-          <div className="bg-white border border-zinc-200 rounded-xl py-16 text-center text-zinc-400 max-w-md mx-auto space-y-3">
-            <Search size={40} className="mx-auto text-zinc-300" />
+          <div className="bg-white border border-zinc-100 rounded-2xl py-16 text-center text-zinc-400 max-w-md mx-auto space-y-3 shadow-sm">
+            <Search size={40} className="mx-auto text-primary opacity-60" />
             <p className="text-sm font-bold text-zinc-800">No restaurants match.</p>
             <p className="text-xs max-w-xs mx-auto text-zinc-450 leading-relaxed font-semibold">
               Try searching for other cuisines (like Biryani, Chinese, Italian) or adjust filters.
