@@ -75,7 +75,7 @@ const Profile = () => {
             {!isEditing && (
               <button
                 onClick={() => setIsEditing(true)}
-                className="bg-white hover:bg-zinc-50 text-zinc-800 font-bold text-xs px-3.5 py-1.5 rounded-lg border border-zinc-200 flex items-center gap-1 transition"
+                className="bg-white hover:border-primary/20 hover:text-primary text-zinc-800 font-bold text-xs px-3.5 py-1.5 rounded-lg border border-zinc-200 flex items-center gap-1 transition shadow-sm"
               >
                 <Edit2 size={12} /> Edit Profile
               </button>
@@ -96,7 +96,7 @@ const Profile = () => {
                       type="text"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      className="block w-full pl-10 pr-4 py-2.5 bg-zinc-50 border border-zinc-200 rounded-xl focus:outline-none focus:bg-white focus:border-zinc-900 text-xs font-semibold transition"
+                      className="block w-full pl-10 pr-4 py-2.5 bg-white rounded-xl input-premium text-xs font-semibold"
                     />
                   </div>
                 </div>
@@ -112,14 +112,14 @@ const Profile = () => {
                       type="tel"
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
-                      className="block w-full pl-10 pr-4 py-2.5 bg-zinc-50 border border-zinc-200 rounded-xl focus:outline-none focus:bg-white focus:border-zinc-900 text-xs font-semibold transition"
+                      className="block w-full pl-10 pr-4 py-2.5 bg-white rounded-xl input-premium text-xs font-semibold"
                     />
                   </div>
                 </div>
 
                 {/* Email */}
                 <div className="sm:col-span-2">
-                  <label className="block text-[9px] font-bold text-zinc-450 uppercase tracking-wider mb-1.5">Email Address</label>
+                  <label className="block text-[9px] font-bold text-zinc-455 uppercase tracking-wider mb-1.5">Email Address</label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-zinc-400">
                       <Mail size={15} />
@@ -128,7 +128,7 @@ const Profile = () => {
                       type="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="block w-full pl-10 pr-4 py-2.5 bg-zinc-50 border border-zinc-200 rounded-xl focus:outline-none focus:bg-white focus:border-zinc-900 text-xs font-semibold transition"
+                      className="block w-full pl-10 pr-4 py-2.5 bg-white rounded-xl input-premium text-xs font-semibold"
                     />
                   </div>
                 </div>
@@ -138,14 +138,14 @@ const Profile = () => {
               <div className="flex gap-2 pt-2">
                 <button
                   type="submit"
-                  className="flex-1 bg-zinc-900 hover:bg-zinc-800 text-white text-xs font-bold py-2.5 px-4 rounded-xl flex items-center justify-center gap-1 transition"
+                  className="flex-1 btn-primary text-xs font-bold py-2.5 px-4 rounded-xl flex items-center justify-center gap-1 transition"
                 >
                   <Check size={14} /> Save Changes
                 </button>
                 <button
                   type="button"
                   onClick={handleCancel}
-                  className="bg-white border border-zinc-200 hover:bg-zinc-50 text-zinc-700 text-xs font-bold py-2.5 px-4 rounded-xl transition"
+                  className="bg-white border border-zinc-200 hover:border-primary/20 hover:text-primary text-zinc-700 text-xs font-bold py-2.5 px-4 rounded-xl transition"
                 >
                   Cancel
                 </button>

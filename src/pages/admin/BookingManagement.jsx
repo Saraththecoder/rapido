@@ -48,7 +48,7 @@ const BookingManagement = () => {
   const currentRecords = getFilteredData();
 
   return (
-    <div className="bg-white rounded-xl border border-zinc-200 p-6 space-y-6 text-zinc-900">
+    <div className="bg-white rounded-xl border border-zinc-100 p-6 space-y-6 text-zinc-900 shadow-sm animate-fade-in">
       
       {/* Title & Filters */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
@@ -65,7 +65,7 @@ const BookingManagement = () => {
               placeholder="Search ID, rider..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="block w-full px-3 py-2 bg-zinc-50 border border-zinc-200 rounded-lg focus:outline-none focus:bg-white focus:border-zinc-900 text-xs font-semibold transition text-zinc-900 placeholder-zinc-400"
+              className="block w-full px-3 py-2 bg-zinc-50 rounded-lg text-xs font-semibold transition text-zinc-900 placeholder-zinc-400 input-premium"
             />
           </div>
 
@@ -74,7 +74,7 @@ const BookingManagement = () => {
             <select
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
-              className="block w-full px-3 py-2 bg-zinc-50 border border-zinc-200 rounded-lg focus:outline-none focus:bg-white focus:border-zinc-900 text-xs font-semibold text-zinc-700 transition bg-white"
+              className="block w-full px-3 py-2 bg-zinc-50 rounded-lg text-xs font-semibold text-zinc-700 transition bg-white input-premium"
             >
               <option value="All">All Statuses</option>
               <option value="placed">Placed / Booked</option>
@@ -90,7 +90,7 @@ const BookingManagement = () => {
       </div>
 
       {/* Tabs */}
-      <div className="flex border-b border-zinc-200 overflow-x-auto scrollbar-none gap-2">
+      <div className="flex border-b border-zinc-100 overflow-x-auto scrollbar-none gap-2">
         {tabs.map((tab) => (
           <button
             key={tab.id}
@@ -100,8 +100,8 @@ const BookingManagement = () => {
             }}
             className={`pb-3 px-3 text-xs font-bold border-b-2 transition duration-200 uppercase tracking-wider ${
               activeTab === tab.id
-                ? 'border-zinc-900 text-zinc-900'
-                : 'border-transparent text-zinc-450 hover:text-zinc-650'
+                ? 'border-primary text-primary'
+                : 'border-transparent text-zinc-400 hover:text-zinc-650'
             }`}
           >
             {tab.name} <span className="ml-1 text-[10px] text-zinc-400 font-medium">({tab.count})</span>
@@ -113,7 +113,7 @@ const BookingManagement = () => {
       <div className="overflow-x-auto">
         <table className="w-full text-left border-collapse">
           <thead>
-            <tr className="border-b border-zinc-200 text-[10px] font-bold text-zinc-400 uppercase tracking-wider">
+            <tr className="border-b border-zinc-100 text-[10px] font-bold text-zinc-400 uppercase tracking-wider">
               <th className="pb-3">Transaction ID</th>
               <th className="pb-3">Date</th>
               <th className="pb-3">Source/Details</th>
@@ -126,9 +126,9 @@ const BookingManagement = () => {
           <tbody className="divide-y divide-zinc-100 text-xs font-medium text-zinc-700">
             {currentRecords.length > 0 ? (
               currentRecords.map((rec) => (
-                <tr key={rec.id} className="hover:bg-zinc-50 transition">
+                <tr key={rec.id} className="hover:bg-accent-peach/20 transition">
                   <td className="py-3.5 font-mono text-[11px] text-zinc-400">{rec.id}</td>
-                  <td className="py-3.5 text-zinc-500 font-medium">{rec.date}</td>
+                  <td className="py-3.5 text-zinc-550 font-medium">{rec.date}</td>
                   <td className="py-3.5 max-w-[180px] truncate">
                     <p className="font-bold text-zinc-900 truncate">
                       {rec.restaurantName ? `Restaurant: ${rec.restaurantName}` : `Pickup: ${rec.pickup}`}
@@ -140,8 +140,8 @@ const BookingManagement = () => {
                   <td className="py-3.5">
                     {rec.rider ? (
                       <div className="space-y-0.5">
-                        <p className="font-bold text-zinc-900">{rec.rider.name}</p>
-                        <p className="text-[10px] text-zinc-450 font-bold uppercase">{rec.rider.vehicleType}</p>
+                        <p className="font-bold text-zinc-800">{rec.rider.name}</p>
+                        <p className="text-[10px] text-zinc-400 font-bold uppercase">{rec.rider.vehicleType}</p>
                       </div>
                     ) : (
                       <span className="text-zinc-400 font-medium italic">Unassigned</span>
@@ -157,7 +157,7 @@ const BookingManagement = () => {
                     <select
                       value={rec.status}
                       onChange={(e) => handleOverrideStatus(rec.id, rec.serviceType, e.target.value)}
-                      className="px-2 py-1 bg-zinc-50 hover:bg-zinc-100 border border-zinc-200 rounded-md text-[10px] font-bold text-zinc-700 focus:outline-none transition appearance-none"
+                      className="px-2 py-1 bg-zinc-50 hover:bg-accent-peach/20 border border-zinc-200 focus:border-primary rounded-md text-[10px] font-bold text-zinc-755 focus:outline-none transition"
                     >
                       <option value="placed">Placed</option>
                       <option value="pending">Pending</option>

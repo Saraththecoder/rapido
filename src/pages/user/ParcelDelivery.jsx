@@ -67,7 +67,7 @@ const ParcelDelivery = () => {
       {/* Page Header */}
       <div className="bg-zinc-50 border border-zinc-200 text-zinc-900 rounded-xl p-6 relative overflow-hidden">
         <div className="relative z-10 space-y-2">
-          <span className="bg-zinc-900 text-white px-2.5 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider">
+          <span className="bg-primary text-white px-2.5 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider">
             SwiftGo Courier
           </span>
           <h2 className="text-2.5xl font-display font-black text-zinc-900 leading-none">
@@ -91,7 +91,7 @@ const ParcelDelivery = () => {
             {/* Sender Details (Auto-filled) */}
             <div className="space-y-3 bg-zinc-50 p-4 rounded-xl border border-zinc-200">
               <div className="flex items-center gap-1.5 text-[9px] font-bold text-zinc-400 uppercase tracking-wider">
-                <span className="h-1.5 w-1.5 rounded-full bg-zinc-950"></span>
+                <span className="h-1.5 w-1.5 rounded-full bg-primary"></span>
                 <span>Sender Details (You)</span>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-semibold">
@@ -126,7 +126,7 @@ const ParcelDelivery = () => {
                     placeholder="Receiver's name"
                     value={receiverName}
                     onChange={(e) => setReceiverName(e.target.value)}
-                    className="block w-full px-4 py-2.5 bg-zinc-50 border border-zinc-200 rounded-xl focus:outline-none focus:bg-white focus:border-zinc-900 text-xs font-semibold transition"
+                    className="block w-full px-4 py-2.5 bg-white rounded-xl input-premium text-xs font-semibold"
                   />
                 </div>
 
@@ -138,7 +138,7 @@ const ParcelDelivery = () => {
                     placeholder="+91 98xxx xxxxx"
                     value={receiverPhone}
                     onChange={(e) => setReceiverPhone(e.target.value)}
-                    className="block w-full px-4 py-2.5 bg-zinc-50 border border-zinc-200 rounded-xl focus:outline-none focus:bg-white focus:border-zinc-900 text-xs font-semibold transition"
+                    className="block w-full px-4 py-2.5 bg-white rounded-xl input-premium text-xs font-semibold"
                   />
                 </div>
 
@@ -150,7 +150,7 @@ const ParcelDelivery = () => {
                     placeholder="Floor, building, street, colony..."
                     value={receiverAddress}
                     onChange={(e) => setReceiverAddress(e.target.value)}
-                    className="block w-full px-4 py-2.5 bg-zinc-50 border border-zinc-200 rounded-xl focus:outline-none focus:bg-white focus:border-zinc-900 text-xs font-semibold transition"
+                    className="block w-full px-4 py-2.5 bg-white rounded-xl input-premium text-xs font-semibold"
                   />
                 </div>
               </div>
@@ -169,7 +169,7 @@ const ParcelDelivery = () => {
                   <select
                     value={weight}
                     onChange={(e) => setWeight(e.target.value)}
-                    className="block w-full px-4 py-2.5 bg-zinc-50 border border-zinc-200 rounded-xl focus:outline-none focus:bg-white focus:border-zinc-900 text-xs font-semibold transition appearance-none bg-white"
+                    className="block w-full px-4 py-2.5 rounded-xl input-premium text-xs font-semibold appearance-none bg-white"
                   >
                     <option value="0-1kg">Light (0 - 1 kg)</option>
                     <option value="1-5kg">Medium (1 - 5 kg)</option>
@@ -186,7 +186,7 @@ const ParcelDelivery = () => {
                   placeholder="e.g. Documents, Lunchbox, Books, Keys"
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
-                  className="block w-full px-4 py-2.5 bg-zinc-50 border border-zinc-200 rounded-xl focus:outline-none focus:bg-white focus:border-zinc-900 text-xs font-semibold transition"
+                  className="block w-full px-4 py-2.5 bg-white rounded-xl input-premium text-xs font-semibold"
                 />
               </div>
             </div>
@@ -209,7 +209,7 @@ const ParcelDelivery = () => {
               </div>
               <div className="border-t border-zinc-200 pt-3 flex justify-between font-bold text-zinc-900 text-sm">
                 <span>Total Quote</span>
-                <span className="text-base font-black">₹{currentPrice}</span>
+                <span className="text-base font-black text-primary">₹{currentPrice}</span>
               </div>
             </div>
 
@@ -223,15 +223,11 @@ const ParcelDelivery = () => {
             <button
               type="submit"
               disabled={isSubmitting || !receiverName || !receiverPhone || !receiverAddress || !description}
-              className={`w-full py-3.5 rounded-xl text-xs font-bold text-white uppercase tracking-wider flex items-center justify-center gap-2 transition duration-150 ${
-                isSubmitting || !receiverName || !receiverPhone || !receiverAddress || !description
-                  ? 'bg-zinc-200 text-zinc-400 border border-zinc-250 cursor-not-allowed'
-                  : 'bg-zinc-900 hover:bg-zinc-800'
-              }`}
+              className="w-full py-3.5 rounded-xl text-xs font-bold text-white uppercase tracking-wider flex items-center justify-center gap-2 btn-primary transition duration-150"
             >
               {isSubmitting ? (
                 <>
-                  <div className="h-4.5 w-4.5 border-2 border-zinc-400 border-t-transparent rounded-full animate-spin"></div>
+                  <div className="h-4.5 w-4.5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
                   <span>Booking...</span>
                 </>
               ) : (

@@ -40,7 +40,7 @@ const Wallet = () => {
                 ₹{currentUser?.walletBalance?.toFixed(2) || '0.00'}
               </h3>
             </div>
-            <div className="p-3 bg-zinc-50 border border-zinc-200 text-zinc-800 rounded-xl">
+            <div className="p-3 bg-accent-peach/40 border border-primary/15 text-primary rounded-xl">
               <WalletIcon size={20} />
             </div>
           </div>
@@ -65,12 +65,12 @@ const Wallet = () => {
                 value={addAmount}
                 onChange={(e) => setAddAmount(e.target.value)}
                 min="10"
-                className="block w-full pl-10 pr-4 py-2.5 bg-zinc-50 border border-zinc-200 rounded-xl focus:outline-none focus:bg-white focus:border-zinc-900 text-xs font-bold transition text-zinc-800"
+                className="block w-full pl-10 pr-4 py-2.5 bg-white rounded-xl input-premium text-xs font-bold text-zinc-800"
               />
             </div>
             <button
               type="submit"
-              className="bg-zinc-900 hover:bg-zinc-800 text-white text-xs font-bold px-5 py-2.5 rounded-xl flex items-center justify-center gap-1.5 transition shrink-0 uppercase tracking-wider"
+              className="btn-primary text-xs font-bold px-5 py-2.5 rounded-xl flex items-center justify-center gap-1.5 transition shrink-0 uppercase tracking-wider"
             >
               <Plus size={15} /> Add Balance
             </button>
@@ -85,7 +85,7 @@ const Wallet = () => {
                   key={amt}
                   type="button"
                   onClick={() => handleQuickAdd(amt)}
-                  className="bg-white hover:bg-zinc-50 border border-zinc-200 text-zinc-700 text-xs font-bold px-3 py-2 rounded-xl transition"
+                  className="bg-white hover:border-primary/20 hover:text-primary border border-zinc-200 text-zinc-700 text-xs font-bold px-3 py-2 rounded-xl transition"
                 >
                   +₹{amt}
                 </button>

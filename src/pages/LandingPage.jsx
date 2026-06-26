@@ -23,7 +23,9 @@ import {
   QrCode,
   CheckCircle2,
   ThumbsUp,
-  Info
+  Info,
+  Lock,
+  Coins
 } from 'lucide-react';
 
 const LandingPage = () => {
@@ -255,7 +257,7 @@ const LandingPage = () => {
     <div className="flex-1 bg-white font-sans animate-fade-in space-y-16 md:space-y-24 pb-20 overflow-x-hidden">
       
       {/* 1. HERO SECTION & LIVE DISPATCH MAP SIMULATOR (MINIMALIST WHITE THEME) */}
-      <section className="bg-zinc-50 text-zinc-900 pt-12 md:pt-20 pb-20 md:pb-28 px-4 relative overflow-hidden border-b border-zinc-200">
+      <section className="bg-apollo-header text-zinc-900 pt-12 md:pt-20 pb-20 md:pb-28 px-4 relative overflow-hidden border-b border-zinc-200">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center relative z-10">
           
           {/* Left: Headline & Booking Console */}
@@ -310,7 +312,7 @@ const LandingPage = () => {
                         placeholder="Pickup point (e.g. HSR Layout)"
                         value={pickup}
                         onChange={(e) => setPickup(e.target.value)}
-                        className="w-full bg-zinc-50 text-zinc-900 placeholder-zinc-400 text-xs pl-10 pr-4 py-3 rounded-xl border border-zinc-200 focus:outline-none focus:bg-white focus:border-zinc-900 transition font-semibold"
+                        className="w-full bg-white text-zinc-900 placeholder-zinc-400 text-xs pl-10 pr-4 py-3 rounded-xl input-premium font-semibold"
                       />
                     </div>
                     <div className="relative">
@@ -322,7 +324,7 @@ const LandingPage = () => {
                         placeholder="Dropoff point (e.g. Koramangala)"
                         value={drop}
                         onChange={(e) => setDrop(e.target.value)}
-                        className="w-full bg-zinc-50 text-zinc-900 placeholder-zinc-400 text-xs pl-10 pr-4 py-3 rounded-xl border border-zinc-200 focus:outline-none focus:bg-white focus:border-zinc-900 transition font-semibold"
+                        className="w-full bg-white text-zinc-900 placeholder-zinc-400 text-xs pl-10 pr-4 py-3 rounded-xl input-premium font-semibold"
                       />
                     </div>
                     <div className="flex flex-wrap gap-2 text-[10px] text-zinc-400 font-semibold px-1">
@@ -348,7 +350,7 @@ const LandingPage = () => {
 
                 <button
                   type="submit"
-                  className="w-full bg-zinc-900 hover:bg-zinc-800 text-white text-xs font-bold py-3.5 rounded-xl transition duration-200 flex items-center justify-center gap-2 shadow-sm"
+                  className="w-full btn-primary text-xs font-bold py-3.5 rounded-xl flex items-center justify-center gap-2"
                 >
                   <span>{currentUser ? 'Explore Services Console' : 'Sign In to Proceed'}</span>
                   <ArrowRight size={14} />
@@ -517,6 +519,77 @@ const LandingPage = () => {
         </div>
       </section>
 
+      {/* 3.5 PROMOTIONAL CASHBACK BANNER SECTION (APOLLO BRAND STYLE) */}
+      <section className="max-w-7xl mx-auto px-4 animate-fade-in">
+        <div className="bg-apollo-banner rounded-3xl p-6 md:p-8 relative overflow-hidden shadow-sm border border-[#fc5a2a]/15 text-left">
+          <div className="absolute right-8 top-1/2 -translate-y-1/2 hidden lg:block opacity-10">
+             <Coins size={120} className="text-primary" />
+          </div>
+          
+          <div className="max-w-3xl space-y-6">
+            <div className="space-y-2">
+              <span className="bg-primary text-white px-2.5 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider w-fit block">
+                Exclusive Campaign
+              </span>
+              <h3 className="font-display font-black text-xl md:text-2.5xl text-zinc-900 tracking-tight leading-none">
+                Get Assured ₹350 Cashback on First 3 Orders
+              </h3>
+            </div>
+            
+            {/* Order Progress Line */}
+            <div className="relative flex flex-col sm:flex-row justify-between items-center gap-6 sm:gap-2 py-4">
+              {/* Connecting Line */}
+              <div className="absolute left-6 right-6 top-1/2 -translate-y-1/2 h-0.5 border-t border-dashed border-[#fc5a2a]/30 hidden sm:block z-0"></div>
+              
+              {/* Step 1 */}
+              <div className="relative z-10 bg-[#FAF2EE] sm:bg-[#FAF2EE]/0 px-4 sm:px-0 flex flex-col items-center text-center space-y-2 w-full sm:w-auto">
+                <div className="h-10 w-10 rounded-full bg-primary text-white flex items-center justify-center font-bold text-xs shadow-md shadow-primary/20">
+                  <ShieldCheck size={16} />
+                </div>
+                <div>
+                  <h5 className="text-[11px] font-bold text-zinc-900">1st Order</h5>
+                  <p className="text-[10px] text-zinc-500 font-semibold">₹30 Cashback</p>
+                </div>
+              </div>
+              
+              {/* Step 2 */}
+              <div className="relative z-10 bg-[#FAF2EE] sm:bg-[#FAF2EE]/0 px-4 sm:px-0 flex flex-col items-center text-center space-y-2 w-full sm:w-auto">
+                <div className="h-10 w-10 rounded-full bg-[#FAF2EE] text-primary border border-primary/30 flex items-center justify-center font-bold text-xs">
+                  <Lock size={15} />
+                </div>
+                <div>
+                  <h5 className="text-[11px] font-bold text-zinc-900">2nd Order</h5>
+                  <p className="text-[10px] text-zinc-500 font-semibold">₹50 Cashback</p>
+                </div>
+              </div>
+              
+              {/* Step 3 */}
+              <div className="relative z-10 bg-[#FAF2EE] sm:bg-[#FAF2EE]/0 px-4 sm:px-0 flex flex-col items-center text-center space-y-2 w-full sm:w-auto">
+                <div className="h-10 w-10 rounded-full bg-[#FAF2EE] text-primary border border-primary/30 flex items-center justify-center font-bold text-xs">
+                  <Lock size={15} />
+                </div>
+                <div>
+                  <h5 className="text-[11px] font-bold text-zinc-900">3rd Order</h5>
+                  <p className="text-[10px] text-zinc-500 font-semibold">₹70 + ₹200 Cashback*</p>
+                </div>
+              </div>
+            </div>
+            
+            <div className="pt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <button
+                onClick={() => handleServiceClick('/user/food')}
+                className="btn-primary px-6 py-3 rounded-xl transition duration-150"
+              >
+                Start Your Journey
+              </button>
+              <p className="text-[9px] text-zinc-450 font-medium">
+                *To unlock your ₹200 cashback, place all 3 orders within 60 days.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* 4. INTERACTIVE FARE & ETA CALCULATOR */}
       <section className="max-w-7xl mx-auto px-4 space-y-10">
         <div className="text-center max-w-2xl mx-auto space-y-2">
@@ -551,8 +624,8 @@ const LandingPage = () => {
                       }}
                       className={`p-3 border rounded-xl text-xs font-bold flex flex-row sm:flex-col items-center justify-start sm:justify-center gap-2 transition duration-150 ${
                         calcService === s.id 
-                          ? 'border-zinc-900 bg-zinc-50 text-zinc-900 shadow-sm' 
-                          : 'border-zinc-200 hover:border-zinc-300 text-zinc-500'
+                          ? 'border-primary bg-accent-peach/30 text-primary shadow-sm' 
+                          : 'border-zinc-200 hover:border-primary/20 hover:text-primary text-zinc-550'
                       }`}
                     >
                       <s.icon size={16} className="shrink-0" />
@@ -578,8 +651,8 @@ const LandingPage = () => {
                         onClick={() => setCalcVehicle(v.id)}
                         className={`p-3 border rounded-xl text-left transition duration-150 flex flex-row sm:flex-col items-center sm:items-start justify-between sm:justify-center gap-2 w-full ${
                           calcVehicle === v.id 
-                            ? 'border-zinc-900 bg-zinc-50 text-zinc-900' 
-                            : 'border-zinc-200 hover:border-zinc-300 text-zinc-500'
+                            ? 'border-primary bg-accent-peach/30 text-primary shadow-sm' 
+                            : 'border-zinc-200 hover:border-primary/20 hover:text-primary text-zinc-550'
                         }`}
                       >
                         <span className="text-xs font-bold shrink-0">{v.label}</span>
@@ -602,7 +675,7 @@ const LandingPage = () => {
                   max="35"
                   value={calcDistance}
                   onChange={(e) => setCalcDistance(Number(e.target.value))}
-                  className="w-full h-1.5 bg-zinc-200 rounded-lg appearance-none cursor-pointer accent-zinc-900"
+                  className="w-full h-1.5 bg-zinc-200 rounded-lg appearance-none cursor-pointer accent-primary"
                 />
                 <div className="flex justify-between text-[9px] text-zinc-400 font-bold">
                   <span>1 km</span>
@@ -625,7 +698,7 @@ const LandingPage = () => {
                 type="button"
                 onClick={() => setIsPeakHour(!isPeakHour)}
                 className={`w-11 h-6 rounded-full p-0.5 transition-colors duration-200 shrink-0 ${
-                  isPeakHour ? 'bg-zinc-900' : 'bg-zinc-200'
+                  isPeakHour ? 'bg-primary' : 'bg-zinc-200'
                 } relative`}
               >
                 <div className={`w-5 h-5 rounded-full bg-white transition-transform duration-200 transform ${
@@ -691,7 +764,7 @@ const LandingPage = () => {
                   if (!currentUser) navigate('/login');
                   else navigate(`/user/${calcService}`);
                 }}
-                className="w-full bg-white hover:bg-zinc-100 text-zinc-950 text-xs font-bold py-3.5 rounded-xl transition duration-150 flex items-center justify-center gap-1.5 active:scale-98 shadow-sm"
+                className="w-full bg-white hover:bg-zinc-50 border border-[#fc5a2a]/20 text-primary text-xs font-bold py-3.5 rounded-xl transition duration-150 flex items-center justify-center gap-1.5 active:scale-98 shadow-sm"
               >
                 <span>Launch Action Center</span>
                 <ArrowRight size={14} />
@@ -727,8 +800,8 @@ const LandingPage = () => {
                 onClick={() => setActiveWorkTab(tab.id)}
                 className={`py-2 sm:px-5 rounded-lg text-xs font-bold flex items-center justify-center gap-1.5 transition duration-150 w-full ${
                   activeWorkTab === tab.id 
-                    ? 'bg-zinc-900 text-white shadow-sm' 
-                    : 'text-zinc-550 hover:text-zinc-900'
+                    ? 'bg-primary text-white shadow-md shadow-primary/10' 
+                    : 'text-zinc-555 hover:text-primary'
                 }`}
               >
                 <tab.icon size={13} className="shrink-0" />
@@ -746,7 +819,7 @@ const LandingPage = () => {
               className="bg-white border border-zinc-200 rounded-xl p-5 hover:border-zinc-400 transition duration-200 shadow-sm flex flex-col justify-between min-h-[170px]"
             >
               <div className="space-y-3">
-                <span className="inline-flex h-7 w-7 bg-zinc-900 text-white rounded-lg items-center justify-center font-bold text-xs font-mono">
+                <span className="inline-flex h-7 w-7 bg-primary text-white rounded-lg items-center justify-center font-bold text-xs font-mono">
                   {item.step}
                 </span>
                 <h3 className="font-display font-bold text-base text-zinc-900">
@@ -760,7 +833,7 @@ const LandingPage = () => {
               {/* Action decoration */}
               <div className="pt-4 border-t border-zinc-100 mt-4 flex justify-between items-center text-[9px] text-zinc-400 font-bold uppercase tracking-wider">
                 <span>Verified Log</span>
-                <span className="w-1.5 h-1.5 rounded-full bg-zinc-900"></span>
+                <span className="w-1.5 h-1.5 rounded-full bg-primary"></span>
               </div>
             </div>
           ))}

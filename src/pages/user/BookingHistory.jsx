@@ -28,12 +28,12 @@ const BookingHistory = () => {
             onClick={() => setActiveTab(tab.id)}
             className={`pb-3 px-4 text-xs font-bold uppercase tracking-wider border-b-2 transition duration-150 whitespace-nowrap flex items-center gap-1.5 ${
               activeTab === tab.id
-                ? 'border-zinc-900 text-zinc-950'
-                : 'border-transparent text-zinc-400 hover:text-zinc-650'
+                ? 'border-primary text-primary font-black'
+                : 'border-transparent text-zinc-450 hover:text-primary/70'
             }`}
           >
             <span>{tab.name}</span>
-            <span className="text-[10px] font-bold px-1.5 py-0.5 bg-zinc-100 border border-zinc-200 rounded-md text-zinc-500">{tab.count}</span>
+            <span className="text-[10px] font-bold px-1.5 py-0.5 bg-accent-peach/30 border border-primary/10 rounded-md text-primary">{tab.count}</span>
           </button>
         ))}
       </div>
@@ -72,13 +72,13 @@ const BookingHistory = () => {
                   <div className="flex md:flex-col items-center md:items-end justify-between border-t md:border-t-0 border-zinc-100 pt-3 md:pt-0 gap-2 shrink-0">
                     <div className="text-left md:text-right">
                       <StatusBadge status={booking.status} />
-                      <p className="text-base font-black text-zinc-900 mt-1">₹{booking.fare}</p>
+                      <p className="text-base font-black text-primary mt-1">₹{booking.fare}</p>
                     </div>
                     
                     {booking.status !== 'delivered' && booking.status !== 'completed' && booking.status !== 'cancelled' && (
                       <Link
                         to={`/user/track/ride-${booking.id}`}
-                        className="bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-[11px] px-3.5 py-1.5 rounded-lg transition uppercase tracking-wider"
+                        className="btn-primary text-[11px] px-3.5 py-1.5 rounded-lg uppercase tracking-wider"
                       >
                         Track Ride
                       </Link>
@@ -118,13 +118,13 @@ const BookingHistory = () => {
                   <div className="flex md:flex-col items-center md:items-end justify-between border-t md:border-t-0 border-zinc-100 pt-3 md:pt-0 gap-2 shrink-0">
                     <div className="text-left md:text-right">
                       <StatusBadge status={order.status} />
-                      <p className="text-base font-black text-zinc-900 mt-1">₹{order.total}</p>
+                      <p className="text-base font-black text-primary mt-1">₹{order.total}</p>
                     </div>
                     
                     {order.status !== 'delivered' && order.status !== 'completed' && order.status !== 'cancelled' && (
                       <Link
                         to={`/user/track/food-${order.id}`}
-                        className="bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-[11px] px-3.5 py-1.5 rounded-lg transition uppercase tracking-wider"
+                        className="btn-primary text-[11px] px-3.5 py-1.5 rounded-lg uppercase tracking-wider"
                       >
                         Track Order
                       </Link>
@@ -168,13 +168,13 @@ const BookingHistory = () => {
                   <div className="flex md:flex-col items-center md:items-end justify-between border-t md:border-t-0 border-zinc-100 pt-3 md:pt-0 gap-2 shrink-0">
                     <div className="text-left md:text-right">
                       <StatusBadge status={parcel.status} />
-                      <p className="text-base font-black text-zinc-900 mt-1">₹{parcel.price}</p>
+                      <p className="text-base font-black text-primary mt-1">₹{parcel.price}</p>
                     </div>
                     
                     {parcel.status !== 'delivered' && parcel.status !== 'completed' && parcel.status !== 'cancelled' && (
                       <Link
                         to={`/user/track/parcel-${parcel.id}`}
-                        className="bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-[11px] px-3.5 py-1.5 rounded-lg transition uppercase tracking-wider"
+                        className="btn-primary text-[11px] px-3.5 py-1.5 rounded-lg uppercase tracking-wider"
                       >
                         Track Parcel
                       </Link>

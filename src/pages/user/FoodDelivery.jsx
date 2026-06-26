@@ -29,11 +29,11 @@ const FoodDelivery = () => {
       {/* Search Header Banner */}
       <div className="bg-zinc-50 border border-zinc-200 text-zinc-900 rounded-xl p-6 md:p-8 relative overflow-hidden">
         <div className="relative z-10 space-y-4 max-w-2xl">
-          <span className="bg-zinc-900 text-white px-2.5 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider">
+          <span className="bg-primary text-white px-2.5 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider">
             SwiftGo Food
           </span>
           <h2 className="text-2.5xl md:text-4.5xl font-display font-black text-zinc-900 tracking-tight leading-tight">
-            Order fresh meals from <span className="text-zinc-550">local kitchens</span>
+            Order fresh meals from <span className="text-primary">local kitchens</span>
           </h2>
           
           {/* Search Inputs */}
@@ -47,7 +47,7 @@ const FoodDelivery = () => {
                 placeholder="Search restaurants, cuisines, or dishes..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2.5 bg-white border border-zinc-200 rounded-xl focus:outline-none focus:border-zinc-900 text-xs font-semibold transition placeholder:text-zinc-400 text-zinc-800"
+                className="w-full pl-10 pr-4 py-2.5 bg-white rounded-xl input-premium text-xs font-semibold placeholder:text-zinc-400 text-zinc-800"
               />
             </div>
           </div>
@@ -65,8 +65,8 @@ const FoodDelivery = () => {
             onClick={() => setActiveFilter(filter)}
             className={`px-4 py-2 rounded-xl text-xs font-bold transition shrink-0 border ${
               activeFilter === filter
-                ? 'bg-zinc-900 border-zinc-900 text-white shadow-sm'
-                : 'bg-white border-zinc-200 text-zinc-600 hover:bg-zinc-50'
+                ? 'bg-primary border-primary text-white shadow-sm'
+                : 'bg-white border-zinc-200 text-zinc-650 hover:border-primary/20 hover:text-primary'
             }`}
           >
             {filter}

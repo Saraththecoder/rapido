@@ -80,7 +80,7 @@ const RiderEarnings = () => {
               <XAxis dataKey="day" tickLine={false} axisLine={false} style={{ fontSize: '11px', fontWeight: '500', fill: '#71717a' }} />
               <YAxis tickLine={false} axisLine={false} style={{ fontSize: '11px', fontWeight: '500', fill: '#71717a' }} />
               <Tooltip cursor={{ fill: '#fafafa' }} contentStyle={{ borderRadius: '8px', border: '1px solid #e4e4e7', fontWeight: '500', fontSize: '12px' }} />
-              <Bar dataKey="Earnings" fill="#18181b" radius={[4, 4, 0, 0]} barSize={28} />
+              <Bar dataKey="Earnings" fill="#FC5A2A" radius={[4, 4, 0, 0]} barSize={28} />
             </BarChart>
           </ResponsiveContainer>
         </div>
@@ -104,17 +104,17 @@ const RiderEarnings = () => {
               <span>80%</span>
             </div>
             <div className="w-full bg-zinc-100 rounded-full h-2 overflow-hidden border border-zinc-200">
-              <div className="bg-zinc-900 h-full rounded-full transition-all duration-300" style={{ width: '80%' }}></div>
+              <div className="bg-primary h-full rounded-full transition-all duration-300" style={{ width: '80%' }}></div>
             </div>
           </div>
 
-          <div className="pt-2 flex flex-wrap gap-x-6 gap-y-2 text-xs text-zinc-500 border-t border-zinc-100 pt-4">
+          <div className="pt-2 flex flex-wrap gap-x-6 gap-y-2 text-xs text-zinc-550 border-t border-zinc-100 pt-4">
             <p className="flex items-center gap-1.5">
-              <span className="inline-block w-1.5 h-1.5 bg-zinc-900 rounded-full"></span>
+              <span className="inline-block w-1.5 h-1.5 bg-primary rounded-full"></span>
               Min rating: <strong className="text-zinc-950 font-bold">4.5</strong> (Current: 4.8)
             </p>
             <p className="flex items-center gap-1.5">
-              <span className="inline-block w-1.5 h-1.5 bg-zinc-900 rounded-full"></span>
+              <span className="inline-block w-1.5 h-1.5 bg-primary rounded-full"></span>
               Min online hours: <strong className="text-zinc-950 font-bold">15h</strong> (Current: 21h)
             </p>
           </div>

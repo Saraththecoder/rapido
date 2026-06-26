@@ -41,7 +41,7 @@ const Login = () => {
     <div className="flex-1 flex flex-col justify-center py-16 px-4 sm:px-6 lg:px-8 bg-zinc-50">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <div className="flex justify-center">
-          <span className="bg-zinc-950 text-white px-3 py-1.5 rounded-lg flex items-center justify-center font-bold text-xl tracking-tight">
+          <span className="bg-primary text-white px-3 py-1.5 rounded-lg flex items-center justify-center font-bold text-xl tracking-tight">
             SG
           </span>
         </div>
@@ -50,7 +50,7 @@ const Login = () => {
         </h2>
         <p className="mt-1.5 text-center text-xs text-zinc-450 font-semibold uppercase tracking-wider">
           Or{' '}
-          <Link to="/register" className="text-zinc-900 border-b border-zinc-900 pb-0.5 font-bold">
+          <Link to="/register" className="text-primary border-b border-primary pb-0.5 font-bold">
             Create Account
           </Link>
         </p>
@@ -76,7 +76,7 @@ const Login = () => {
                   placeholder="name@example.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="block w-full pl-10 pr-4 py-2.5 border border-zinc-200 rounded-xl focus:outline-none focus:border-zinc-900 text-xs font-semibold transition"
+                  className="block w-full pl-10 pr-4 py-2.5 input-premium bg-white rounded-xl text-xs font-semibold"
                 />
               </div>
             </div>
@@ -98,7 +98,7 @@ const Login = () => {
                   placeholder="••••••••"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="block w-full pl-10 pr-4 py-2.5 border border-zinc-200 rounded-xl focus:outline-none focus:border-zinc-900 text-xs font-semibold transition"
+                  className="block w-full pl-10 pr-4 py-2.5 input-premium bg-white rounded-xl text-xs font-semibold"
                 />
               </div>
             </div>
@@ -106,7 +106,7 @@ const Login = () => {
             <div className="pt-2">
               <button
                 type="submit"
-                className="w-full bg-zinc-900 hover:bg-zinc-800 text-white text-xs font-bold py-3 rounded-xl uppercase tracking-wider transition"
+                className="w-full btn-primary text-xs font-bold py-3 rounded-xl uppercase tracking-wider transition"
               >
                 Sign In
               </button>
@@ -123,27 +123,26 @@ const Login = () => {
             </div>
           </div>
 
-          {/* Quick Logins Grid */}
           <div className="grid grid-cols-3 gap-2">
             <button
               onClick={() => handleQuickLogin('user')}
-              className="flex flex-col items-center justify-center p-2.5 rounded-xl border border-zinc-200 hover:bg-zinc-50 text-zinc-800 transition"
+              className="flex flex-col items-center justify-center p-2.5 rounded-xl border border-zinc-200 hover:border-primary/30 hover:bg-accent-peach/30 hover:text-primary text-zinc-800 transition"
             >
-              <User size={16} className="mb-1 text-zinc-500" />
+              <User size={16} className="mb-1 text-zinc-400 transition" />
               <span className="text-[9px] font-bold uppercase tracking-wider">User</span>
             </button>
             <button
               onClick={() => handleQuickLogin('rider')}
-              className="flex flex-col items-center justify-center p-2.5 rounded-xl border border-zinc-200 hover:bg-zinc-50 text-zinc-800 transition"
+              className="flex flex-col items-center justify-center p-2.5 rounded-xl border border-zinc-200 hover:border-primary/30 hover:bg-accent-peach/30 hover:text-primary text-zinc-800 transition"
             >
-              <Bike size={16} className="mb-1 text-zinc-500" />
+              <Bike size={16} className="mb-1 text-zinc-400 transition" />
               <span className="text-[9px] font-bold uppercase tracking-wider">Rider</span>
             </button>
             <button
               onClick={() => handleQuickLogin('admin')}
-              className="flex flex-col items-center justify-center p-2.5 rounded-xl border border-zinc-200 hover:bg-zinc-50 text-zinc-800 transition"
+              className="flex flex-col items-center justify-center p-2.5 rounded-xl border border-zinc-200 hover:border-primary/30 hover:bg-accent-peach/30 hover:text-primary text-zinc-800 transition"
             >
-              <ShieldCheck size={16} className="mb-1 text-zinc-500" />
+              <ShieldCheck size={16} className="mb-1 text-zinc-400 transition" />
               <span className="text-[9px] font-bold uppercase tracking-wider">Admin</span>
             </button>
           </div>

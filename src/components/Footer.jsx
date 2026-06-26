@@ -12,7 +12,7 @@ const Footer = () => {
           {/* Logo & Corporate Summary */}
           <div className="md:col-span-2 space-y-4 text-left">
             <Link to="/" className="flex items-center gap-2">
-              <span className="bg-zinc-900 text-white px-2.5 py-1 rounded-lg font-bold text-base">
+              <span className="bg-primary text-white px-2.5 py-1 rounded-lg font-bold text-base">
                 SG
               </span>
               <span className="font-display font-black text-xl text-zinc-900 tracking-tight">

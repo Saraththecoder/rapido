@@ -114,10 +114,10 @@ const TrackOrder = () => {
                 <path d="M 50 120 C 150 120, 200 40, 300 80 C 400 120, 420 200, 520 180" fill="none" stroke="#e4e4e7" strokeWidth="10" strokeLinecap="round" />
                 
                 {/* Track active route color */}
-                <path d="M 50 120 C 150 120, 200 40, 300 80" fill="none" stroke="#18181b" strokeWidth="2" strokeLinecap="round" strokeDasharray="5 3" />
+                <path d="M 50 120 C 150 120, 200 40, 300 80" fill="none" stroke="#FC5A2A" strokeWidth="2" strokeLinecap="round" strokeDasharray="5 3" />
 
                 {/* Pickup marker */}
-                <circle cx="50" cy="120" r="4" fill="#18181b" />
+                <circle cx="50" cy="120" r="4" fill="#FC5A2A" />
                 
                 {/* Drop marker */}
                 <circle cx="300" cy="80" r="4" fill="#71717a" />
@@ -125,15 +125,15 @@ const TrackOrder = () => {
                 {/* Rider animation marker */}
                 {status !== 'delivered' && (
                   <g transform="translate(180, 75)">
-                    <circle r="6" fill="#18181b" />
+                    <circle r="6" fill="#FC5A2A" />
                   </g>
                 )}
               </svg>
 
               {/* Float Map Info Overlay */}
               <div className="absolute bottom-3 left-3 bg-white border border-zinc-200 rounded-xl p-3 text-[10px] space-y-0.5 shadow-sm text-left">
-                <p className="font-bold text-zinc-900 flex items-center gap-1"><span className="h-1.5 w-1.5 rounded-full bg-zinc-950"></span> Rider En Route</p>
-                <p className="text-zinc-500 font-medium">Moving along HSR Main Road</p>
+                <p className="font-bold text-zinc-900 flex items-center gap-1"><span className="h-1.5 w-1.5 rounded-full bg-primary"></span> Rider En Route</p>
+                <p className="text-zinc-550 font-medium">Moving along HSR Main Road</p>
               </div>
             </div>
           </div>
@@ -147,7 +147,7 @@ const TrackOrder = () => {
               {/* Stepper Line */}
               <div className="absolute left-[15px] top-3 bottom-3 w-0.5 bg-zinc-150 z-0">
                 <div 
-                  className="bg-zinc-900 w-full transition-all duration-500" 
+                  className="bg-primary w-full transition-all duration-500" 
                   style={{ height: `${(activeIndex / (steps.length - 1)) * 100}%` }}
                 ></div>
               </div>
@@ -162,18 +162,18 @@ const TrackOrder = () => {
                       {/* Step Indicator Dot */}
                       <span className={`h-8 w-8 rounded-full flex items-center justify-center font-bold text-xs border shrink-0 transition duration-150 ${
                         isCompleted 
-                          ? 'bg-zinc-900 border-zinc-900 text-white' 
+                          ? 'bg-primary border-primary text-white shadow-sm' 
                           : isActive 
-                            ? 'bg-zinc-50 border-zinc-900 text-zinc-950 font-bold' 
+                            ? 'bg-accent-peach/30 border-primary text-primary font-bold shadow-sm' 
                             : 'bg-white border-zinc-200 text-zinc-400'
                       }`}>
                         {isCompleted ? '✓' : index + 1}
                       </span>
                       
                       {/* Step Label */}
-                      <div>
-                        <h4 className={`text-xs font-bold uppercase tracking-wider ${isActive ? 'text-zinc-900' : 'text-zinc-450'}`}>{step.label}</h4>
-                        <p className="text-[9px] text-zinc-400 font-bold uppercase tracking-wider mt-0.5">
+                      <div className="text-left">
+                        <h4 className={`text-xs font-bold uppercase tracking-wider ${isActive ? 'text-primary' : 'text-zinc-455'}`}>{step.label}</h4>
+                        <p className={`text-[9px] font-bold uppercase tracking-wider mt-0.5 ${isActive ? 'text-primary animate-pulse' : 'text-zinc-400'}`}>
                           {isCompleted ? 'Completed' : isActive ? 'Active Now' : 'Pending'}
                         </p>
                       </div>

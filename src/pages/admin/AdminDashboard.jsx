@@ -51,8 +51,8 @@ const AdminDashboard = () => {
     { name: 'Parcels', value: deliveryCount },
   ];
 
-  // Monochrome scale colors
-  const PIE_COLORS = ['#18181b', '#71717a', '#d4d4d8'];
+  // Brand colors for split pie chart
+  const PIE_COLORS = ['#FC5A2A', '#D43864', '#D7A74E'];
 
   // Combined activity log
   const systemActivity = [
@@ -64,7 +64,7 @@ const AdminDashboard = () => {
   ];
 
   return (
-    <div className="space-y-8 text-zinc-900">
+    <div className="space-y-8 text-zinc-900 animate-fade-in">
       {/* Page Header */}
       <div className="space-y-1">
         <h2 className="text-xl font-bold tracking-tight text-zinc-900">Global Administration Console</h2>
@@ -76,8 +76,8 @@ const AdminDashboard = () => {
         {stats.map((stat, i) => {
           const Icon = stat.icon;
           return (
-            <div key={i} className="bg-white rounded-xl border border-zinc-200 p-4 flex items-center gap-3">
-              <div className="p-2 bg-zinc-50 border border-zinc-200 rounded-lg text-zinc-650 shrink-0">
+            <div key={i} className="bg-white rounded-xl border border-zinc-100 p-4 flex items-center gap-3 shadow-sm">
+              <div className="p-2.5 bg-accent-peach/40 border border-primary/10 rounded-lg text-primary shrink-0">
                 <Icon size={16} />
               </div>
               <div className="min-w-0">
@@ -93,24 +93,24 @@ const AdminDashboard = () => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         
         {/* Line Chart */}
-        <div className="lg:col-span-2 bg-white rounded-xl border border-zinc-200 p-6 space-y-6">
-          <h3 className="text-xs font-bold uppercase tracking-wider text-zinc-900">Revenue Velocity (Last 7 Days)</h3>
+        <div className="lg:col-span-2 bg-white rounded-xl border border-zinc-100 p-6 space-y-6 shadow-sm">
+          <h3 className="text-xs font-bold uppercase tracking-wider text-zinc-800">Revenue Velocity (Last 7 Days)</h3>
           <div className="h-64 w-full">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={revenueTrend} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-                <CartesianGrid strokeDasharray="0" stroke="#f4f4f5" vertical={false} />
+                <CartesianGrid strokeDasharray="0" stroke="#fdf8f6" vertical={false} />
                 <XAxis dataKey="date" tickLine={false} axisLine={false} style={{ fontSize: '11px', fontWeight: '500', fill: '#71717a' }} />
                 <YAxis tickLine={false} axisLine={false} style={{ fontSize: '11px', fontWeight: '500', fill: '#71717a' }} />
-                <Tooltip contentStyle={{ borderRadius: '8px', border: '1px solid #e4e4e7', fontWeight: '500', fontSize: '12px' }} />
-                <Line type="monotone" dataKey="Revenue" stroke="#18181b" strokeWidth={2.5} activeDot={{ r: 5 }} dot={{ r: 2.5 }} />
+                <Tooltip contentStyle={{ borderRadius: '8px', border: '1px solid #FAF2EE', backgroundColor: '#fff', fontWeight: '500', fontSize: '12px' }} />
+                <Line type="monotone" dataKey="Revenue" stroke="#FC5A2A" strokeWidth={2.5} activeDot={{ r: 5, fill: '#FC5A2A', stroke: '#fff' }} dot={{ r: 2.5, fill: '#FC5A2A', strokeWidth: 0 }} />
               </LineChart>
             </ResponsiveContainer>
           </div>
         </div>
 
         {/* Pie Chart */}
-        <div className="bg-white rounded-xl border border-zinc-200 p-6 space-y-6 flex flex-col justify-between">
-          <h3 className="text-xs font-bold uppercase tracking-wider text-zinc-900">Volume Service Split</h3>
+        <div className="bg-white rounded-xl border border-zinc-100 p-6 space-y-6 flex flex-col justify-between shadow-sm">
+          <h3 className="text-xs font-bold uppercase tracking-wider text-zinc-800">Volume Service Split</h3>
           <div className="h-48 w-full flex items-center justify-center">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
@@ -132,7 +132,7 @@ const AdminDashboard = () => {
             </ResponsiveContainer>
           </div>
           
-          <div className="grid grid-cols-3 text-center text-[10px] font-bold text-zinc-500 uppercase tracking-wider pt-4 border-t border-zinc-150">
+          <div className="grid grid-cols-3 text-center text-[10px] font-bold text-zinc-500 uppercase tracking-wider pt-4 border-t border-zinc-100">
             {serviceSplit.map((s, idx) => (
               <div key={idx} className="space-y-1">
                 <div className="flex items-center justify-center gap-1">
@@ -148,17 +148,17 @@ const AdminDashboard = () => {
       </div>
 
       {/* Recent Activity Log */}
-      <div className="bg-white rounded-xl border border-zinc-200 p-6 space-y-4">
+      <div className="bg-white rounded-xl border border-zinc-100 p-6 space-y-4 shadow-sm">
         <div className="flex items-center gap-2">
-          <Activity className="text-zinc-500" size={16} />
-          <h3 className="text-xs font-bold uppercase tracking-wider text-zinc-900">Live System Activity Feed</h3>
+          <Activity className="text-primary" size={16} />
+          <h3 className="text-xs font-bold uppercase tracking-wider text-zinc-800">Live System Activity Feed</h3>
         </div>
 
-        <div className="divide-y divide-zinc-100 text-xs font-medium text-zinc-700">
+        <div className="divide-y divide-zinc-150 text-xs font-medium text-zinc-700">
           {systemActivity.map((act) => (
             <div key={act.id} className="py-3.5 flex items-center justify-between gap-4">
               <div className="flex items-center gap-3">
-                <span className="h-1.5 w-1.5 rounded-full bg-zinc-900"></span>
+                <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse"></span>
                 <span className="font-semibold text-zinc-800">{act.desc}</span>
               </div>
               <div className="flex items-center gap-3 shrink-0">

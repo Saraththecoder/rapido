@@ -46,10 +46,10 @@ const RiderManagement = () => {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 animate-fade-in">
       
       {/* Active & Pending List */}
-      <div className="bg-white rounded-xl border border-zinc-200 p-6 space-y-6 text-zinc-900">
+      <div className="bg-white rounded-xl border border-zinc-100 p-6 space-y-6 text-zinc-900 shadow-sm">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div className="space-y-1">
             <h2 className="text-xl font-bold tracking-tight text-zinc-900">Partner Fleets (Riders)</h2>
@@ -65,7 +65,7 @@ const RiderManagement = () => {
               placeholder="Search rider or vehicle..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="block w-full pl-9 pr-4 py-2 bg-zinc-50 border border-zinc-200 rounded-lg focus:outline-none focus:bg-white focus:border-zinc-900 text-xs font-semibold transition text-zinc-900 placeholder-zinc-400"
+              className="block w-full pl-9 pr-4 py-2 bg-zinc-50 rounded-lg text-xs font-semibold transition text-zinc-900 placeholder-zinc-400 input-premium"
             />
           </div>
         </div>
@@ -74,7 +74,7 @@ const RiderManagement = () => {
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="border-b border-zinc-200 text-[10px] font-bold text-zinc-400 uppercase tracking-wider">
+              <tr className="border-b border-zinc-100 text-[10px] font-bold text-zinc-400 uppercase tracking-wider">
                 <th className="pb-3">Rider ID</th>
                 <th className="pb-3">Name</th>
                 <th className="pb-3">Vehicle</th>
@@ -88,14 +88,14 @@ const RiderManagement = () => {
               {allRiders.map((rider) => {
                 const isPending = rider.status === 'pending';
                 return (
-                  <tr key={rider.id} className="hover:bg-zinc-50 transition">
+                  <tr key={rider.id} className="hover:bg-accent-peach/20 transition">
                     <td className="py-3.5 font-mono text-[11px] text-zinc-400">{rider.id}</td>
                     <td className="py-3.5">
                       <p className="font-bold text-zinc-900">{rider.name}</p>
-                      <p className="text-[10px] text-zinc-450 font-medium mt-0.5">{rider.phone}</p>
+                      <p className="text-[10px] text-zinc-400 font-medium mt-0.5">{rider.phone}</p>
                     </td>
                     <td className="py-3.5">
-                      <span className="bg-zinc-50 border border-zinc-200 text-zinc-800 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider">
+                      <span className="bg-accent-peach/30 border border-primary/10 text-primary px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider">
                         {rider.vehicleType}
                       </span>
                     </td>
@@ -104,10 +104,10 @@ const RiderManagement = () => {
                     </td>
                     <td className="py-3.5 font-bold text-zinc-900">{rider.totalTrips || '0'}</td>
                     <td className="py-3.5">
-                      <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider border border-zinc-200 text-zinc-800 bg-white">
+                      <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider border border-primary/10 text-zinc-800 bg-white">
                         <span className={`w-1.5 h-1.5 rounded-full ${
                           rider.status === 'online'
-                            ? 'bg-emerald-500'
+                            ? 'bg-emerald-500 animate-pulse'
                             : rider.status === 'offline'
                               ? 'bg-zinc-300'
                               : 'bg-amber-500'
@@ -120,14 +120,14 @@ const RiderManagement = () => {
                         <>
                           <button
                             onClick={() => handleApproveRider(rider)}
-                            className="p-1.5 rounded-md border border-zinc-200 hover:border-zinc-900 text-zinc-500 hover:text-zinc-900 transition bg-white"
+                            className="p-1.5 rounded-md border border-zinc-200 hover:border-primary text-zinc-500 hover:text-primary transition bg-white"
                             title="Approve Rider"
                           >
                             <Check size={13} />
                           </button>
                           <button
                             onClick={() => handleRejectRider(rider.id, rider.name)}
-                            className="p-1.5 rounded-md border border-zinc-200 hover:border-zinc-900 text-zinc-500 hover:text-zinc-900 transition bg-white"
+                            className="p-1.5 rounded-md border border-zinc-200 hover:border-primary text-zinc-500 hover:text-primary transition bg-white"
                             title="Reject Rider"
                           >
                             <X size={13} />
@@ -136,7 +136,7 @@ const RiderManagement = () => {
                       ) : (
                         <button
                           onClick={() => setSelectedRider(rider)}
-                          className="p-1.5 rounded-md border border-zinc-200 hover:border-zinc-900 text-zinc-500 hover:text-zinc-900 transition bg-white"
+                          className="p-1.5 rounded-md border border-zinc-200 hover:border-primary text-zinc-500 hover:text-primary transition bg-white"
                           title="View Details"
                         >
                           <Eye size={13} />
@@ -154,8 +154,8 @@ const RiderManagement = () => {
       {/* Detail view Modal */}
       {selectedRider && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-          <div className="absolute inset-0 bg-zinc-900/40 backdrop-blur-xs" onClick={() => setSelectedRider(null)} />
-          <div className="bg-white rounded-xl max-w-md w-full p-6 space-y-5 relative z-10 border border-zinc-200 animate-scale-up">
+          <div className="absolute inset-0 bg-zinc-950/45 backdrop-blur-xs" onClick={() => setSelectedRider(null)} />
+          <div className="bg-white rounded-xl max-w-md w-full p-6 space-y-5 relative z-10 border border-zinc-100 shadow-xl animate-scale-up">
             
             {/* Header info */}
             <div className="flex justify-between items-start">
@@ -165,7 +165,7 @@ const RiderManagement = () => {
               </div>
               <button 
                 onClick={() => setSelectedRider(null)} 
-                className="p-1 text-zinc-400 hover:text-zinc-950 transition"
+                className="p-1 text-zinc-400 hover:text-primary transition"
               >
                 <X size={18} />
               </button>
@@ -173,11 +173,11 @@ const RiderManagement = () => {
 
             {/* General metrics */}
             <div className="grid grid-cols-2 gap-4">
-              <div className="bg-zinc-50 p-3 rounded-lg border border-zinc-200">
+              <div className="bg-accent-peach/30 p-3 rounded-lg border border-primary/10">
                 <p className="text-zinc-400 text-[9px] font-bold uppercase tracking-wider">Rating Index</p>
-                <p className="text-sm font-bold text-zinc-900 mt-1">{selectedRider.rating} ★</p>
+                <p className="text-sm font-bold text-primary mt-1">{selectedRider.rating} ★</p>
               </div>
-              <div className="bg-zinc-50 p-3 rounded-lg border border-zinc-200">
+              <div className="bg-accent-peach/30 p-3 rounded-lg border border-primary/10">
                 <p className="text-zinc-400 text-[9px] font-bold uppercase tracking-wider">Total Trips</p>
                 <p className="text-sm font-bold text-zinc-900 mt-1">{selectedRider.totalTrips}</p>
               </div>
@@ -186,7 +186,7 @@ const RiderManagement = () => {
             {/* Earnings details */}
             <div className="space-y-2">
               <h4 className="text-[9px] font-bold text-zinc-400 uppercase tracking-wider">Settled Earnings</h4>
-              <div className="bg-zinc-50 rounded-lg p-4 border border-zinc-200 text-xs space-y-2.5">
+              <div className="bg-accent-peach/20 rounded-lg p-4 border border-primary/10 text-xs space-y-2.5">
                 <div className="flex justify-between text-zinc-650 font-medium">
                   <span>Today's Earnings:</span>
                   <span className="font-bold text-zinc-900">₹{(selectedRider.earnings?.daily || 0).toFixed(2)}</span>
@@ -195,9 +195,9 @@ const RiderManagement = () => {
                   <span>Weekly Earnings:</span>
                   <span className="font-bold text-zinc-900">₹{(selectedRider.earnings?.weekly || 0).toFixed(2)}</span>
                 </div>
-                <div className="flex justify-between text-zinc-650 font-medium pt-2.5 border-t border-zinc-200">
+                <div className="flex justify-between text-zinc-650 font-medium pt-2.5 border-t border-primary/10">
                   <span className="font-bold">Monthly Earnings:</span>
-                  <span className="font-bold text-zinc-900 text-sm">₹{(selectedRider.earnings?.monthly || 0).toFixed(2)}</span>
+                  <span className="font-bold text-primary text-sm">₹{(selectedRider.earnings?.monthly || 0).toFixed(2)}</span>
                 </div>
               </div>
             </div>
@@ -206,7 +206,7 @@ const RiderManagement = () => {
             <div className="flex gap-2 pt-2">
               <a
                 href={`tel:${selectedRider.phone}`}
-                className="w-full bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-xs py-3 rounded-lg text-center transition uppercase tracking-wider"
+                className="w-full font-bold text-xs py-3 rounded-lg text-center transition uppercase tracking-wider btn-primary"
               >
                 Call Partner ({selectedRider.phone})
               </a>

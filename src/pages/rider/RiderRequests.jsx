@@ -152,14 +152,13 @@ const RiderRequests = () => {
   return (
     <div className="flex-1 max-w-5xl mx-auto px-4 py-6 pb-24 md:pb-8 space-y-6 text-left">
       
-      {/* Tab selection */}
       <div className="flex border-b border-zinc-200">
         <button
           onClick={() => setActiveTab('incoming')}
           className={`pb-3 px-5 text-xs font-bold uppercase tracking-wider border-b-2 transition duration-150 ${
             activeTab === 'incoming'
-              ? 'border-zinc-900 text-zinc-950'
-              : 'border-transparent text-zinc-400 hover:text-zinc-650'
+              ? 'border-primary text-primary font-black'
+              : 'border-transparent text-zinc-455 hover:text-primary/70'
           }`}
         >
           Incoming Offers ({incomingRequests.length})
@@ -168,8 +167,8 @@ const RiderRequests = () => {
           onClick={() => setActiveTab('active')}
           className={`pb-3 px-5 text-xs font-bold uppercase tracking-wider border-b-2 transition duration-150 ${
             activeTab === 'active'
-              ? 'border-zinc-900 text-zinc-950'
-              : 'border-transparent text-zinc-400 hover:text-zinc-650'
+              ? 'border-primary text-primary font-black'
+              : 'border-transparent text-zinc-455 hover:text-primary/70'
           }`}
         >
           Active Tasks ({activeJobs.length})
@@ -196,13 +195,13 @@ const RiderRequests = () => {
                   <div key={req.id} className="bg-white rounded-xl border border-zinc-200 p-5 space-y-4 shadow-sm">
                     <div className="flex justify-between items-start">
                       <div>
-                        <span className="bg-zinc-900 text-white px-2 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider">{req.type}</span>
+                        <span className="bg-primary text-white px-2 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider">{req.type}</span>
                         <h4 className="font-bold text-zinc-900 text-sm mt-2.5">
                           {req.type === 'food' ? `From: ${req.restaurantName}` : `Pickup: ${req.pickup}`}
                         </h4>
                       </div>
                       <div className="text-right">
-                        <p className="text-base font-black text-zinc-900">₹{req.fare}</p>
+                        <p className="text-base font-black text-primary">₹{req.fare}</p>
                         <p className="text-[10px] text-zinc-400 font-bold uppercase mt-0.5">{req.distance}</p>
                       </div>
                     </div>
@@ -216,13 +215,13 @@ const RiderRequests = () => {
                     <div className="flex gap-2 pt-1">
                       <button
                         onClick={() => handleAccept(req)}
-                        className="flex-1 bg-zinc-900 hover:bg-zinc-800 text-white text-xs font-bold py-2.5 rounded-lg shadow-sm transition uppercase tracking-wider"
+                        className="flex-1 btn-primary text-xs font-bold py-2.5 rounded-lg shadow-sm transition uppercase tracking-wider"
                       >
                         Accept
                       </button>
                       <button
                         onClick={() => handleReject(req.id)}
-                        className="bg-white border border-zinc-200 hover:bg-zinc-50 text-zinc-700 text-xs font-bold py-2.5 px-4 rounded-lg transition uppercase tracking-wider"
+                        className="bg-white border border-zinc-200 hover:border-primary/20 hover:text-primary text-zinc-700 text-xs font-bold py-2.5 px-4 rounded-lg transition uppercase tracking-wider"
                       >
                         Decline
                       </button>
@@ -252,7 +251,7 @@ const RiderRequests = () => {
                     <div className="flex justify-between items-start">
                       <div>
                         <div className="flex items-center gap-1.5">
-                          <span className="bg-zinc-100 border border-zinc-200 text-zinc-800 px-2 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider">
+                          <span className="bg-accent-peach/30 border border-primary/10 text-primary px-2 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider">
                             {job.jobType}
                           </span>
                           <span className="font-mono text-xs text-zinc-400 font-bold">{job.id}</span>
@@ -262,7 +261,7 @@ const RiderRequests = () => {
                         </h4>
                       </div>
                       <div className="text-right">
-                        <p className="text-base font-black text-zinc-900">₹{job.total || job.price || job.fare}</p>
+                        <p className="text-base font-black text-primary">₹{job.total || job.price || job.fare}</p>
                         <StatusBadge status={job.status} />
                       </div>
                     </div>
@@ -278,7 +277,7 @@ const RiderRequests = () => {
                     {/* Progression actions */}
                     <button
                       onClick={() => handleProgressJobStatus(job)}
-                      className="w-full bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-xs py-2.5 rounded-lg transition flex items-center justify-center gap-1 uppercase tracking-wider"
+                      className="w-full btn-primary text-xs font-bold py-2.5 rounded-lg transition flex items-center justify-center gap-1 uppercase tracking-wider"
                     >
                       <CheckCircle size={14} />
                       <span>{getNextStatusText(job.status, job.jobType)}</span>

@@ -39,7 +39,7 @@ const RiderDashboard = () => {
         <div className="flex items-center gap-4">
           <div className={`p-4 rounded-xl transition duration-200 ${
             currentUser?.isOnline 
-              ? 'bg-zinc-900 text-white' 
+              ? 'bg-primary text-white shadow-md shadow-primary/10' 
               : 'bg-zinc-100 text-zinc-500 border border-zinc-200'
           }`}>
             <Power size={20} />
@@ -64,7 +64,7 @@ const RiderDashboard = () => {
           className={`w-full md:w-auto px-6 py-2.5 rounded-lg font-bold text-xs uppercase tracking-wider transition ${
             currentUser?.isOnline
               ? 'bg-rose-600 hover:bg-rose-700 text-white'
-              : 'bg-zinc-900 hover:bg-zinc-800 text-white'
+              : 'btn-primary'
           }`}
         >
           {currentUser?.isOnline ? 'Go Offline' : 'Go Online'}
@@ -88,10 +88,10 @@ const RiderDashboard = () => {
         {/* Metric 3 */}
         <div className="bg-white rounded-xl border border-zinc-200 p-5 text-center shadow-sm">
           <p className="text-zinc-400 text-[9px] font-bold uppercase tracking-wider">Customer Rating</p>
-          <p className="text-2xl md:text-3xl font-black text-zinc-900 font-display mt-2 leading-none flex items-center justify-center gap-0.5">
-            4.8 <Star size={18} className="text-zinc-850 fill-zinc-900" />
+          <p className="text-2xl md:text-3xl font-black text-primary font-display mt-2 leading-none flex items-center justify-center gap-0.5">
+            4.8 <Star size={18} className="text-primary fill-primary" />
           </p>
-          <span className="text-[9px] text-zinc-500 border border-zinc-200 font-bold bg-zinc-50 px-2 py-0.5 rounded-md mt-2.5 inline-block">Top Partner</span>
+          <span className="text-[9px] text-primary border border-primary/10 font-bold bg-accent-peach/30 px-2 py-0.5 rounded-md mt-2.5 inline-block">Top Partner</span>
         </div>
       </div>
 
@@ -104,14 +104,14 @@ const RiderDashboard = () => {
               <div key={trip.id} className="bg-white rounded-xl border border-zinc-200 p-5 space-y-4 shadow-sm">
                 <div className="flex justify-between items-start">
                   <div>
-                    <span className="bg-zinc-900 text-white px-2 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider">
+                    <span className="bg-primary text-white px-2 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider">
                       Active {trip.id.startsWith('FO') ? 'Food' : trip.id.startsWith('PA') ? 'Courier' : 'Taxi'}
                     </span>
                     <h4 className="font-bold text-zinc-800 text-sm mt-3 leading-snug">
                       {trip.id.startsWith('FO') ? `Pickup: ${trip.restaurantName}` : `Pickup: ${trip.pickup || 'HSR Layout'}`}
                     </h4>
                   </div>
-                  <span className="text-base font-black text-zinc-900">₹{trip.price || trip.fare}</span>
+                  <span className="text-base font-black text-primary">₹{trip.price || trip.fare}</span>
                 </div>
                 
                 <p className="text-xs text-zinc-500 font-semibold leading-normal">
@@ -121,7 +121,7 @@ const RiderDashboard = () => {
                 <div className="pt-2 border-t border-zinc-100">
                   <Link
                     to="/rider/requests"
-                    className="w-full bg-white hover:bg-zinc-50 text-zinc-800 font-bold text-xs py-2 rounded-lg text-center border border-zinc-200 block transition"
+                    className="w-full bg-white hover:bg-zinc-50 border border-primary/20 text-primary font-bold text-xs py-2 rounded-lg text-center block transition shadow-sm"
                   >
                     Open Steering Console
                   </Link>
@@ -146,13 +146,13 @@ const RiderDashboard = () => {
               <Link 
                 key={idx}
                 to={nav.path}
-                className="bg-white border border-zinc-200 rounded-xl p-5 flex items-center gap-4 hover:border-zinc-400 transition duration-150 group"
+                className="bg-white border border-zinc-200 rounded-xl p-5 flex items-center gap-4 hover:border-primary/20 transition duration-150 group"
               >
-                <div className="h-10 w-10 rounded-lg bg-zinc-50 border border-zinc-200 text-zinc-800 flex items-center justify-center shrink-0">
+                <div className="h-10 w-10 rounded-lg bg-accent-peach/40 border border-primary/15 text-primary flex items-center justify-center shrink-0">
                   <Icon size={18} />
                 </div>
                 <div>
-                  <h4 className="font-display font-bold text-sm text-zinc-900 transition">{nav.name}</h4>
+                  <h4 className="font-display font-bold text-sm text-zinc-900 group-hover:text-primary transition">{nav.name}</h4>
                   <p className="text-zinc-400 text-[11px] font-semibold mt-0.5">{nav.desc}</p>
                 </div>
               </Link>
@@ -173,7 +173,7 @@ const RiderDashboard = () => {
               Complete 10 rides to unlock a ₹200 weekly incentive bonus!
             </h3>
             <p className="text-xs text-zinc-550 font-semibold">
-              You completed <strong className="text-zinc-900">8 of 10</strong> runs. 2 more rides to secure the credit!
+              You completed <strong className="text-primary">8 of 10</strong> runs. 2 more rides to secure the credit!
             </p>
             
             <div className="pt-2 flex gap-4 text-[9px] text-zinc-400 font-bold uppercase tracking-wider">
@@ -182,7 +182,7 @@ const RiderDashboard = () => {
             </div>
           </div>
           
-          <div className="shrink-0 w-20 h-20 relative flex items-center justify-center font-display font-black text-lg text-zinc-900 bg-white border border-zinc-200 rounded-full">
+          <div className="shrink-0 w-20 h-20 relative flex items-center justify-center font-display font-black text-lg text-primary bg-[#FAF2EE] border border-primary/20 rounded-full">
             80%
           </div>
         </div>

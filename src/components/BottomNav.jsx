@@ -38,13 +38,13 @@ const BottomNav = () => {
     { name: 'Wallet', path: '/rider/wallet', icon: Wallet },
   ];
 
-  const activeStyle = "text-zinc-950 flex flex-col items-center justify-center w-full h-full py-1 text-[9px] font-bold uppercase tracking-wider transition-colors";
+  const activeStyle = "text-primary flex flex-col items-center justify-center w-full h-full py-1 text-[9px] font-bold uppercase tracking-wider transition-colors";
   const inactiveStyle = "text-zinc-400 hover:text-zinc-600 flex flex-col items-center justify-center w-full h-full py-1 text-[9px] font-medium uppercase tracking-wider transition-colors";
 
   const items = isRider ? riderItems : userItems;
 
   return (
-    <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-zinc-200 z-50 h-15 px-2">
+    <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-zinc-100 z-50 h-15 px-2 shadow-lg">
       <div className="grid grid-cols-5 h-full max-w-md mx-auto items-center">
         {items.map((item) => {
           const Icon = item.icon;

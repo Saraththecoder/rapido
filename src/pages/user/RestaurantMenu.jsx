@@ -150,8 +150,8 @@ const RestaurantMenu = () => {
             onClick={() => setActiveCategory(cat)}
             className={`px-4 py-2 rounded-xl text-xs font-bold transition shrink-0 ${
               activeCategory === cat
-                ? 'bg-zinc-900 text-white shadow-sm'
-                : 'bg-white hover:bg-zinc-50 text-zinc-600 border border-zinc-200'
+                ? 'bg-primary text-white shadow-sm shadow-primary/10'
+                : 'bg-white hover:border-primary/20 text-zinc-650 border border-zinc-200'
             }`}
           >
             {cat}
@@ -184,21 +184,21 @@ const RestaurantMenu = () => {
                   <p className="text-[9px] text-zinc-400 font-bold uppercase tracking-wider mt-0.5">{item.category}</p>
                 </div>
                 <div className="flex items-end justify-between gap-2 mt-2">
-                  <p className="text-base font-black text-zinc-900">₹{item.price}</p>
+                  <p className="text-base font-black text-primary">₹{item.price}</p>
                   
                   {/* Add button / quantity controls */}
                   {qty > 0 ? (
-                    <div className="flex items-center bg-zinc-900 text-white rounded-lg overflow-hidden shrink-0">
+                    <div className="flex items-center bg-primary text-white rounded-lg overflow-hidden shrink-0">
                       <button 
                         onClick={() => removeFromCart(item.id)}
-                        className="px-2 py-1 hover:bg-zinc-800 transition"
+                        className="px-2 py-1 hover:bg-primary-hover transition"
                       >
                         <Minus size={11} />
                       </button>
                       <span className="px-2 text-xs font-bold font-mono">{qty}</span>
                       <button 
                         onClick={() => addToCart(item, restaurant)}
-                        className="px-2 py-1 hover:bg-zinc-800 transition"
+                        className="px-2 py-1 hover:bg-primary-hover transition"
                       >
                         <Plus size={11} />
                       </button>
@@ -206,7 +206,7 @@ const RestaurantMenu = () => {
                   ) : (
                     <button
                       onClick={() => addToCart(item, restaurant)}
-                      className="bg-white border border-zinc-300 hover:border-zinc-900 text-zinc-800 font-bold text-[11px] px-3.5 py-1.5 rounded-lg transition flex items-center gap-1 shrink-0"
+                      className="bg-white border border-zinc-300 hover:border-primary hover:text-primary text-zinc-800 font-bold text-[11px] px-3.5 py-1.5 rounded-lg transition flex items-center gap-1 shrink-0"
                     >
                       <Plus size={12} /> Add
                     </button>
@@ -220,19 +220,19 @@ const RestaurantMenu = () => {
 
       {/* Sticky Cart Summary Bar */}
       {cartItemCount > 0 && (
-        <div className="fixed bottom-20 md:bottom-6 left-4 right-4 max-w-lg mx-auto bg-zinc-900 text-white rounded-xl shadow-lg p-4 flex items-center justify-between z-40 border border-zinc-800 animate-slide-up">
+        <div className="fixed bottom-20 md:bottom-6 left-4 right-4 max-w-lg mx-auto bg-[#2A2A20] text-white rounded-xl shadow-lg p-4 flex items-center justify-between z-40 border border-primary/20 animate-slide-up">
           <div className="flex items-center gap-3">
-            <div className="p-2 bg-zinc-800 rounded-lg text-white">
+            <div className="p-2 bg-primary/20 border border-primary/30 rounded-lg text-primary">
               <ShoppingCart size={16} />
             </div>
-            <div>
+            <div className="text-left">
               <p className="text-[9px] text-zinc-400 font-bold uppercase tracking-wider">{cartItemCount} {cartItemCount === 1 ? 'item' : 'items'} in cart</p>
               <p className="text-sm font-black text-white">₹{cartSubtotal} <span className="text-[9px] text-zinc-500 font-normal">excl. delivery</span></p>
             </div>
           </div>
           <button 
             onClick={() => setIsCartOpen(true)}
-            className="bg-white hover:bg-zinc-100 text-zinc-900 text-xs font-bold px-4 py-2.5 rounded-lg transition flex items-center gap-1.5 shadow-sm"
+            className="bg-primary hover:bg-primary-hover text-white text-xs font-bold px-4 py-2.5 rounded-lg transition flex items-center gap-1.5 shadow-sm"
           >
             <span>Review Cart</span>
             <ShoppingCart size={12} />
@@ -282,17 +282,17 @@ const RestaurantMenu = () => {
                       </div>
                       
                       {/* Quantity Controls */}
-                      <div className="flex items-center bg-white border border-zinc-200 rounded-lg overflow-hidden shrink-0">
+                      <div className="flex items-center bg-white border border-[#fc5a2a]/20 rounded-lg overflow-hidden shrink-0">
                         <button 
                           onClick={() => removeFromCart(item.id)}
-                          className="px-2 py-1 text-zinc-550 hover:bg-zinc-50 transition"
+                          className="px-2 py-1 text-primary hover:bg-accent-peach/25 transition"
                         >
                           <Minus size={11} />
                         </button>
                         <span className="px-2 text-xs font-bold text-zinc-900 font-mono">{item.quantity}</span>
                         <button 
                           onClick={() => addToCart(item, restaurant)}
-                          className="px-2 py-1 text-zinc-550 hover:bg-zinc-50 transition"
+                          className="px-2 py-1 text-primary hover:bg-accent-peach/25 transition"
                         >
                           <Plus size={11} />
                         </button>
@@ -312,17 +312,17 @@ const RestaurantMenu = () => {
                       placeholder="Enter SWIFT50"
                       value={promoCode}
                       onChange={(e) => setPromoCode(e.target.value)}
-                      className="flex-1 px-3 py-1.5 text-xs bg-white border border-zinc-200 rounded-lg focus:outline-none focus:border-zinc-900 font-bold uppercase placeholder:text-zinc-300"
+                      className="flex-1 px-3 py-1.5 text-xs bg-white border border-zinc-200 rounded-lg focus:outline-none focus:border-primary font-bold uppercase placeholder:text-zinc-300 input-premium"
                     />
                     <button
                       onClick={handleApplyPromo}
-                      className="bg-zinc-900 hover:bg-zinc-800 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition"
+                      className="btn-primary text-xs font-bold px-3.5 py-1.5 rounded-lg transition"
                     >
                       Apply
                     </button>
                   </div>
-                  <p className="text-[9px] text-zinc-400 font-semibold leading-none">
-                    Use code <strong className="text-zinc-900">SWIFT50</strong> to get ₹50 off on orders above ₹150.
+                  <p className="text-[9px] text-zinc-450 font-semibold leading-none">
+                    Use code <strong className="text-primary">SWIFT50</strong> to get ₹50 off on orders above ₹150.
                   </p>
                 </div>
               </div>
@@ -353,7 +353,7 @@ const RestaurantMenu = () => {
                 <div className="pt-2">
                   <button
                     onClick={handleCheckout}
-                    className="w-full bg-zinc-900 hover:bg-zinc-800 text-white text-xs font-bold py-3.5 rounded-lg flex items-center justify-center transition"
+                    className="w-full btn-primary text-xs font-bold py-3.5 rounded-lg flex items-center justify-center transition"
                   >
                     <span>Place Order (Pay via Wallet)</span>
                   </button>

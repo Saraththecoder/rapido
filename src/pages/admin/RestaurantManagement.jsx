@@ -51,10 +51,10 @@ const RestaurantManagement = () => {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 animate-fade-in">
       
       {/* List and Actions */}
-      <div className="bg-white rounded-xl border border-zinc-200 p-6 space-y-6 text-zinc-900">
+      <div className="bg-white rounded-xl border border-zinc-100 p-6 space-y-6 text-zinc-900 shadow-sm">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div className="space-y-1">
             <h2 className="text-xl font-bold tracking-tight text-zinc-900">Restaurant Partners</h2>
@@ -71,13 +71,13 @@ const RestaurantManagement = () => {
                 placeholder="Search restaurant..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="block w-full pl-9 pr-4 py-2 bg-zinc-50 border border-zinc-200 rounded-lg focus:outline-none focus:bg-white focus:border-zinc-900 text-xs font-semibold transition text-zinc-900 placeholder-zinc-400"
+                className="block w-full pl-9 pr-4 py-2 bg-zinc-50 rounded-lg text-xs font-semibold transition text-zinc-900 placeholder-zinc-400 input-premium"
               />
             </div>
             
             <button
               onClick={() => setIsAddModalOpen(true)}
-              className="bg-zinc-900 hover:bg-zinc-800 text-white text-[11px] font-bold px-4 py-2 rounded-lg transition shrink-0 uppercase tracking-wider flex items-center gap-1.5"
+              className="text-[11px] font-bold px-4 py-2 rounded-lg transition shrink-0 uppercase tracking-wider flex items-center gap-1.5 btn-primary"
             >
               <Plus size={14} /> Add Outlet
             </button>
@@ -88,7 +88,7 @@ const RestaurantManagement = () => {
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="border-b border-zinc-200 text-[10px] font-bold text-zinc-400 uppercase tracking-wider">
+              <tr className="border-b border-zinc-100 text-[10px] font-bold text-zinc-400 uppercase tracking-wider">
                 <th className="pb-3">Restaurant Name</th>
                 <th className="pb-3">Cuisine Focus</th>
                 <th className="pb-3">Min Order</th>
@@ -99,13 +99,13 @@ const RestaurantManagement = () => {
             </thead>
             <tbody className="divide-y divide-zinc-100 text-xs font-medium text-zinc-700">
               {filteredRestaurants.map((rest) => (
-                <tr key={rest.id} className="hover:bg-zinc-50 transition">
+                <tr key={rest.id} className="hover:bg-accent-peach/20 transition">
                   <td className="py-3.5">
                     <div className="flex items-center gap-3">
                       <img 
                         src={rest.image} 
                         alt={rest.name} 
-                        className="w-10 h-7 rounded border border-zinc-200 object-cover bg-zinc-50"
+                        className="w-10 h-7 rounded border border-zinc-100 object-cover bg-zinc-50"
                       />
                       <span className="font-bold text-zinc-900">{rest.name}</span>
                     </div>
@@ -114,7 +114,7 @@ const RestaurantManagement = () => {
                   <td className="py-3.5 font-bold text-zinc-900">₹{rest.minOrder.toFixed(2)}</td>
                   <td className="py-3.5 font-bold text-zinc-900">{rest.rating} ★</td>
                   <td className="py-3.5">
-                    <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider border border-zinc-200 text-zinc-800 bg-white">
+                    <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider border border-primary/10 text-zinc-800 bg-white">
                       <span className={`w-1.5 h-1.5 rounded-full ${rest.isOpen ? 'bg-emerald-500' : 'bg-zinc-400'}`}></span>
                       {rest.isOpen ? 'OPEN' : 'SUSPENDED'}
                     </span>
@@ -122,7 +122,7 @@ const RestaurantManagement = () => {
                   <td className="py-3.5 text-right whitespace-nowrap">
                     <button
                       onClick={() => updateRestaurantStatus(rest.id, !rest.isOpen)}
-                      className="p-1.5 rounded-md border border-zinc-200 hover:border-zinc-900 text-zinc-500 hover:text-zinc-900 transition bg-white"
+                      className="p-1.5 rounded-md border border-zinc-200 hover:border-primary text-zinc-500 hover:text-primary transition bg-white"
                       title={rest.isOpen ? "Suspend Restaurant" : "Approve Restaurant"}
                     >
                       {rest.isOpen ? <Ban size={13} /> : <CheckCircle size={13} />}
@@ -138,14 +138,14 @@ const RestaurantManagement = () => {
       {/* Add restaurant modal */}
       {isAddModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-          <div className="absolute inset-0 bg-zinc-900/40 backdrop-blur-xs" onClick={() => setIsAddModalOpen(false)} />
-          <div className="bg-white rounded-xl max-w-md w-full p-6 space-y-5 relative z-10 border border-zinc-200 animate-scale-up">
+          <div className="absolute inset-0 bg-zinc-950/45 backdrop-blur-xs" onClick={() => setIsAddModalOpen(false)} />
+          <div className="bg-white rounded-xl max-w-md w-full p-6 space-y-5 relative z-10 border border-zinc-100 shadow-xl animate-scale-up">
             
-            <div className="flex justify-between items-center pb-2 border-b border-zinc-200">
+            <div className="flex justify-between items-center pb-2 border-b border-zinc-100">
               <h3 className="text-sm font-bold uppercase tracking-wider text-zinc-900">Register Restaurant Partner</h3>
               <button 
                 onClick={() => setIsAddModalOpen(false)} 
-                className="p-1 text-zinc-400 hover:text-zinc-900 transition"
+                className="p-1 text-zinc-400 hover:text-primary transition"
               >
                 <X size={18} />
               </button>
@@ -161,7 +161,7 @@ const RestaurantManagement = () => {
                   placeholder="e.g. Royal Punjab"
                   value={restName}
                   onChange={(e) => setRestName(e.target.value)}
-                  className="block w-full px-3 py-2 bg-zinc-50 border border-zinc-200 rounded-lg focus:outline-none focus:bg-white focus:border-zinc-900 text-xs font-semibold text-zinc-900 transition placeholder-zinc-400"
+                  className="block w-full px-3 py-2 bg-zinc-50 rounded-lg text-xs font-semibold text-zinc-900 transition placeholder-zinc-400 input-premium"
                 />
               </div>
 
@@ -174,7 +174,7 @@ const RestaurantManagement = () => {
                   placeholder="e.g. Punjabi, North Indian, Tandoori"
                   value={cuisine}
                   onChange={(e) => setCuisine(e.target.value)}
-                  className="block w-full px-3 py-2 bg-zinc-50 border border-zinc-200 rounded-lg focus:outline-none focus:bg-white focus:border-zinc-900 text-xs font-semibold text-zinc-900 transition placeholder-zinc-400"
+                  className="block w-full px-3 py-2 bg-zinc-50 rounded-lg text-xs font-semibold text-zinc-900 transition placeholder-zinc-400 input-premium"
                 />
               </div>
 
@@ -188,7 +188,7 @@ const RestaurantManagement = () => {
                     placeholder="e.g. 150"
                     value={minOrder}
                     onChange={(e) => setMinOrder(e.target.value)}
-                    className="block w-full px-3 py-2 bg-zinc-50 border border-zinc-200 rounded-lg focus:outline-none focus:bg-white focus:border-zinc-900 text-xs font-semibold text-zinc-900 transition placeholder-zinc-400"
+                    className="block w-full px-3 py-2 bg-zinc-50 rounded-lg text-xs font-semibold text-zinc-900 transition placeholder-zinc-400 input-premium"
                   />
                 </div>
 
@@ -198,7 +198,7 @@ const RestaurantManagement = () => {
                   <select
                     value={deliveryTime}
                     onChange={(e) => setDeliveryTime(e.target.value)}
-                    className="block w-full px-3 py-2 bg-zinc-50 border border-zinc-200 rounded-lg focus:outline-none focus:bg-white focus:border-zinc-900 text-xs font-semibold text-zinc-900 transition"
+                    className="block w-full px-3 py-2 bg-zinc-50 rounded-lg text-xs font-semibold text-zinc-900 transition input-premium"
                   >
                     <option value="15-20 mins">15-20 mins (Fast)</option>
                     <option value="25-30 mins">25-30 mins</option>
@@ -210,7 +210,7 @@ const RestaurantManagement = () => {
 
               <button
                 type="submit"
-                className="w-full bg-zinc-900 hover:bg-zinc-800 text-white text-xs font-bold py-3 rounded-lg transition uppercase tracking-wider"
+                className="w-full text-xs font-bold py-3 rounded-lg transition uppercase tracking-wider btn-primary"
               >
                 Approve & Register Outlet
               </button>

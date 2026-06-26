@@ -71,24 +71,24 @@ const RiderWallet = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         
         {/* Minimalist balance card */}
-        <div className="bg-zinc-900 text-white rounded-xl p-6 flex flex-col justify-between min-h-[180px]">
+        <div className="bg-gradient-to-br from-primary to-[#ff7a53] text-white rounded-xl p-6 flex flex-col justify-between min-h-[180px] shadow-lg shadow-primary/10">
           <div className="flex justify-between items-start">
             <div className="space-y-1.5">
-              <span className="text-zinc-400 text-[10px] font-bold uppercase tracking-wider">Settled Balance</span>
+              <span className="text-orange-100/80 text-[10px] font-bold uppercase tracking-wider">Settled Balance</span>
               <h3 className="text-3xl font-bold tracking-tight">₹{balance.toFixed(2)}</h3>
             </div>
             <div className="p-3 bg-white/10 rounded-lg text-white">
               <Wallet size={20} />
             </div>
           </div>
-          <div className="text-[10px] text-zinc-400 uppercase font-semibold tracking-wider pt-4">
+          <div className="text-[10px] text-orange-100/70 uppercase font-semibold tracking-wider pt-4">
             Payout Bank: HDFC Bank •••• 9081
           </div>
         </div>
 
         {/* Withdrawal form */}
-        <div className="md:col-span-2 bg-white rounded-xl border border-zinc-200 p-6 space-y-5">
-          <h3 className="text-sm font-bold uppercase tracking-wider text-zinc-900">Cash Out Earnings</h3>
+        <div className="md:col-span-2 bg-white rounded-xl border border-zinc-100 p-6 space-y-5 shadow-sm">
+          <h3 className="text-sm font-bold uppercase tracking-wider text-zinc-800">Cash Out Earnings</h3>
 
           <form onSubmit={handleWithdraw} className="flex flex-col sm:flex-row gap-3">
             <div className="flex-1 relative">
@@ -101,24 +101,20 @@ const RiderWallet = () => {
                 value={withdrawAmount}
                 onChange={(e) => setWithdrawAmount(e.target.value)}
                 min="100"
-                className="block w-full pl-8 pr-4 py-2.5 bg-zinc-50 border border-zinc-200 rounded-lg focus:outline-none focus:bg-white focus:border-zinc-900 text-sm font-semibold transition text-zinc-900 placeholder-zinc-400"
+                className="block w-full pl-8 pr-4 py-2.5 bg-zinc-50 rounded-lg text-sm font-semibold transition text-zinc-900 placeholder-zinc-400 input-premium"
               />
             </div>
             <button
               type="submit"
               disabled={isWithdrawing || !withdrawAmount}
-              className={`py-2.5 px-6 rounded-lg text-xs font-bold text-white transition shrink-0 uppercase tracking-wider ${
-                isWithdrawing || !withdrawAmount
-                  ? 'bg-zinc-200 text-zinc-400 cursor-not-allowed border border-transparent'
-                  : 'bg-zinc-900 hover:bg-zinc-800 border border-zinc-900'
-              }`}
+              className={`py-2.5 px-6 rounded-lg text-xs font-bold text-white transition shrink-0 uppercase tracking-wider btn-primary`}
             >
               {isWithdrawing ? 'Processing...' : 'Withdraw to Bank'}
             </button>
           </form>
 
-          <p className="text-[10px] text-zinc-500 font-medium flex items-start gap-2 bg-zinc-50 border border-zinc-200 p-3 rounded-lg leading-normal">
-            <AlertCircle size={14} className="text-zinc-600 shrink-0 mt-0.5" />
+          <p className="text-[10px] text-zinc-600 font-medium flex items-start gap-2 bg-accent-peach/30 border border-primary/10 p-3 rounded-lg leading-normal">
+            <AlertCircle size={14} className="text-primary shrink-0 mt-0.5" />
             <span>20% platform commission is automatically deducted on job completion. Withdrawals are processed instantly to your registered savings account.</span>
           </p>
         </div>
@@ -126,13 +122,13 @@ const RiderWallet = () => {
       </div>
 
       {/* Transaction Log */}
-      <div className="bg-white rounded-xl border border-zinc-200 p-6 space-y-4">
-        <h3 className="text-sm font-bold uppercase tracking-wider text-zinc-900">Wallet History</h3>
+      <div className="bg-white rounded-xl border border-zinc-100 p-6 space-y-4 shadow-sm">
+        <h3 className="text-sm font-bold uppercase tracking-wider text-zinc-800">Wallet History</h3>
 
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="border-b border-zinc-200 text-[10px] font-bold text-zinc-400 uppercase tracking-wider">
+              <tr className="border-b border-zinc-100 text-[10px] font-bold text-zinc-400 uppercase tracking-wider">
                 <th className="pb-3">Transaction ID</th>
                 <th className="pb-3">Date</th>
                 <th className="pb-3">Description</th>
@@ -143,12 +139,12 @@ const RiderWallet = () => {
               {riderTxs.map((tx) => {
                 const isCredit = tx.type === 'credit';
                 return (
-                  <tr key={tx.id} className="hover:bg-zinc-50 transition">
+                  <tr key={tx.id} className="hover:bg-accent-peach/20 transition">
                     <td className="py-3 font-mono text-[11px] text-zinc-400">{tx.id}</td>
-                    <td className="py-3 text-[11px] text-zinc-500">{tx.date}</td>
-                    <td className="py-3 text-zinc-900 font-medium">{tx.desc}</td>
+                    <td className="py-3 text-[11px] text-zinc-400">{tx.date}</td>
+                    <td className="py-3 text-zinc-800 font-medium">{tx.desc}</td>
                     <td className={`py-3 text-right font-bold text-sm ${
-                      isCredit ? 'text-zinc-900' : 'text-zinc-500'
+                      isCredit ? 'text-success' : 'text-zinc-600'
                     }`}>
                       {isCredit ? '+' : '-'}₹{tx.amount.toFixed(2)}
                     </td>

@@ -41,7 +41,7 @@ const Register = () => {
     <div className="flex-1 flex flex-col justify-center py-16 px-4 sm:px-6 lg:px-8 bg-zinc-50">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <div className="flex justify-center">
-          <span className="bg-zinc-950 text-white px-3 py-1.5 rounded-lg flex items-center justify-center font-bold text-xl tracking-tight">
+          <span className="bg-primary text-white px-3 py-1.5 rounded-lg flex items-center justify-center font-bold text-xl tracking-tight">
             SG
           </span>
         </div>
@@ -50,7 +50,7 @@ const Register = () => {
         </h2>
         <p className="mt-1.5 text-center text-xs text-zinc-450 font-semibold uppercase tracking-wider">
           Already have an account?{' '}
-          <Link to="/login" className="text-zinc-900 border-b border-zinc-900 pb-0.5 font-bold">
+          <Link to="/login" className="text-primary border-b border-primary pb-0.5 font-bold">
             Sign In
           </Link>
         </p>
@@ -75,7 +75,7 @@ const Register = () => {
                   placeholder="John Doe"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="block w-full pl-10 pr-4 py-2.5 border border-zinc-200 rounded-xl focus:outline-none focus:border-zinc-900 text-xs font-semibold transition"
+                  className="block w-full pl-10 pr-4 py-2.5 input-premium bg-white rounded-xl text-xs font-semibold"
                 />
               </div>
             </div>
@@ -96,7 +96,7 @@ const Register = () => {
                   placeholder="+91 98765 43210"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
-                  className="block w-full pl-10 pr-4 py-2.5 border border-zinc-200 rounded-xl focus:outline-none focus:border-zinc-900 text-xs font-semibold transition"
+                  className="block w-full pl-10 pr-4 py-2.5 input-premium bg-white rounded-xl text-xs font-semibold"
                 />
               </div>
             </div>
@@ -117,7 +117,7 @@ const Register = () => {
                   placeholder="name@example.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="block w-full pl-10 pr-4 py-2.5 border border-zinc-200 rounded-xl focus:outline-none focus:border-zinc-900 text-xs font-semibold transition"
+                  className="block w-full pl-10 pr-4 py-2.5 input-premium bg-white rounded-xl text-xs font-semibold"
                 />
               </div>
             </div>
@@ -138,7 +138,7 @@ const Register = () => {
                   placeholder="••••••••"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="block w-full pl-10 pr-4 py-2.5 border border-zinc-200 rounded-xl focus:outline-none focus:border-zinc-900 text-xs font-semibold transition"
+                  className="block w-full pl-10 pr-4 py-2.5 input-premium bg-white rounded-xl text-xs font-semibold"
                 />
               </div>
             </div>
@@ -156,7 +156,7 @@ const Register = () => {
                   id="role"
                   value={role}
                   onChange={(e) => setRole(e.target.value)}
-                  className="block w-full pl-10 pr-4 py-2.5 border border-zinc-200 rounded-xl focus:outline-none focus:border-zinc-900 text-xs font-semibold transition appearance-none bg-white"
+                  className="block w-full pl-10 pr-4 py-2.5 input-premium rounded-xl text-xs font-semibold appearance-none bg-white"
                 >
                   <option value="user">Customer (User)</option>
                   <option value="rider">Delivery Executive (Rider)</option>
@@ -167,7 +167,7 @@ const Register = () => {
             <div className="pt-2">
               <button
                 type="submit"
-                className="w-full bg-zinc-900 hover:bg-zinc-800 text-white text-xs font-bold py-3 rounded-xl uppercase tracking-wider transition"
+                className="w-full btn-primary text-xs font-bold py-3 rounded-xl uppercase tracking-wider transition"
               >
                 Register Now
               </button>

@@ -2,15 +2,28 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #F97316;
-  --color-primary-hover: #EA580C;
+  --color-primary: #FC5A2A;
+  --color-primary-hover: #EA4C1F;
   --color-dark: #111827;
   --color-dark-light: #1F2937;
   --color-lightbg: #F9FAFB;
-  --color-success: #22C55E;
+  --color-success: #09A15B;
+  --color-accent-peach: #FAF2EE;
+  --color-accent-pink: #D43864;
+  --color-accent-gold: #D7A74E;
+  --color-accent-gold-bg: #2A2A20;
   
   --font-sans: 'Inter', system-ui, sans-serif;
   --font-display: 'Outfit', system-ui, sans-serif;
+}
+
+@utility bg-apollo-header {
+  background: linear-gradient(180deg, rgba(252, 90, 42, 0.15) 0%, rgba(255, 241, 237, 0.4) 60%, rgba(255, 255, 255, 1) 100%);
+}
+
+@utility bg-apollo-banner {
+  background-color: #FAF2EE;
+  border: 1px solid rgba(252, 90, 42, 0.15);
 }
 
 @layer base {
@@ -198,6 +211,59 @@
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+/* Premium Button & Input Utilities */
+.btn-primary {
+  background-color: var(--color-primary) !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  box-shadow: 0 4px 14px rgba(252, 90, 42, 0.15) !important;
+  border: none !important;
+  cursor: pointer !important;
+}
+.btn-primary:hover {
+  background-color: var(--color-primary-hover) !important;
+  box-shadow: 0 6px 20px rgba(252, 90, 42, 0.25) !important;
+  transform: translateY(-1px);
+}
+.btn-primary:active {
+  transform: scale(0.98);
+}
+.btn-primary:disabled {
+  background-color: #e4e4e7 !important;
+  color: #a1a1aa !important;
+  box-shadow: none !important;
+  cursor: not-allowed !important;
+  transform: none !important;
+}
+
+.btn-secondary {
+  background-color: rgba(252, 90, 42, 0.04) !important;
+  border: 1px solid rgba(252, 90, 42, 0.12) !important;
+  color: var(--color-primary) !important;
+  font-weight: 700 !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  cursor: pointer !important;
+}
+.btn-secondary:hover {
+  background-color: rgba(252, 90, 42, 0.08) !important;
+  border-color: rgba(252, 90, 42, 0.25) !important;
+  transform: translateY(-1px);
+}
+.btn-secondary:active {
+  transform: scale(0.98);
+}
+
+.input-premium {
+  border: 1px solid #e4e4e7 !important;
+  transition: all 0.2s ease-in-out !important;
+}
+.input-premium:focus {
+  border-color: var(--color-primary) !important;
+  box-shadow: 0 0 0 3px rgba(252, 90, 42, 0.15) !important;
+  outline: none !important;
 }
 
 

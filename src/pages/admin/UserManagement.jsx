@@ -36,7 +36,7 @@ const UserManagement = () => {
   };
 
   return (
-    <div className="bg-white rounded-xl border border-zinc-200 p-6 space-y-6 text-zinc-900">
+    <div className="bg-white rounded-xl border border-zinc-100 p-6 space-y-6 text-zinc-900 shadow-sm animate-fade-in">
       
       {/* Title & Search */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
@@ -57,7 +57,7 @@ const UserManagement = () => {
               setSearchQuery(e.target.value);
               setCurrentPage(1); // Reset page
             }}
-            className="block w-full pl-9 pr-4 py-2 bg-zinc-50 border border-zinc-200 rounded-lg focus:outline-none focus:bg-white focus:border-zinc-900 text-xs font-semibold transition text-zinc-900 placeholder-zinc-400"
+            className="block w-full pl-9 pr-4 py-2 bg-zinc-50 rounded-lg text-xs font-semibold transition text-zinc-900 placeholder-zinc-400 input-premium"
           />
         </div>
       </div>
@@ -66,7 +66,7 @@ const UserManagement = () => {
       <div className="overflow-x-auto">
         <table className="w-full text-left border-collapse">
           <thead>
-            <tr className="border-b border-zinc-200 text-[10px] font-bold text-zinc-400 uppercase tracking-wider">
+            <tr className="border-b border-zinc-100 text-[10px] font-bold text-zinc-400 uppercase tracking-wider">
               <th className="pb-3">User ID</th>
               <th className="pb-3">Name</th>
               <th className="pb-3">Contact</th>
@@ -81,24 +81,24 @@ const UserManagement = () => {
               paginatedUsers.map((user) => {
                 const isBlocked = user.status === 'blocked';
                 return (
-                  <tr key={user.id} className="hover:bg-zinc-50 transition">
+                  <tr key={user.id} className="hover:bg-accent-peach/20 transition">
                     <td className="py-3.5 font-mono text-[11px] text-zinc-400">{user.id}</td>
                     <td className="py-3.5">
                       <div className="flex items-center gap-3">
                         <img 
                           src={user.avatar} 
                           alt={user.name} 
-                          className="w-8 h-8 rounded-lg border border-zinc-200 object-cover bg-zinc-50"
+                          className="w-8 h-8 rounded-lg border border-zinc-100 object-cover bg-zinc-50"
                         />
                         <span className="font-bold text-zinc-900">{user.name}</span>
                       </div>
                     </td>
                     <td className="py-3.5 space-y-0.5">
                       <p className="text-zinc-900 font-bold">{user.phone}</p>
-                      <p className="text-[10px] text-zinc-450 font-medium">{user.email}</p>
+                      <p className="text-[10px] text-zinc-400 font-medium">{user.email}</p>
                     </td>
                     <td className="py-3.5">
-                      <span className="bg-zinc-50 border border-zinc-200 text-zinc-800 px-2 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider">
+                      <span className="bg-accent-peach/30 border border-primary/10 text-primary px-2 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider">
                         {user.role}
                       </span>
                     </td>
@@ -106,22 +106,22 @@ const UserManagement = () => {
                       ₹{(user.walletBalance || 0).toFixed(2)}
                     </td>
                     <td className="py-3.5">
-                      <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider border border-zinc-200 text-zinc-800 bg-white">
-                        <span className={`w-1.5 h-1.5 rounded-full ${isBlocked ? 'bg-zinc-450' : 'bg-emerald-500'}`}></span>
+                      <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider border border-primary/10 text-zinc-800 bg-white">
+                        <span className={`w-1.5 h-1.5 rounded-full ${isBlocked ? 'bg-zinc-400' : 'bg-emerald-500'}`}></span>
                         {user.status || 'active'}
                       </span>
                     </td>
                     <td className="py-3.5 text-right space-x-1 shrink-0 whitespace-nowrap">
                       <button
                         onClick={() => handleToggleBlock(user.id, user.status)}
-                        className="p-1.5 rounded-md border border-zinc-200 hover:border-zinc-900 text-zinc-500 hover:text-zinc-900 transition bg-white"
+                        className="p-1.5 rounded-md border border-zinc-200 hover:border-primary text-zinc-500 hover:text-primary transition bg-white"
                         title={isBlocked ? "Activate User" : "Suspend User"}
                       >
                         {isBlocked ? <UserCheck size={13} /> : <Ban size={13} />}
                       </button>
                       <button
                         onClick={() => handleDelete(user.id, user.name)}
-                        className="p-1.5 rounded-md border border-zinc-200 hover:border-zinc-900 text-zinc-500 hover:text-zinc-900 transition bg-white"
+                        className="p-1.5 rounded-md border border-zinc-200 hover:border-primary text-zinc-500 hover:text-primary transition bg-white"
                         title="Delete User"
                       >
                         <Trash2 size={13} />
@@ -143,7 +143,7 @@ const UserManagement = () => {
 
       {/* Pagination Controls */}
       {totalPages > 1 && (
-        <div className="flex items-center justify-between border-t border-zinc-200 pt-4">
+        <div className="flex items-center justify-between border-t border-zinc-100 pt-4">
           <p className="text-[10px] text-zinc-400 font-bold uppercase tracking-wider">
             Showing {startIndex + 1} to {Math.min(startIndex + itemsPerPage, customers.length)} of {customers.length} entries
           </p>
@@ -154,7 +154,7 @@ const UserManagement = () => {
               className={`p-1.5 border rounded-lg transition ${
                 currentPage === 1 
                   ? 'text-zinc-300 border-zinc-100 cursor-not-allowed' 
-                  : 'text-zinc-650 border-zinc-200 hover:bg-zinc-50 hover:border-zinc-950'
+                  : 'text-zinc-650 border-zinc-200 hover:bg-accent-peach/20 hover:border-primary hover:text-primary'
               }`}
             >
               <ArrowLeft size={14} />
@@ -165,7 +165,7 @@ const UserManagement = () => {
               className={`p-1.5 border rounded-lg transition ${
                 currentPage === totalPages 
                   ? 'text-zinc-300 border-zinc-100 cursor-not-allowed' 
-                  : 'text-zinc-650 border-zinc-200 hover:bg-zinc-50 hover:border-zinc-950'
+                  : 'text-zinc-650 border-zinc-200 hover:bg-accent-peach/20 hover:border-primary hover:text-primary'
               }`}
             >
               <ArrowRight size={14} />
