@@ -8,6 +8,7 @@ import { useRideStore } from '../../store/useRideStore';
 import { useAuthStore } from '../../store/useAuthStore';
 import MapSVG from '../../components/MapSVG';
 import BottomNav from '../../components/BottomNav';
+import { ProfileDrawer, HistoryDrawer, OffersDrawer, SettingsDrawer, HelpDrawer } from '../../components/DrawerModals';
 
 export default function RideHome() {
   const navigate = useNavigate();
@@ -16,6 +17,12 @@ export default function RideHome() {
   const user = useAuthStore((state) => state.user);
   
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const [isHistoryOpen, setIsHistoryOpen] = useState(false);
+  const [isOffersOpen, setIsOffersOpen] = useState(false);
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const [isHelpOpen, setIsHelpOpen] = useState(false);
+
   const [pickupInput, setPickupInput] = useState(pickup || '128 Market St, SF');
   const [dropoffInput, setDropoffInput] = useState(dropoff || '');
 
@@ -194,23 +201,23 @@ export default function RideHome() {
 
               {/* White Body Menu Items */}
               <div className="flex-1 px-5 py-4 overflow-y-auto divide-y divide-white/5 text-gray-200">
-                <button onClick={() => setIsDrawerOpen(false)} className="w-full flex items-center gap-4 py-4 text-left font-bold text-sm hover:text-purple-400 transition-colors">
+                <button onClick={() => { setIsDrawerOpen(false); setIsProfileOpen(true); }} className="w-full flex items-center gap-4 py-4 text-left font-bold text-sm hover:text-purple-400 transition-colors">
                   <User className="w-5 h-5 text-gray-500" />
                   <span>Profile</span>
                 </button>
-                <button onClick={() => { setIsDrawerOpen(false); navigate('/ride'); }} className="w-full flex items-center gap-4 py-4 text-left font-bold text-sm hover:text-purple-400 transition-colors">
+                <button onClick={() => { setIsDrawerOpen(false); setIsHistoryOpen(true); }} className="w-full flex items-center gap-4 py-4 text-left font-bold text-sm hover:text-purple-400 transition-colors">
                   <Clock className="w-5 h-5 text-gray-500" />
                   <span>Ride History</span>
                 </button>
-                <button onClick={() => setIsDrawerOpen(false)} className="w-full flex items-center gap-4 py-4 text-left font-bold text-sm hover:text-purple-400 transition-colors">
+                <button onClick={() => { setIsDrawerOpen(false); setIsOffersOpen(true); }} className="w-full flex items-center gap-4 py-4 text-left font-bold text-sm hover:text-purple-400 transition-colors">
                   <Tag className="w-5 h-5 text-gray-500" />
                   <span>Offers & Promos</span>
                 </button>
-                <button onClick={() => setIsDrawerOpen(false)} className="w-full flex items-center gap-4 py-4 text-left font-bold text-sm hover:text-purple-400 transition-colors">
+                <button onClick={() => { setIsDrawerOpen(false); setIsSettingsOpen(true); }} className="w-full flex items-center gap-4 py-4 text-left font-bold text-sm hover:text-purple-400 transition-colors">
                   <Settings className="w-5 h-5 text-gray-500" />
                   <span>Settings</span>
                 </button>
-                <button onClick={() => setIsDrawerOpen(false)} className="w-full flex items-center gap-4 py-4 text-left font-bold text-sm hover:text-purple-400 transition-colors">
+                <button onClick={() => { setIsDrawerOpen(false); setIsHelpOpen(true); }} className="w-full flex items-center gap-4 py-4 text-left font-bold text-sm hover:text-purple-400 transition-colors">
                   <HelpCircle className="w-5 h-5 text-gray-500" />
                   <span>Help & Support</span>
                 </button>
@@ -225,6 +232,12 @@ export default function RideHome() {
             </motion.div>
           </div>
         )}
+
+        {isProfileOpen && <ProfileDrawer isOpen={isProfileOpen} onClose={() => setIsProfileOpen(false)} />}
+        {isHistoryOpen && <HistoryDrawer isOpen={isHistoryOpen} onClose={() => setIsHistoryOpen(false)} />}
+        {isOffersOpen && <OffersDrawer isOpen={isOffersOpen} onClose={() => setIsOffersOpen(false)} />}
+        {isSettingsOpen && <SettingsDrawer isOpen={isSettingsOpen} onClose={() => setIsSettingsOpen(false)} />}
+        {isHelpOpen && <HelpDrawer isOpen={isHelpOpen} onClose={() => setIsHelpOpen(false)} />}
       </AnimatePresence>
     </motion.div>
   );

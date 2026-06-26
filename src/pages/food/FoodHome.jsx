@@ -6,6 +6,7 @@ import { applyTheme } from '../../utils/theme';
 import { RESTAURANTS } from '../../data/restaurants';
 import { useCartStore } from '../../store/useCartStore';
 import BottomNav from '../../components/BottomNav';
+import { ProfileDrawer } from '../../components/DrawerModals';
 
 const CUISINES = [
   { label: 'Pizza', icon: '🍕' },
@@ -18,6 +19,7 @@ export default function FoodHome() {
   const navigate = useNavigate();
   const [selectedCuisine, setSelectedCuisine] = useState('Pizza'); // Default to Pizza as shown in Screenshot 5
   const [searchQuery, setSearchQuery] = useState('');
+  const [profileOpen, setProfileOpen] = useState(false);
   
   const items = useCartStore((state) => state.items);
   const getTotal = useCartStore((state) => state.getTotal);
@@ -51,7 +53,10 @@ export default function FoodHome() {
     >
       {/* Top Header Address Bar (Matching Screenshot 5) */}
       <div className="flex items-center justify-between px-4 py-3 border-b border-gray-100 bg-white sticky top-0 z-20">
-        <div className="flex items-center gap-2 text-left">
+        <div 
+          onClick={() => setProfileOpen(true)}
+          className="flex items-center gap-2 text-left cursor-pointer hover:opacity-85 transition-opacity"
+        >
           <img src="/avatar.png" className="w-7 h-7 rounded-full object-cover border border-orange-500/20" alt="Profile" />
           <div>
             <div className="flex items-center gap-1">
@@ -223,6 +228,12 @@ export default function FoodHome() {
               Check Out →
             </button>
           </motion.div>
+        )}
+        {profileOpen && (
+          <ProfileDrawer
+            isOpen={profileOpen}
+            onClose={() => setProfileOpen(false)}
+          />
         )}
       </AnimatePresence>
     </motion.div>

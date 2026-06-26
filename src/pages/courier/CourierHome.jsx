@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, Wallet, Package, Clock, MapPin } from 'lucide-react';
 import { applyTheme } from '../../utils/theme';
 import { useWalletStore } from '../../store/useWalletStore';
@@ -8,11 +8,13 @@ import { useRideStore } from '../../store/useRideStore';
 import { MOCK_SHIPMENTS } from '../../data/parcels';
 import MapSVG from '../../components/MapSVG';
 import BottomNav from '../../components/BottomNav';
+import { ProfileDrawer } from '../../components/DrawerModals';
 
 export default function CourierHome() {
   const navigate = useNavigate();
   const balance = useWalletStore((state) => state.balance);
   const { courier } = useRideStore();
+  const [profileOpen, setProfileOpen] = useState(false);
 
   useEffect(() => {
     applyTheme('parcel');
@@ -30,9 +32,15 @@ export default function CourierHome() {
     >
       {/* Top Header */}
       <div className="flex items-center justify-between px-4 py-3 bg-[#111827] border-b border-gray-800 z-10">
-        <span className="text-sm font-black tracking-widest text-yellow-400">
-          LADY PILOT COURIER
-        </span>
+        <div 
+          onClick={() => setProfileOpen(true)}
+          className="flex items-center gap-2 cursor-pointer hover:opacity-85 transition-opacity"
+        >
+          <img src="/avatar.png" className="w-7 h-7 rounded-full object-cover border border-yellow-450/20" alt="Profile" />
+          <span className="text-sm font-black tracking-widest text-yellow-400 font-display">
+            LADY PILOT COURIER
+          </span>
+        </div>
         
         {/* Wallet Balance */}
         <div className="flex items-center gap-1.5 bg-yellow-400 text-gray-950 px-2.5 py-1 rounded-full font-bold text-[11px] shadow-sm">
@@ -137,6 +145,16 @@ export default function CourierHome() {
 
       {/* Floating Bottom Nav */}
       <BottomNav />
+
+      {/* Profile Drawer */}
+      <AnimatePresence>
+        {profileOpen && (
+          <ProfileDrawer
+            isOpen={profileOpen}
+            onClose={() => setProfileOpen(false)}
+          />
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 }

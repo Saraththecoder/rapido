@@ -1,5 +1,5 @@
 import React from 'react';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createHashRouter, RouterProvider } from 'react-router-dom';
 import PhoneWrapper from './components/PhoneWrapper';
 import Hub from './pages/Hub';
 
@@ -21,7 +21,7 @@ import CourierHome from './pages/courier/CourierHome';
 import CourierBook from './pages/courier/CourierBook';
 import CourierTracking from './pages/courier/CourierTracking';
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: '/',
     element: <PhoneWrapper />,

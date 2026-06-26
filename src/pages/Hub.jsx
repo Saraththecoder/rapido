@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { applyTheme } from '../utils/theme';
 import RoleModal from '../components/RoleModal';
+import { ProfileDrawer } from '../components/DrawerModals';
 import { ChevronRight, Bell, Car, Utensils, Box } from 'lucide-react';
 import BottomNav from '../components/BottomNav';
 
@@ -10,6 +11,7 @@ export default function Hub() {
   const navigate = useNavigate();
   const [roleModalOpen, setRoleModalOpen] = useState(false);
   const [modalService, setModalService] = useState('ride');
+  const [profileOpen, setProfileOpen] = useState(false);
 
   // Apply the hub theme on mount
   useEffect(() => {
@@ -27,7 +29,7 @@ export default function Hub() {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.25, ease: 'easeOut' }}
-      className="flex-1 flex flex-col p-5 justify-between relative overflow-y-auto scrollbar-none bg-[#0C0B10]"
+      className="flex-1 flex flex-col p-5 pb-28 justify-between relative overflow-y-auto scrollbar-none bg-[#0C0B10]"
     >
       {/* Glow Effects */}
       <div className="absolute top-[-10%] left-[-20%] w-[320px] h-[320px] rounded-full bg-purple-500/10 blur-[90px] pointer-events-none"></div>
@@ -36,7 +38,10 @@ export default function Hub() {
       <div className="space-y-6">
         {/* Top Header Bar */}
         <div className="flex items-center justify-between py-1 bg-transparent border-b border-white/5 z-10">
-          <div className="flex items-center gap-2.5">
+          <div 
+            onClick={() => setProfileOpen(true)}
+            className="flex items-center gap-2.5 cursor-pointer hover:opacity-85 transition-opacity"
+          >
             <img 
               src="/avatar.png" 
               className="w-7 h-7 rounded-full border border-purple-500/30 object-cover" 
@@ -189,6 +194,12 @@ export default function Hub() {
           <RoleModal
             service={modalService}
             onClose={() => setRoleModalOpen(false)}
+          />
+        )}
+        {profileOpen && (
+          <ProfileDrawer
+            isOpen={profileOpen}
+            onClose={() => setProfileOpen(false)}
           />
         )}
       </AnimatePresence>

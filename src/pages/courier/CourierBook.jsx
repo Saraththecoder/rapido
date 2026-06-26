@@ -165,11 +165,22 @@ export default function CourierBook() {
               <div>
                 <label className="text-[10px] font-bold text-gray-500 uppercase tracking-wide block mb-1">Pickup Address</label>
                 <textarea
-                  rows="3"
+                  rows="2"
                   value={pickupAddress}
                   onChange={(e) => setPickupAddress(e.target.value)}
                   className="w-full bg-[#1A1822] border border-white/5 rounded-2xl px-4 py-3 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-[#C3B1E1] font-semibold resize-none"
                   placeholder="Street Address"
+                />
+              </div>
+
+              <div>
+                <label className="text-[10px] font-bold text-gray-500 uppercase tracking-wide block mb-1">Pickup Pincode</label>
+                <input
+                  type="text"
+                  value={pickupPincode}
+                  onChange={(e) => setPickupPincode(e.target.value)}
+                  className="w-full bg-[#1A1822] border border-white/5 rounded-2xl px-4 py-3 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-[#C3B1E1] font-semibold"
+                  placeholder="e.g. 500081"
                 />
               </div>
             </div>
@@ -201,6 +212,28 @@ export default function CourierBook() {
                   onChange={(e) => setRecipientPhone(e.target.value)}
                   className="w-full bg-[#1A1822] border border-white/5 rounded-2xl px-4 py-3 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-[#C3B1E1] font-semibold"
                   placeholder="Phone number"
+                />
+              </div>
+
+              <div>
+                <label className="text-[10px] font-bold text-gray-500 uppercase tracking-wide block mb-1">Delivery Address</label>
+                <textarea
+                  rows="2"
+                  value={deliveryAddress}
+                  onChange={(e) => setDeliveryAddress(e.target.value)}
+                  className="w-full bg-[#1A1822] border border-white/5 rounded-2xl px-4 py-3 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-[#C3B1E1] font-semibold resize-none"
+                  placeholder="Destination Address"
+                />
+              </div>
+
+              <div>
+                <label className="text-[10px] font-bold text-gray-500 uppercase tracking-wide block mb-1">Delivery Pincode</label>
+                <input
+                  type="text"
+                  value={deliveryPincode}
+                  onChange={(e) => setDeliveryPincode(e.target.value)}
+                  className="w-full bg-[#1A1822] border border-white/5 rounded-2xl px-4 py-3 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-[#C3B1E1] font-semibold"
+                  placeholder="e.g. 500032"
                 />
               </div>
             </div>
@@ -283,6 +316,18 @@ export default function CourierBook() {
                   );
                 })}
               </div>
+            </div>
+
+            {/* Package Description input */}
+            <div className="space-y-1.5">
+              <span className="text-[10px] font-black text-gray-500 uppercase tracking-widest font-display">Package Description</span>
+              <input
+                type="text"
+                value={packageDesc}
+                onChange={(e) => setPackageDesc(e.target.value)}
+                className="w-full bg-[#1A1822] border border-white/5 rounded-2xl px-4 py-3 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-[#C3B1E1] font-semibold"
+                placeholder="What are you sending? (e.g. Documents, Clothes)"
+              />
             </div>
 
           </div>
