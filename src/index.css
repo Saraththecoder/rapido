@@ -1,270 +1,127 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap');
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@theme {
-  --color-primary: #FC5A2A;
-  --color-primary-hover: #EA4C1F;
-  --color-dark: #111827;
-  --color-dark-light: #1F2937;
-  --color-lightbg: #F9FAFB;
-  --color-success: #09A15B;
-  --color-accent-peach: #FAF2EE;
-  --color-accent-pink: #D43864;
-  --color-accent-gold: #D7A74E;
-  --color-accent-gold-bg: #2A2A20;
-  
-  --font-sans: 'Inter', system-ui, sans-serif;
-  --font-display: 'Outfit', system-ui, sans-serif;
+:root {
+  --color-primary: #C3B1E1;
+  --color-bg: #0C0B10;
+  --color-text: #FFFFFF;
+  --color-accent: #C3B1E1;
+  font-family: 'Outfit', sans-serif;
 }
 
-@utility bg-apollo-header {
-  background: linear-gradient(180deg, rgba(252, 90, 42, 0.15) 0%, rgba(255, 241, 237, 0.4) 60%, rgba(255, 255, 255, 1) 100%);
+/* Base styles to consume our dynamic theme variable values */
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  margin: 0;
+  padding: 0;
+  transition: background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-@utility bg-apollo-banner {
-  background-color: #FAF2EE;
-  border: 1px solid rgba(252, 90, 42, 0.15);
+/* Hide scrollbars but allow scroll */
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
 }
 
-@layer base {
-  body {
-    background-color: var(--color-lightbg);
-    color: var(--color-dark);
-    font-family: var(--font-sans);
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
-}
-
-/* Minimalist Scrollbar */
-::-webkit-scrollbar {
-  width: 4px;
-  height: 4px;
-}
-
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #e4e4e7; /* zinc-200 */
-  border-radius: 2px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #d4d4d8; /* zinc-300 */
-}
-
-/* Premium Motion Animations */
-@keyframes slideUp {
-  from {
-    transform: translateY(16px);
-    opacity: 0;
-  }
+/* SVG map routing animation properties */
+@keyframes dash {
   to {
-    transform: translateY(0);
-    opacity: 1;
+    stroke-dashoffset: 0;
   }
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+.animate-dash {
+  stroke-dasharray: 8;
+  animation: dash 10s linear infinite;
 }
 
-@keyframes scaleUp {
-  from {
-    transform: scale(0.96);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-.animate-slide-up {
-  animation: slideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.animate-fade-in {
-  animation: fadeIn 0.25s ease-out forwards;
-}
-
-.animate-scale-up {
-  animation: scaleUp 0.25s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-}
-
-/* Button click feedback and interactive items scale rules */
-.interactive-hover {
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.interactive-hover:hover {
-  transform: translateY(-2px);
-}
-.interactive-hover:active {
-  transform: scale(0.98);
-}
-
-@keyframes float {
+/* Custom bounce micro-animations */
+@keyframes pulse-soft {
   0%, 100% {
-    transform: translateY(0px);
+    transform: scale(1);
+    opacity: 0.9;
   }
   50% {
-    transform: translateY(-12px);
+    transform: scale(1.03);
+    opacity: 0.75;
   }
 }
 
-.animate-float {
-  animation: float 5s ease-in-out infinite;
+.animate-pulse-soft {
+  animation: pulse-soft 3s infinite ease-in-out;
 }
 
-/* Custom marquee keyframes */
-@keyframes marquee {
-  0% { transform: translateX(0%); }
-  100% { transform: translateX(-50%); }
-}
+/* --- PREMIUM DESIGN UTILITIES --- */
 
-.animate-marquee {
-  display: flex;
-  width: max-content;
-  animation: marquee 25s linear infinite;
-}
-
-.animate-marquee:hover {
-  animation-play-state: paused;
-}
-
-/* Ticker notification animation */
-@keyframes ticker-slide {
-  0% {
-    transform: translateY(20px) scale(0.95);
-    opacity: 0;
-  }
-  10% {
-    transform: translateY(0) scale(1);
-    opacity: 1;
-  }
-  90% {
-    transform: translateY(0) scale(1);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(-20px) scale(0.95);
-    opacity: 0;
-  }
-}
-
-.animate-ticker-slide {
-  animation: ticker-slide 5s ease-in-out infinite;
-}
-
-/* Pulse Glow Animation */
-@keyframes pulseGlow {
-  0%, 100% {
-    opacity: 0.15;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.25;
-    transform: scale(1.05);
-  }
-}
-
-.animate-pulse-glow {
-  animation: pulseGlow 8s ease-in-out infinite;
-}
-
-/* Shimmer styling */
-@keyframes shimmer {
-  0% {
-    background-position: -200% 0;
-  }
-  100% {
-    background-position: 200% 0;
-  }
-}
-
-.shimmer {
-  background: linear-gradient(90deg, rgba(255,255,255,0.03) 25%, rgba(255,255,255,0.1) 37%, rgba(255,255,255,0.03) 63%);
-  background-size: 200% 100%;
-  animation: shimmer 1.4s infinite;
-}
-
-/* Glassmorphism custom tags */
+/* Glassmorphism Containers */
 .glass-panel {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #1A1822;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.glass-panel-dark {
+  background: #100E16;
+  border: 1px solid rgba(255, 255, 255, 0.04);
 }
 
 .glass-panel-light {
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 0, 0, 0.04);
 }
 
-/* Premium Button & Input Utilities */
-.btn-primary {
-  background-color: var(--color-primary) !important;
-  color: #ffffff !important;
-  font-weight: 700 !important;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
-  box-shadow: 0 4px 14px rgba(252, 90, 42, 0.15) !important;
-  border: none !important;
-  cursor: pointer !important;
+/* Premium Card Ambient Glows */
+.glow-purple {
+  transition: all 0.25s ease-out;
 }
-.btn-primary:hover {
-  background-color: var(--color-primary-hover) !important;
-  box-shadow: 0 6px 20px rgba(252, 90, 42, 0.25) !important;
-  transform: translateY(-1px);
-}
-.btn-primary:active {
-  transform: scale(0.98);
-}
-.btn-primary:disabled {
-  background-color: #e4e4e7 !important;
-  color: #a1a1aa !important;
-  box-shadow: none !important;
-  cursor: not-allowed !important;
-  transform: none !important;
+.glow-purple:hover {
+  background: #221F2E;
+  border-color: rgba(195, 177, 225, 0.2);
 }
 
-.btn-secondary {
-  background-color: rgba(252, 90, 42, 0.04) !important;
-  border: 1px solid rgba(252, 90, 42, 0.12) !important;
-  color: var(--color-primary) !important;
-  font-weight: 700 !important;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
-  cursor: pointer !important;
+.glow-yellow {
+  transition: all 0.25s ease-out;
 }
-.btn-secondary:hover {
-  background-color: rgba(252, 90, 42, 0.08) !important;
-  border-color: rgba(252, 90, 42, 0.25) !important;
-  transform: translateY(-1px);
-}
-.btn-secondary:active {
-  transform: scale(0.98);
+.glow-yellow:hover {
+  background: #221F2E;
+  border-color: rgba(253, 224, 71, 0.2);
 }
 
-.input-premium {
-  border: 1px solid #e4e4e7 !important;
-  transition: all 0.2s ease-in-out !important;
+.glow-orange {
+  transition: all 0.25s ease-out;
 }
-.input-premium:focus {
-  border-color: var(--color-primary) !important;
-  box-shadow: 0 0 0 3px rgba(252, 90, 42, 0.15) !important;
-  outline: none !important;
+.glow-orange:hover {
+  background: #221F2E;
+  border-color: rgba(252, 128, 25, 0.2);
 }
 
+/* Premium Button Gradients */
+.btn-grad-yellow {
+  background: #FDE047;
+  color: #0C0B10;
+}
+.btn-grad-yellow:hover {
+  background: #fef08a;
+}
 
+.btn-grad-orange {
+  background: #FC8019;
+  color: #ffffff;
+}
+.btn-grad-orange:hover {
+  background: #ff9233;
+}
 
+.btn-grad-purple {
+  background: #C3B1E1;
+  color: #0C0B10;
+}
+.btn-grad-purple:hover {
+  background: #d4c8eb;
+}
