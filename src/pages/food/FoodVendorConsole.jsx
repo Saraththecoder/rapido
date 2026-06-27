@@ -17,7 +17,9 @@ import {
   FileText,
   DollarSign,
   Layers,
-  UtensilsCrossed
+  UtensilsCrossed,
+  Menu,
+  Settings
 } from 'lucide-react';
 import { applyTheme } from '../../utils/theme';
 import { useAuthStore } from '../../store/useAuthStore';
@@ -94,6 +96,7 @@ export default function FoodVendorConsole() {
 
   const [activeTab, setActiveTab] = useState('orders'); // 'orders' | 'menu' | 'analytics'
   const [isOnline, setIsOnline] = useState(true);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [orders, setOrders] = useState(INITIAL_ORDERS);
   const [earnings, setEarnings] = useState(4820);
   const [completedCount, setCompletedCount] = useState(14);
@@ -237,15 +240,18 @@ export default function FoodVendorConsole() {
       {/* Top Header */}
       <div className="flex items-center justify-between px-4 py-3 bg-white border-b border-[#E5E5E5] z-10 text-gray-900">
         <div className="flex items-center gap-2">
+          {/* Hamburger Menu Trigger */}
           <button 
-            onClick={() => navigate('/')}
-            className="p-1 rounded-full hover:bg-gray-100 transition-colors"
+            onClick={() => setIsDrawerOpen(true)}
+            className="p-1 rounded-xl bg-orange-50 hover:bg-orange-100 text-[#FF7A00] transition-colors border border-orange-100"
+            title="Open Drawer"
           >
-            <ChevronLeft className="w-5 h-5 text-gray-800" />
+            <Menu className="w-5 h-5" />
           </button>
-          <div className="text-left leading-none">
-            <span className="text-[10px] text-orange-600 font-black uppercase tracking-wider block">SwiftGo Kitchen</span>
-            <h2 className="text-sm font-extrabold uppercase tracking-widest mt-1 block">
+          
+          <div className="text-left leading-none ml-1">
+            <span className="text-[9px] text-orange-605 font-black uppercase tracking-wider block">SwiftGo Kitchen</span>
+            <h2 className="text-xs font-black uppercase tracking-widest mt-1.5 block">
               {defaultRestaurant.name}
             </h2>
           </div>
@@ -268,12 +274,98 @@ export default function FoodVendorConsole() {
           </div>
           <button 
             onClick={handleLogout}
-            className="p-1.5 rounded-xl bg-orange-50 hover:bg-orange-100 text-[#FF7A00] transition-colors border border-orange-200"
+            className="p-1.5 rounded-xl bg-orange-50 hover:bg-orange-100 text-[#FF7A00] transition-colors border border-[#FFF3E5]"
           >
             <LogOut className="w-4 h-4" />
           </button>
         </div>
       </div>
+
+      {/* Hamburger Slide-in Drawer Container */}
+      <AnimatePresence>
+        {isDrawerOpen && (
+          <>
+            {/* Dark Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.4 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsDrawerOpen(false)}
+              className="absolute inset-0 bg-black z-40"
+            />
+
+            {/* Sidebar Drawer */}
+            <motion.div
+              initial={{ x: '-100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '-100%' }}
+              transition={{ type: 'spring', damping: 25, stiffness: 220 }}
+              className="absolute inset-y-0 left-0 w-[270px] bg-[#0C1E36] text-white z-50 shadow-2xl flex flex-col p-4"
+            >
+              {/* Drawer Header */}
+              <div className="flex justify-between items-center pb-4 border-b border-white/10 mb-4">
+                <div className="flex items-center gap-2">
+                  <span className="text-lg">🍕</span>
+                  <h3 className="font-extrabold uppercase text-xs tracking-widest font-display text-orange-400">
+                    SwiftGo Kitchen
+                  </h3>
+                </div>
+                <button 
+                  onClick={() => setIsDrawerOpen(false)}
+                  className="p-1 rounded-full hover:bg-white/10 text-gray-400 transition-colors"
+                >
+                  <X className="w-5 h-5 text-white" />
+                </button>
+              </div>
+
+              {/* Navigation Links */}
+              <div className="flex-1 overflow-y-auto scrollbar-none space-y-1.5 pr-1">
+                {[
+                  { id: 'orders', label: 'Active Orders', icon: ShoppingBag, count: orders.length },
+                  { id: 'menu', label: 'Manage Menu', icon: Layers, count: null },
+                  { id: 'analytics', label: 'Kitchen Analytics', icon: TrendingUp, count: null },
+                  { id: 'settings', label: 'Restaurant Settings', icon: Settings, count: null }
+                ].map(item => {
+                  const isActive = activeTab === item.id;
+                  return (
+                    <button
+                      key={item.id}
+                      onClick={() => {
+                        setActiveTab(item.id);
+                        setIsDrawerOpen(false);
+                      }}
+                      className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-left text-xs font-semibold transition-all ${
+                        isActive 
+                          ? 'bg-[#FF7A00] text-black font-black shadow-lg shadow-orange-500/10'
+                          : 'hover:bg-white/5 text-gray-300'
+                      }`}
+                    >
+                      <item.icon className={`w-4 h-4 shrink-0 ${isActive ? 'text-black' : 'text-[#FF7A00]'}`} />
+                      <span className="truncate">{item.label}</span>
+                      {item.count !== null && item.count > 0 && (
+                        <span className="ml-auto bg-orange-605 text-white w-4.5 h-4.5 rounded-full text-[9px] font-black flex items-center justify-center border border-white">
+                          {item.count}
+                        </span>
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Drawer Bottom controls */}
+              <div className="pt-4 border-t border-white/10 mt-auto">
+                <button
+                  onClick={handleLogout}
+                  className="w-full flex items-center justify-center gap-2 py-2.5 bg-rose-950/20 hover:bg-rose-950/45 text-rose-400 font-extrabold rounded-xl text-xs uppercase tracking-wider border border-rose-500/20 transition-all"
+                >
+                  <LogOut className="w-4 h-4" />
+                  <span>Logout Vendor</span>
+                </button>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
 
       {/* Quick Summary Banner */}
       <div className="px-4 pt-4 shrink-0 z-10">
@@ -306,7 +398,7 @@ export default function FoodVendorConsole() {
             onClick={() => setActiveTab(tab.id)}
             className={`flex-1 py-2 rounded-xl text-xs font-black transition-all border font-display relative ${
               activeTab === tab.id
-                ? 'bg-orange-50 text-[#FF7A00] border-orange-200'
+                ? 'bg-orange-50 text-[#FF7A00] border-orange-200 shadow-sm'
                 : 'bg-[#F8F8F8] text-gray-500 border-transparent hover:text-gray-700'
             }`}
           >

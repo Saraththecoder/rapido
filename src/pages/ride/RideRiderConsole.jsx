@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ArrowRight, ToggleLeft, ToggleRight, DollarSign, Clock, Bike, Compass, MapPin, LogOut } from 'lucide-react';
+import { ChevronLeft, ArrowRight, ToggleLeft, ToggleRight, DollarSign, Clock, Bike, Compass, MapPin, LogOut, Menu, X } from 'lucide-react';
 import { applyTheme } from '../../utils/theme';
 import { useWalletStore } from '../../store/useWalletStore';
 import { useAuthStore } from '../../store/useAuthStore';
@@ -23,6 +23,7 @@ export default function RideRiderConsole() {
   const setRole = useAuthStore((state) => state.setRole);
   
   const [activeTab, setActiveTab] = useState('jobs'); // 'jobs' | 'earnings' | 'profile'
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isOnline, setIsOnline] = useState(false);
   const [incomingJob, setIncomingJob] = useState(null);
   const [countdown, setCountdown] = useState(15);
@@ -102,20 +103,18 @@ export default function RideRiderConsole() {
       className="flex-1 flex flex-col relative h-full bg-white text-gray-900"
     >
       {/* Top Header */}
-      <div className="flex items-center justify-between px-4 py-3 bg-white border-b border-[#E5E5E5] z-10">
+      <div className="flex items-center justify-between px-4 py-3 bg-white border-b border-[#E5E5E5] z-10 text-gray-900">
         <div className="flex items-center gap-2">
-          {/* Switch back to passenger role */}
+          {/* Hamburger Menu Trigger */}
           <button 
-            onClick={() => {
-              setRole('user');
-              navigate('/');
-            }}
-            className="p-1 rounded-full hover:bg-gray-100 transition-colors"
-            title="Switch to User Mode"
+            onClick={() => setIsDrawerOpen(true)}
+            className="p-1 rounded-xl bg-orange-50 hover:bg-orange-100 text-[#FF7A00] transition-colors border border-orange-100"
+            title="Open Drawer"
           >
-            <ChevronLeft className="w-5 h-5 text-gray-805" />
+            <Menu className="w-5 h-5" />
           </button>
-          <h2 className="text-base font-extrabold uppercase tracking-wider text-gray-900 font-display">
+          
+          <h2 className="text-xs font-black uppercase tracking-wider text-gray-900 font-display ml-1">
             Rider Console
           </h2>
         </div>
@@ -152,6 +151,96 @@ export default function RideRiderConsole() {
           </button>
         </div>
       </div>
+
+      {/* Hamburger Slide-in Drawer Container */}
+      <AnimatePresence>
+        {isDrawerOpen && (
+          <>
+            {/* Dark Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.4 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsDrawerOpen(false)}
+              className="absolute inset-0 bg-black z-40"
+            />
+
+            {/* Sidebar Drawer */}
+            <motion.div
+              initial={{ x: '-100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '-100%' }}
+              transition={{ type: 'spring', damping: 25, stiffness: 220 }}
+              className="absolute inset-y-0 left-0 w-[270px] bg-[#0C1E36] text-white z-50 shadow-2xl flex flex-col p-4"
+            >
+              {/* Drawer Header */}
+              <div className="flex justify-between items-center pb-4 border-b border-white/10 mb-4">
+                <div className="flex items-center gap-2">
+                  <span className="text-lg">🛵</span>
+                  <h3 className="font-extrabold uppercase text-xs tracking-widest font-display text-orange-400">
+                    SwiftGo Pilot
+                  </h3>
+                </div>
+                <button 
+                  onClick={() => setIsDrawerOpen(false)}
+                  className="p-1 rounded-full hover:bg-white/10 text-gray-400 transition-colors"
+                >
+                  <X className="w-5 h-5 text-white" />
+                </button>
+              </div>
+
+              {/* Navigation Links */}
+              <div className="flex-1 overflow-y-auto scrollbar-none space-y-1.5 pr-1">
+                {[
+                  { id: 'jobs', label: 'Active Jobs Desk', icon: Bike },
+                  { id: 'earnings', label: 'Earnings Logs', icon: DollarSign },
+                  { id: 'profile', label: 'My Pilot Profile', icon: Compass }
+                ].map(item => {
+                  const isActive = activeTab === item.id;
+                  return (
+                    <button
+                      key={item.id}
+                      onClick={() => {
+                        setActiveTab(item.id);
+                        setIsDrawerOpen(false);
+                      }}
+                      className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-left text-xs font-semibold transition-all ${
+                        isActive 
+                          ? 'bg-[#FF7A00] text-black font-black shadow-lg shadow-orange-500/10'
+                          : 'hover:bg-white/5 text-gray-300'
+                      }`}
+                    >
+                      <item.icon className={`w-4 h-4 shrink-0 ${isActive ? 'text-black' : 'text-[#FF7A00]'}`} />
+                      <span className="truncate">{item.label}</span>
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Drawer Bottom controls */}
+              <div className="pt-4 border-t border-white/10 mt-auto space-y-2">
+                <button
+                  onClick={() => {
+                    setRole('user');
+                    navigate('/');
+                  }}
+                  className="w-full flex items-center justify-center gap-2 py-2.5 bg-orange-500/20 hover:bg-orange-500/35 text-[#FF7A00] font-extrabold rounded-xl text-xs uppercase tracking-wider border border-orange-500/20 transition-all"
+                >
+                  <ChevronLeft className="w-4 h-4" />
+                  <span>Passenger Mode</span>
+                </button>
+                <button
+                  onClick={handleLogout}
+                  className="w-full flex items-center justify-center gap-2 py-2.5 bg-rose-950/20 hover:bg-rose-950/45 text-rose-400 font-extrabold rounded-xl text-xs uppercase tracking-wider border border-rose-500/20 transition-all"
+                >
+                  <LogOut className="w-4 h-4" />
+                  <span>Logout Pilot</span>
+                </button>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
 
       {/* Sub Tabs Navigator */}
       <div className="px-4 pt-3 flex gap-2 shrink-0 z-10">
