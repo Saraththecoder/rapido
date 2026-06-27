@@ -14,7 +14,7 @@ function DrawerWrapper({ isOpen, title, onClose, children }) {
       animate={{ x: 0 }}
       exit={{ x: '100%' }}
       transition={{ type: 'spring', damping: 28, stiffness: 240 }}
-      className="absolute inset-0 bg-white z-[60] flex flex-col text-gray-900"
+      className="fixed inset-0 bg-white z-[110] flex flex-col text-gray-900"
     >
       {/* Header bar */}
       <div className="flex items-center justify-between p-4.5 border-b border-[#E5E5E5] bg-white">

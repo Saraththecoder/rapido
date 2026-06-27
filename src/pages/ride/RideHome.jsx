@@ -14,7 +14,8 @@ import {
   Car,
   Compass,
   ArrowLeft,
-  User
+  User,
+  HelpCircle
 } from 'lucide-react';
 import { applyTheme } from '../../utils/theme';
 import { useRideStore } from '../../store/useRideStore';
@@ -330,7 +331,7 @@ export default function RideHome({ setActiveTab }) {
       {/* Side Menu Drawer Menu */}
       <AnimatePresence>
         {isDrawerOpen && (
-          <div className="absolute inset-0 z-50 flex">
+          <div className="fixed inset-0 z-[100] flex">
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 0.4 }}
@@ -346,7 +347,7 @@ export default function RideHome({ setActiveTab }) {
               transition={{ type: 'spring', damping: 28, stiffness: 260 }}
               className="relative w-3/4 h-full bg-white flex flex-col justify-between z-10 shadow-2xl text-gray-900 border-r border-[#E5E5E5]"
             >
-              <div className="bg-[#FF7A00] p-5 pt-8 text-black relative overflow-hidden">
+              <div className="bg-[#FF7A00] p-5 pt-10 text-black relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-24 h-24 bg-white/20 rounded-full blur-xl animate-pulse"></div>
                 <button
                   onClick={() => setIsDrawerOpen(false)}
@@ -393,8 +394,8 @@ export default function RideHome({ setActiveTab }) {
                   <span>Settings</span>
                 </button>
                 <button onClick={() => { setIsDrawerOpen(false); setIsHelpOpen(true); }} className="w-full flex items-center gap-4 py-3.5 font-bold text-xs hover:text-orange-600 transition-colors">
-                  <HelpDrawer isOpen={true} onClose={() => {}} className="w-4.5 h-4.5 text-gray-400" />
-                  <span>Help Support</span>
+                  <HelpCircle className="w-4.5 h-4.5 text-gray-400" />
+                  <span>Help & Support</span>
                 </button>
               </div>
 

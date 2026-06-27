@@ -94,6 +94,11 @@ export default function RideRiderConsole() {
     }
   };
 
+  const handleLogout = () => {
+    logout();
+    navigate('/auth');
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}

@@ -339,21 +339,16 @@ function ProfileView({ user, balance, onLogout }) {
             <ChevronRight className="w-4 h-4 text-gray-450" />
           </button>
         ))}
-
-        {/* Switch / Logout Option */}
-        <button
-          onClick={onLogout}
-          className="w-full px-4 py-3.5 flex items-center justify-between text-left hover:bg-rose-50/50 transition-colors"
-        >
-          <div className="flex items-center gap-3">
-            <LogOut className="w-4.5 h-4.5 text-rose-500 shrink-0" />
-            <span className="text-xs font-bold text-rose-600 block">
-              Logout / Switch Account
-            </span>
-          </div>
-          <ChevronRight className="w-4 h-4 text-rose-350" />
-        </button>
       </div>
+
+      {/* Standalone prominent logout button - always visible outside of overflow-hidden container */}
+      <button
+        onClick={onLogout}
+        className="w-full flex items-center justify-center gap-2.5 py-3.5 bg-rose-50 hover:bg-rose-100 text-rose-600 font-black text-xs uppercase tracking-widest rounded-2xl border border-rose-200 transition-all shadow-sm"
+      >
+        <LogOut className="w-4 h-4" />
+        <span>Logout / Switch Account</span>
+      </button>
     </div>
   );
 }
