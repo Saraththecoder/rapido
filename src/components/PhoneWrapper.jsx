@@ -9,13 +9,13 @@ export default function PhoneWrapper() {
   const path = location.pathname;
   const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
 
-  // Global Auth Guard: if unauthenticated and not on /auth, redirect to /auth
-  if (!isAuthenticated && path !== '/auth') {
+  // Global Auth Guard: if unauthenticated and not on an /auth/* route, redirect to /auth
+  if (!isAuthenticated && !path.startsWith('/auth')) {
     return <Navigate to="/auth" replace />;
   }
 
-  // If already authenticated and trying to visit /auth, redirect back to home /
-  if (isAuthenticated && path === '/auth') {
+  // If already authenticated and trying to visit any /auth/* route, redirect back to home /
+  if (isAuthenticated && path.startsWith('/auth')) {
     return <Navigate to="/" replace />;
   }
 
