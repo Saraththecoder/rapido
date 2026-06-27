@@ -66,17 +66,17 @@ export default function RideBook() {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.25 }}
-      className="flex-1 flex flex-col relative h-full bg-[#0C0B10] text-white"
+      className="flex-1 flex flex-col relative h-full bg-white text-gray-900"
     >
       {/* Top Header */}
-      <div className="flex items-center gap-3 px-4 py-3 bg-[#0C0B10] border-b border-white/5 z-10">
+      <div className="flex items-center gap-3 px-4 py-3 bg-white border-b border-[#E5E5E5] z-10">
         <button 
           onClick={() => navigate('/ride')}
-          className="p-1 rounded-full hover:bg-white/5 transition-colors"
+          className="p-1 rounded-full hover:bg-gray-100 transition-colors"
         >
-          <ChevronLeft className="w-5 h-5 text-white" />
+          <ChevronLeft className="w-5 h-5 text-gray-805" />
         </button>
-        <h2 className="text-sm font-extrabold uppercase tracking-wider text-white font-display">
+        <h2 className="text-sm font-extrabold uppercase tracking-wider text-gray-900 font-display">
           Choose a Ride
         </h2>
       </div>
@@ -87,20 +87,20 @@ export default function RideBook() {
       </div>
 
       {/* Bottom Sheet Visual Layout */}
-      <div className="flex-1 bg-[#1A1822] border-t border-white/5 p-5 rounded-t-3xl shadow-2xl flex flex-col justify-between mt-[-20px] z-10">
+      <div className="flex-1 bg-[#F8F8F8] border-t border-[#E5E5E5] p-5 rounded-t-3xl shadow-2xl flex flex-col justify-between mt-[-20px] z-10">
         <div className="space-y-5">
           {/* Pickup and Dropoff Static Displays */}
-          <div className="bg-[#0D0C12] border border-white/5 rounded-2xl p-4 flex gap-3 relative text-xs">
+          <div className="bg-white border border-[#E5E5E5] rounded-2xl p-4 flex gap-3 relative text-xs">
             <div className="flex flex-col items-center justify-between py-1">
               <div className="w-2 h-2 rounded-full bg-[#B3A6F2]"></div>
-              <div className="w-0.5 flex-1 bg-gray-800 my-1"></div>
-              <div className="w-2 h-2 rounded-full bg-[#FDE047]"></div>
+              <div className="w-0.5 flex-1 bg-gray-200 my-1"></div>
+              <div className="w-2 h-2 rounded-full bg-[#FF7A00]"></div>
             </div>
             
             <div className="flex-1 space-y-2 text-left">
-              <div className="text-gray-300 font-extrabold truncate">{pickup || '128 Market St, SF'}</div>
-              <div className="border-t border-white/5"></div>
-              <div className="text-gray-300 font-extrabold truncate">{dropoff || 'Where to?'}</div>
+              <div className="text-gray-800 font-extrabold truncate">{pickup || '128 Market St, SF'}</div>
+              <div className="border-t border-[#E5E5E5]"></div>
+              <div className="text-gray-800 font-extrabold truncate">{dropoff || 'Where to?'}</div>
             </div>
           </div>
 
@@ -114,16 +114,16 @@ export default function RideBook() {
                   onClick={() => setSelectedId(vehicle.id)}
                   className={`p-4 rounded-3xl border-2 flex flex-col items-center justify-between cursor-pointer transition-all ${
                     isSelected
-                      ? 'border-[#FDE047] bg-[#221F2D] text-[#FDE047]'
-                      : 'border-white/5 bg-[#0D0C12] text-gray-400 hover:border-gray-800'
+                      ? 'border-[#FF7A00] bg-[#FFF4E5] text-[#FF7A00]'
+                      : 'border-[#E5E5E5] bg-white text-gray-400 hover:border-gray-300'
                   }`}
                 >
                   <span className="text-3xl block mb-2 filter drop-shadow">{vehicle.icon}</span>
                   <div className="text-center">
-                    <span className={`block text-[11px] font-extrabold font-display ${isSelected ? 'text-[#FDE047]' : 'text-gray-300'}`}>
+                    <span className={`block text-[11px] font-extrabold font-display ${isSelected ? 'text-[#FF7A00]' : 'text-gray-600'}`}>
                       {vehicle.label}
                     </span>
-                    <span className="block text-xs font-black text-white mt-1 font-display">
+                    <span className={`block text-xs font-black mt-1 font-display ${isSelected ? 'text-[#FF7A00]' : 'text-gray-900'}`}>
                       {vehicle.displayPrice}
                     </span>
                   </div>
@@ -133,14 +133,14 @@ export default function RideBook() {
           </div>
 
           {/* Payment Selection Indicator */}
-          <div className="flex items-center justify-between bg-[#0D0C12] border border-white/5 rounded-2xl p-4 cursor-pointer hover:bg-white/2">
+          <div className="flex items-center justify-between bg-white border border-[#E5E5E5] rounded-2xl p-4 cursor-pointer hover:bg-gray-50">
             <div className="flex items-center gap-3">
-              <CreditCard className="w-4 h-4 text-[#C3B1E1]" />
-              <span className="text-xs font-extrabold text-gray-300 font-display">
+              <CreditCard className="w-4 h-4 text-orange-500" />
+              <span className="text-xs font-extrabold text-gray-700 font-display">
                 Personal • Card ...4242
               </span>
             </div>
-            <ChevronRight className="w-4 h-4 text-gray-500" />
+            <ChevronRight className="w-4 h-4 text-gray-400" />
           </div>
         </div>
 
@@ -149,9 +149,9 @@ export default function RideBook() {
           <motion.button
             whileTap={{ scale: 0.96 }}
             onClick={handleConfirmBooking}
-            className="w-full py-4 bg-[#FDE047] text-gray-950 font-black rounded-2xl text-xs uppercase tracking-widest shadow-lg shadow-yellow-500/10 font-display"
+            className="w-full py-4 bg-[#FF7A00] text-black font-black rounded-2xl text-xs uppercase tracking-widest shadow-lg shadow-orange-500/10 font-display hover:bg-[#ff9133] transition-colors"
           >
-            Find Lady Pilots
+            Find Drivers
           </motion.button>
         </div>
       </div>
@@ -163,19 +163,19 @@ export default function RideBook() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="absolute inset-0 bg-black/90 backdrop-blur-md z-50 flex flex-col items-center justify-center p-6 text-center"
+            className="absolute inset-0 bg-white/90 backdrop-blur-md z-50 flex flex-col items-center justify-center p-6 text-center"
           >
             <div className="relative mb-6">
-              <Loader2 className="w-16 h-16 text-yellow-400 animate-spin" />
+              <Loader2 className="w-16 h-16 text-orange-500 animate-spin" />
               <div className="absolute inset-0 flex items-center justify-center text-2xl">
                 🛵
               </div>
             </div>
-            <h3 className="text-base font-black text-white uppercase tracking-wider font-display">
-              Finding your Lady Pilot
+            <h3 className="text-base font-black text-gray-900 uppercase tracking-wider font-display">
+              Finding your driver
             </h3>
-            <p className="text-[11px] text-gray-400 font-medium max-w-[200px] mt-2 leading-relaxed">
-              Locating nearby verified female partners for a secure, safe trip...
+            <p className="text-[11px] text-gray-650 font-semibold max-w-[200px] mt-2 leading-relaxed">
+              Locating nearby verified partners for a secure, safe trip...
             </p>
           </motion.div>
         )}

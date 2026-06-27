@@ -31,10 +31,10 @@ export default function FoodCart() {
 
   const handleApplyCoupon = () => {
     const code = couponCode.trim().toUpperCase();
-    if (code === 'SWIFT50') {
+    if (code === 'SWIFTGO50') {
       setDiscountAmount(50);
       setCouponStatus('success');
-      setCouponMessage('SWIFT50 coupon applied! You saved ₹50.');
+      setCouponMessage('SWIFTGO50 coupon applied! You saved ₹50.');
     } else if (code === 'FIRST100') {
       setDiscountAmount(100);
       setCouponStatus('success');
@@ -42,7 +42,7 @@ export default function FoodCart() {
     } else {
       setDiscountAmount(0);
       setCouponStatus('error');
-      setCouponMessage('Invalid coupon code. Try SWIFT50 or FIRST100.');
+      setCouponMessage('Invalid coupon code. Try SWIFTGO50 or FIRST100.');
     }
   };
 
@@ -91,7 +91,7 @@ export default function FoodCart() {
             Your Cart
           </h2>
           <span className="text-[10px] text-gray-400 font-bold uppercase tracking-wider block">
-            {restaurant?.name || 'Lady Pilot Food'}
+            {restaurant?.name || 'SwiftGo Food'}
           </span>
         </div>
       </div>

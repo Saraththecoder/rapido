@@ -1,31 +1,31 @@
 export const THEMES = {
   taxi: {
-    primary: '#FDE047',   // lp-yellow
-    bg: '#111827',        // lp-black
-    text: '#FFFFFF',      // readable text color for dark mode (override of prompt's duplicate value)
-    textPrimary: '#111827', // text color on top of primary yellow
-    accent: '#F59E0B'     // amber accent
+    primary: '#FF7A00',   // brand orange
+    bg: '#FFFFFF',        // white theme
+    text: '#111111',      // dark text
+    textPrimary: '#000000', // black text on orange buttons
+    accent: '#22C55E'     // success green
   },
   food: {
-    primary: '#FC8019',   // lp-orange
+    primary: '#FF7A00',   // brand orange
     bg: '#FFFFFF',
-    text: '#1C1C1C',
-    textPrimary: '#FFFFFF',
-    accent: '#FF6B35'
+    text: '#111111',
+    textPrimary: '#000000',
+    accent: '#22C55E'
   },
   parcel: {
-    primary: '#FDE047',
-    bg: '#111827',
-    text: '#FFFFFF',
-    textPrimary: '#111827',
-    accent: '#F59E0B'
+    primary: '#FF7A00',   // brand orange
+    bg: '#FFFFFF',
+    text: '#111111',
+    textPrimary: '#000000',
+    accent: '#22C55E'
   },
   hub: {
-    primary: '#7C3AED',   // lp-purple
-    bg: '#0F0A1E',
-    text: '#FFFFFF',
-    textPrimary: '#FFFFFF',
-    accent: '#A78BFA'
+    primary: '#FF7A00',   // brand orange
+    bg: '#FFFFFF',
+    text: '#111111',
+    textPrimary: '#000000',
+    accent: '#22C55E'
   }
 };
 

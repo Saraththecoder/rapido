@@ -14,20 +14,20 @@ function DrawerWrapper({ isOpen, title, onClose, children }) {
       animate={{ x: 0 }}
       exit={{ x: '100%' }}
       transition={{ type: 'spring', damping: 28, stiffness: 240 }}
-      className="absolute inset-0 bg-[#0C0B10] z-[60] flex flex-col text-white"
+      className="absolute inset-0 bg-white z-[60] flex flex-col text-gray-900"
     >
       {/* Header bar */}
-      <div className="flex items-center justify-between p-4.5 border-b border-white/5 bg-[#0C0B10]">
+      <div className="flex items-center justify-between p-4.5 border-b border-[#E5E5E5] bg-white">
         <button 
           onClick={onClose}
-          className="flex items-center gap-1.5 text-xs font-bold text-gray-400 hover:text-white transition-colors"
+          className="flex items-center gap-1.5 text-xs font-bold text-gray-500 hover:text-gray-900 transition-colors"
         >
           <ChevronLeft className="w-5 h-5 shrink-0" />
           <span className="font-extrabold uppercase tracking-wider font-display leading-none">{title}</span>
         </button>
         <button 
           onClick={onClose}
-          className="p-1 rounded-full hover:bg-white/5 text-gray-400 hover:text-white transition-colors"
+          className="p-1 rounded-full hover:bg-gray-100 text-gray-500 hover:text-gray-800 transition-colors"
         >
           <X className="w-5 h-5" />
         </button>
@@ -49,62 +49,62 @@ export function ProfileDrawer({ isOpen, onClose }) {
   return (
     <DrawerWrapper isOpen={isOpen} title="My Profile" onClose={onClose}>
       {/* Avatar details banner */}
-      <div className="bg-[#1A1822] border border-white/5 rounded-3xl p-5 text-center space-y-3 shadow-lg">
-        <div className="w-20 h-20 rounded-full border-2 border-purple-500/30 overflow-hidden mx-auto shadow">
+      <div className="bg-[#F8F8F8] border border-[#E5E5E5] rounded-3xl p-5 text-center space-y-3 shadow-sm">
+        <div className="w-20 h-20 rounded-full border-2 border-orange-500/20 overflow-hidden mx-auto shadow-sm">
           <img src="/avatar.png" className="w-full h-full object-cover" alt="Profile" />
         </div>
         <div>
-          <h3 className="font-extrabold text-base text-white font-display">{user?.name || 'Rahul Sharma'}</h3>
-          <span className="text-[10px] bg-purple-500/20 text-purple-300 border border-purple-500/30 px-2 py-0.5 rounded-full font-bold font-display mt-1 inline-block">
+          <h3 className="font-extrabold text-base text-gray-900 font-display">{user?.name || 'Rahul Sharma'}</h3>
+          <span className="text-[10px] bg-orange-500/10 text-orange-600 border border-orange-500/20 px-2 py-0.5 rounded-full font-bold font-display mt-1 inline-block">
             MOCK USER MEMBER
           </span>
         </div>
       </div>
 
       {/* Personal Info Grid */}
-      <div className="bg-[#1A1822] border border-white/5 rounded-3xl p-4.5 space-y-4 text-left">
+      <div className="bg-[#F8F8F8] border border-[#E5E5E5] rounded-3xl p-4.5 space-y-4 text-left">
         <h4 className="text-[10px] font-black text-gray-500 uppercase tracking-widest font-display">Personal Information</h4>
         
         <div className="space-y-3.5">
           <div className="flex items-center gap-3">
-            <Mail className="w-4 h-4 text-purple-300 shrink-0" />
+            <Mail className="w-4 h-4 text-orange-550 shrink-0" />
             <div>
               <span className="text-[9px] text-gray-500 font-bold block uppercase">Email Address</span>
-              <span className="text-xs font-semibold text-gray-200">{user?.email || 'user@ladypilot.in'}</span>
+              <span className="text-xs font-semibold text-gray-800">{user?.email || 'user@swiftgo.com'}</span>
             </div>
           </div>
 
           <div className="flex items-center gap-3">
-            <Phone className="w-4 h-4 text-purple-300 shrink-0" />
+            <Phone className="w-4 h-4 text-orange-550 shrink-0" />
             <div>
               <span className="text-[9px] text-gray-500 font-bold block uppercase">Mobile Number</span>
-              <span className="text-xs font-semibold text-gray-200">{user?.phone || '+91 98765 43210'}</span>
+              <span className="text-xs font-semibold text-gray-800">{user?.phone || '+91 98765 43210'}</span>
             </div>
           </div>
 
           <div className="flex items-center gap-3">
-            <Calendar className="w-4 h-4 text-purple-300 shrink-0" />
+            <Calendar className="w-4 h-4 text-orange-550 shrink-0" />
             <div>
               <span className="text-[9px] text-gray-500 font-bold block uppercase">Joined Date</span>
-              <span className="text-xs font-semibold text-gray-200">June 2026</span>
+              <span className="text-xs font-semibold text-gray-800">June 2026</span>
             </div>
           </div>
         </div>
       </div>
 
       {/* Wallet details card */}
-      <div className="bg-[#1A1822] border border-white/5 rounded-3xl p-4.5 flex items-center justify-between shadow-sm">
+      <div className="bg-[#F8F8F8] border border-[#E5E5E5] rounded-3xl p-4.5 flex items-center justify-between shadow-sm">
         <div className="flex items-center gap-3 text-left">
-          <div className="p-2 rounded-xl bg-purple-950/40 text-purple-400">
+          <div className="p-2 rounded-xl bg-orange-50 text-orange-500">
             <CreditCard className="w-5 h-5" />
           </div>
           <div>
             <span className="text-[9px] text-gray-500 font-bold uppercase block leading-none">Wallet Balance</span>
-            <span className="text-sm font-black text-white font-display block mt-1">₹ {balance.toFixed(2)}</span>
+            <span className="text-sm font-black text-gray-900 font-display block mt-1">₹ {balance.toFixed(2)}</span>
           </div>
         </div>
         
-        <span className="text-[9px] font-black bg-purple-500/10 text-purple-300 px-2.5 py-1 rounded-full border border-purple-500/20 font-display uppercase tracking-widest">
+        <span className="text-[9px] font-black bg-orange-500/10 text-orange-600 px-2.5 py-1 rounded-full border border-orange-500/20 font-display uppercase tracking-widest">
           Active
         </span>
       </div>
@@ -126,35 +126,34 @@ export function HistoryDrawer({ isOpen, onClose }) {
         <h3 className="text-[10px] font-black text-gray-500 uppercase tracking-widest font-display text-left">
           Past Trip Logs
         </h3>
-
         <div className="space-y-3">
           {PAST_RIDES.map((ride) => (
             <div 
               key={ride.id}
-              className="bg-[#1A1822] border border-white/5 rounded-3xl p-4.5 text-left relative shadow-md"
+              className="bg-[#F8F8F8] border border-[#E5E5E5] rounded-3xl p-4.5 text-left relative shadow-sm"
             >
               <div className="flex justify-between items-center mb-2.5">
                 <div className="flex items-center gap-2">
-                  <span className="text-xs font-black text-white font-display">{ride.type}</span>
-                  <span className="text-[8px] bg-green-500/15 text-green-400 px-1.5 py-0.5 rounded border border-green-500/20 font-bold uppercase">Completed</span>
+                  <span className="text-xs font-black text-gray-900 font-display">{ride.type}</span>
+                  <span className="text-[8px] bg-green-500/15 text-green-600 px-1.5 py-0.5 rounded border border-green-500/20 font-bold uppercase">Completed</span>
                 </div>
-                <span className="text-[9px] font-mono text-purple-400 font-bold">#{ride.id}</span>
+                <span className="text-[9px] font-mono text-orange-600 font-bold">#{ride.id}</span>
               </div>
 
-              <div className="space-y-2 text-[11px] text-gray-400 font-semibold mb-3">
+              <div className="space-y-2 text-[11px] text-gray-600 font-semibold mb-3">
                 <div className="flex items-center gap-1.5">
-                  <MapPin className="w-3.5 h-3.5 text-gray-500 shrink-0" />
+                  <MapPin className="w-3.5 h-3.5 text-gray-400 shrink-0" />
                   <span>{ride.route}</span>
                 </div>
                 <div className="flex items-center gap-1.5">
-                  <User className="w-3.5 h-3.5 text-gray-500 shrink-0" />
-                  <span>Lady Pilot: <strong className="text-gray-300 font-bold">{ride.pilot}</strong></span>
+                  <User className="w-3.5 h-3.5 text-gray-400 shrink-0" />
+                  <span>SwiftGo Driver: <strong className="text-gray-800 font-bold">{ride.pilot}</strong></span>
                 </div>
               </div>
 
-              <div className="border-t border-white/5 pt-2.5 flex justify-between items-center text-[10px]">
-                <span className="text-gray-500 font-bold uppercase">{ride.date}</span>
-                <span className="font-black text-white text-xs font-display">{ride.fare}</span>
+              <div className="border-t border-[#E5E5E5] pt-2.5 flex justify-between items-center text-[10px]">
+                <span className="text-gray-400 font-bold uppercase">{ride.date}</span>
+                <span className="font-black text-gray-900 text-xs font-display">{ride.fare}</span>
               </div>
             </div>
           ))}
@@ -166,7 +165,7 @@ export function HistoryDrawer({ isOpen, onClose }) {
 
 // 3. OFFERS & PROMOS DRAWER
 const COUPONS = [
-  { code: 'SWIFT50', value: '₹50 OFF', desc: 'Saves ₹50 flat on your first food order', minVal: '₹199' },
+  { code: 'SWIFTGO50', value: '₹50 OFF', desc: 'Saves ₹50 flat on your first food order', minVal: '₹199' },
   { code: 'FIRST100', value: '₹100 OFF', desc: 'Saves ₹100 flat on your food order checkout', minVal: '₹249' },
   { code: 'FREEFOOD', value: 'FREE DEL', desc: 'Deducts delivery fee on any restaurant order', minVal: '₹99' }
 ];
@@ -191,16 +190,16 @@ export function OffersDrawer({ isOpen, onClose }) {
           {COUPONS.map((coupon) => (
             <div 
               key={coupon.code}
-              className="bg-[#1A1822] border border-white/5 rounded-3xl p-4.5 text-left relative overflow-hidden shadow-md flex items-center justify-between"
+              className="bg-[#F8F8F8] border border-[#E5E5E5] rounded-3xl p-4.5 text-left relative overflow-hidden shadow-sm flex items-center justify-between"
             >
               <div className="space-y-1 pr-2">
                 <div className="flex items-center gap-2">
-                  <span className="font-extrabold text-sm text-lp-yellow font-display">{coupon.value}</span>
+                  <span className="font-extrabold text-sm text-orange-600 font-display">{coupon.value}</span>
                   <span className="text-[9px] text-gray-400 font-bold">Min: {coupon.minVal}</span>
                 </div>
-                <p className="text-[11px] text-gray-400 font-semibold">{coupon.desc}</p>
+                <p className="text-[11px] text-gray-600 font-semibold">{coupon.desc}</p>
                 <div className="pt-1.5 flex items-center">
-                  <span className="font-mono text-xs font-bold bg-[#0C0B10] px-2 py-0.5 rounded border border-white/10 text-purple-300">
+                  <span className="font-mono text-xs font-bold bg-[#FFFFFF] px-2 py-0.5 rounded border border-[#E5E5E5] text-orange-600">
                     {coupon.code}
                   </span>
                 </div>
@@ -208,10 +207,10 @@ export function OffersDrawer({ isOpen, onClose }) {
 
               <button
                 onClick={() => handleCopy(coupon.code)}
-                className="p-2.5 rounded-full bg-[#252230] text-gray-400 hover:text-white transition-colors"
+                className="p-2.5 rounded-full bg-[#FFFFFF] border border-[#E5E5E5] text-gray-500 hover:bg-[#F8F8F8] transition-colors"
               >
                 {copiedCode === coupon.code ? (
-                  <span className="text-[9px] font-extrabold text-green-400 font-display">Copied!</span>
+                  <span className="text-[9px] font-extrabold text-green-600 font-display">Copied!</span>
                 ) : (
                   <Copy className="w-4 h-4" />
                 )}
@@ -235,60 +234,60 @@ export function SettingsDrawer({ isOpen, onClose }) {
       <div className="space-y-5 text-left">
         
         {/* Toggle Toggles */}
-        <div className="bg-[#1A1822] border border-white/5 rounded-3xl p-4.5 space-y-4">
+        <div className="bg-[#F8F8F8] border border-[#E5E5E5] rounded-3xl p-4.5 space-y-4">
           <h4 className="text-[10px] font-black text-gray-500 uppercase tracking-widest font-display">Preferences</h4>
           
-          <div className="divide-y divide-white/5">
+          <div className="divide-y divide-[#E5E5E5]">
             <div className="flex items-center justify-between py-3 first:pt-0">
               <div>
-                <span className="text-xs font-bold text-white block">Push Notifications</span>
-                <span className="text-[10px] text-gray-500 font-semibold">Enable alert sound updates</span>
+                <span className="text-xs font-bold text-gray-900 block">Push Notifications</span>
+                <span className="text-[10px] text-gray-400 font-semibold">Enable alert sound updates</span>
               </div>
               <button 
                 onClick={() => setNotifications(!notifications)}
-                className={`w-10 h-5.5 rounded-full p-0.5 transition-colors relative ${notifications ? 'bg-[#C3B1E1]' : 'bg-gray-800'}`}
+                className={`w-10 h-5.5 rounded-full p-0.5 transition-colors relative ${notifications ? 'bg-[#FF7A00]' : 'bg-gray-250'}`}
               >
-                <div className={`w-4.5 h-4.5 rounded-full bg-[#0C0B10] transition-transform ${notifications ? 'translate-x-[18px]' : 'translate-x-0'}`} />
+                <div className={`w-4.5 h-4.5 rounded-full bg-white transition-transform ${notifications ? 'translate-x-[18px]' : 'translate-x-0'}`} />
               </button>
             </div>
 
             <div className="flex items-center justify-between py-3">
               <div>
-                <span className="text-xs font-bold text-white block">Dark Mode</span>
-                <span className="text-[10px] text-gray-500 font-semibold">Optimize visual UI brightness</span>
+                <span className="text-xs font-bold text-gray-900 block">Dark Mode</span>
+                <span className="text-[10px] text-gray-400 font-semibold">Optimize visual UI brightness</span>
               </div>
               <button 
                 onClick={() => setDarkMode(!darkMode)}
-                className={`w-10 h-5.5 rounded-full p-0.5 transition-colors relative ${darkMode ? 'bg-[#C3B1E1]' : 'bg-gray-800'}`}
+                className={`w-10 h-5.5 rounded-full p-0.5 transition-colors relative ${darkMode ? 'bg-[#FF7A00]' : 'bg-gray-250'}`}
               >
-                <div className={`w-4.5 h-4.5 rounded-full bg-[#0C0B10] transition-transform ${darkMode ? 'translate-x-[18px]' : 'translate-x-0'}`} />
+                <div className={`w-4.5 h-4.5 rounded-full bg-white transition-transform ${darkMode ? 'translate-x-[18px]' : 'translate-x-0'}`} />
               </button>
             </div>
 
             <div className="flex items-center justify-between py-3 last:pb-0">
               <div>
-                <span className="text-xs font-bold text-white block">GPS Location Access</span>
-                <span className="text-[10px] text-gray-500 font-semibold">Allow automatic location lookup</span>
+                <span className="text-xs font-bold text-gray-900 block">GPS Location Access</span>
+                <span className="text-[10px] text-gray-400 font-semibold">Allow automatic location lookup</span>
               </div>
               <button 
                 onClick={() => setLocationServices(!locationServices)}
-                className={`w-10 h-5.5 rounded-full p-0.5 transition-colors relative ${locationServices ? 'bg-[#C3B1E1]' : 'bg-gray-800'}`}
+                className={`w-10 h-5.5 rounded-full p-0.5 transition-colors relative ${locationServices ? 'bg-[#FF7A00]' : 'bg-gray-250'}`}
               >
-                <div className={`w-4.5 h-4.5 rounded-full bg-[#0C0B10] transition-transform ${locationServices ? 'translate-x-[18px]' : 'translate-x-0'}`} />
+                <div className={`w-4.5 h-4.5 rounded-full bg-white transition-transform ${locationServices ? 'translate-x-[18px]' : 'translate-x-0'}`} />
               </button>
             </div>
           </div>
         </div>
 
         {/* Info panel */}
-        <div className="bg-[#1A1822] border border-white/5 rounded-3xl p-4.5 text-xs text-gray-400 space-y-1">
+        <div className="bg-[#F8F8F8] border border-[#E5E5E5] rounded-3xl p-4.5 text-xs text-gray-500 space-y-1">
           <div className="flex justify-between">
             <span>App Version</span>
-            <span className="font-bold text-gray-200">v1.0.0 (Beta)</span>
+            <span className="font-bold text-gray-800">v1.0.0 (Beta)</span>
           </div>
           <div className="flex justify-between">
             <span>Client Environment</span>
-            <span className="font-bold text-gray-200">React 19 + Vite</span>
+            <span className="font-bold text-gray-800">React 19 + Vite</span>
           </div>
         </div>
       </div>
@@ -298,7 +297,7 @@ export function SettingsDrawer({ isOpen, onClose }) {
 
 // 5. HELP & SUPPORT DRAWER
 const FAQS = [
-  { q: "How are Lady Pilots verified?", a: "Every pilot goes through background vetting, ID checks, and vehicle authorization reviews to guarantee passenger safety." },
+  { q: "How are SwiftGo drivers verified?", a: "Every driver goes through background vetting, ID checks, and vehicle authorization reviews to guarantee passenger safety." },
   { q: "What should I do in an emergency?", a: "Tap the floating red 'SOS' button at the top right of the Ride Tracking view. We instantly notify local dispatch services." },
   { q: "How do I apply coupons?", a: "Go to your Food Cart, enter any active coupon code (like SWIFT50), and tap Apply to deduct flat amounts from the subtotal." }
 ];
@@ -306,7 +305,7 @@ const FAQS = [
 export function HelpDrawer({ isOpen, onClose }) {
   const [activeFaq, setActiveFaq] = useState(null);
   const [messages, setMessages] = useState([
-    { text: "Hello! Welcome to Lady Pilot Support. How can we help you today?", isBot: true }
+    { text: "Hello! Welcome to SwiftGo Support. How can we help you today?", isBot: true }
   ]);
   const [inputValue, setInputValue] = useState('');
 
@@ -341,17 +340,17 @@ export function HelpDrawer({ isOpen, onClose }) {
               return (
                 <div 
                   key={idx} 
-                  className="bg-[#1A1822] border border-white/5 rounded-2xl overflow-hidden text-xs"
+                  className="bg-[#F8F8F8] border border-[#E5E5E5] rounded-2xl overflow-hidden text-xs"
                 >
                   <button
-                    onClick={() => setActiveFaq(isOpen ? null : idx)}
-                    className="w-full p-4 flex items-center justify-between font-bold text-gray-200 hover:bg-white/2"
+                     onClick={() => setActiveFaq(isOpen ? null : idx)}
+                     className="w-full p-4 flex items-center justify-between font-bold text-gray-850 hover:bg-[#FFFFFF]"
                   >
                     <span>{faq.q}</span>
-                    <span className="text-purple-400 font-extrabold text-sm leading-none">{isOpen ? '−' : '+'}</span>
+                    <span className="text-orange-500 font-extrabold text-sm leading-none">{isOpen ? '−' : '+'}</span>
                   </button>
                   {isOpen && (
-                    <div className="px-4 pb-4 text-[11px] text-gray-400 leading-relaxed border-t border-white/5 pt-2">
+                    <div className="px-4 pb-4 text-[11px] text-gray-500 leading-relaxed border-t border-[#E5E5E5] pt-2">
                       {faq.a}
                     </div>
                   )}
@@ -362,7 +361,7 @@ export function HelpDrawer({ isOpen, onClose }) {
         </div>
 
         {/* Live Chat Simulator */}
-        <div className="bg-[#1A1822] border border-white/5 rounded-3xl p-4.5 flex flex-col h-72">
+        <div className="bg-[#F8F8F8] border border-[#E5E5E5] rounded-3xl p-4.5 flex flex-col h-72">
           <h4 className="text-[10px] font-black text-gray-500 uppercase tracking-widest font-display mb-3 shrink-0">Live Chat Assistant</h4>
           
           {/* Chat message viewport */}
@@ -374,8 +373,8 @@ export function HelpDrawer({ isOpen, onClose }) {
               >
                 <div className={`max-w-[80%] rounded-2xl p-3 text-xs leading-relaxed ${
                   msg.isBot 
-                    ? 'bg-[#0c081d] text-gray-200 rounded-tl-none border border-purple-500/10' 
-                    : 'bg-[#C3B1E1] text-[#0C0B10] rounded-tr-none font-bold'
+                    ? 'bg-white text-gray-800 rounded-tl-none border border-[#E5E5E5]' 
+                    : 'bg-[#FF7A00] text-black rounded-tr-none font-bold'
                 }`}>
                   {msg.text}
                 </div>
@@ -384,17 +383,17 @@ export function HelpDrawer({ isOpen, onClose }) {
           </div>
 
           {/* Input form */}
-          <form onSubmit={handleSend} className="flex gap-2 pt-3 border-t border-white/5 shrink-0">
+          <form onSubmit={handleSend} className="flex gap-2 pt-3 border-t border-[#E5E5E5] shrink-0">
             <input
               type="text"
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               placeholder="Type your message..."
-              className="flex-1 bg-[#0C0B10] border border-white/5 rounded-xl px-3 py-2 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-[#C3B1E1]"
+              className="flex-1 bg-white border border-[#E5E5E5] rounded-xl px-3 py-2 text-xs text-gray-850 placeholder-gray-400 focus:outline-none focus:border-[#FF7A00]"
             />
             <button
               type="submit"
-              className="p-2 bg-[#C3B1E1] hover:bg-[#d4c8eb] text-[#0C0B10] rounded-xl flex items-center justify-center transition-colors shadow"
+              className="p-2 bg-[#FF7A00] hover:bg-[#ff9133] text-black rounded-xl flex items-center justify-center transition-colors shadow"
             >
               <Send className="w-4 h-4" />
             </button>

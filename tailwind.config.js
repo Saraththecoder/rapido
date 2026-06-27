@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        'lp-yellow': '#FDE047',
+        'sg-orange': '#FC8019',
         'lp-black': '#0C0B10',
         'lp-orange': '#FC8019',
         'lp-purple': '#C3B1E1',

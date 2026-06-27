@@ -5,6 +5,6 @@ export const WEIGHT_CATEGORIES = [
 ];
 
 export const MOCK_SHIPMENTS = [
-  { id: 'LP-7834-TRP', sender: 'Rahul Sharma', recipient: 'Sneha Reddy', status: 'In Transit', destination: 'Gachibowli DLF, Hyderabad', date: 'Today, 2:30 PM' },
-  { id: 'LP-2391-JUB', sender: 'Rahul Sharma', recipient: 'Anitha P.', status: 'Delivered', destination: 'Jubilee Hills Road No. 36, Hyderabad', date: 'Yesterday, 11:15 AM' }
+  { id: 'SG-7834-TRP', sender: 'Rahul Sharma', recipient: 'Sneha Reddy', status: 'In Transit', destination: 'Gachibowli DLF, Hyderabad', date: 'Today, 2:30 PM' },
+  { id: 'SG-2391-JUB', sender: 'Rahul Sharma', recipient: 'Anitha P.', status: 'Delivered', destination: 'Jubilee Hills Road No. 36, Hyderabad', date: 'Yesterday, 11:15 AM' }
 ];

@@ -49,24 +49,24 @@ export default function RideHome() {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.25 }}
-      className="flex-1 flex flex-col relative h-full bg-[#0C0B10] text-white"
+      className="flex-1 flex flex-col relative h-full bg-white text-gray-900"
     >
       {/* Top Header Bar */}
-      <div className="flex items-center justify-between px-4 py-3 bg-[#0C0B10] border-b border-white/5 z-10">
+      <div className="flex items-center justify-between px-4 py-3 bg-white border-b border-[#E5E5E5] z-10">
         <div className="flex items-center gap-2">
           <button 
             onClick={() => setIsDrawerOpen(true)}
-            className="p-1.5 rounded-xl hover:bg-white/5 transition-colors"
+            className="p-1.5 rounded-xl hover:bg-gray-100 transition-colors"
           >
-            <Menu className="w-5 h-5 text-white" />
+            <Menu className="w-5 h-5 text-gray-800" />
           </button>
-          <span className="text-sm font-black tracking-widest text-white font-display">
-            LADY PILOT
+          <span className="text-sm font-black tracking-widest text-gray-900 font-display">
+            SWIFTGO
           </span>
         </div>
         
         {/* Notification bell */}
-        <button className="p-1.5 rounded-full hover:bg-white/5 text-gray-400 hover:text-white transition-colors">
+        <button className="p-1.5 rounded-full hover:bg-gray-100 text-gray-500 hover:text-gray-800 transition-colors">
           <Bell className="w-5 h-5" />
         </button>
       </div>
@@ -77,25 +77,25 @@ export default function RideHome() {
       </div>
 
       {/* Premium Bottom Sheet Address Form */}
-      <div className="flex-1 bg-[#1A1822] border-t border-white/5 px-5 pt-5 pb-24 rounded-t-3xl shadow-2xl flex flex-col justify-between mt-[-20px] z-10">
+      <div className="flex-1 bg-[#F8F8F8] border-t border-[#E5E5E5] px-5 pt-5 pb-24 rounded-t-3xl shadow-2xl flex flex-col justify-between mt-[-20px] z-10">
         <div className="space-y-4">
           {/* Header text greeting */}
           <div className="text-left">
-            <h2 className="text-xl font-black text-white font-display">
-              LADY PILOT
+            <h2 className="text-xl font-black text-gray-900 font-display">
+              SWIFTGO
             </h2>
-            <p className="text-xs text-gray-400 font-semibold mt-0.5">
+            <p className="text-xs text-gray-500 font-semibold mt-0.5">
               Your city. On demand.
             </p>
           </div>
 
-          {/* Address Stack Panel inside dark capsule container */}
-          <div className="bg-[#0D0C12] border border-white/5 rounded-2xl p-4 flex gap-3.5 relative">
+          {/* Address Stack Panel inside light capsule container */}
+          <div className="bg-white border border-[#E5E5E5] rounded-2xl p-4 flex gap-3.5 relative">
             {/* Vertical timeline connector */}
             <div className="flex flex-col items-center justify-between py-2.5">
               <div className="w-2.5 h-2.5 rounded-full bg-[#B3A6F2] shadow-[0_0_8px_rgba(179,166,242,0.6)] shrink-0"></div>
-              <div className="w-0.5 flex-1 bg-gray-800 my-1.5"></div>
-              <div className="w-2.5 h-2.5 rounded-full bg-[#FDE047] shadow-[0_0_8px_rgba(253,224,71,0.6)] shrink-0"></div>
+              <div className="w-0.5 flex-1 bg-gray-200 my-1.5"></div>
+              <div className="w-2.5 h-2.5 rounded-full bg-[#FF7A00] shadow-[0_0_8px_rgba(255,122,0,0.5)] shrink-0"></div>
             </div>
 
             {/* Input elements */}
@@ -106,17 +106,17 @@ export default function RideHome() {
                   value={pickupInput}
                   onChange={(e) => setPickupInput(e.target.value)}
                   placeholder="Detecting Location..."
-                  className="w-full bg-transparent border-none p-0 text-xs text-white placeholder-gray-500 font-extrabold focus:outline-none focus:ring-0 leading-none"
+                  className="w-full bg-transparent border-none p-0 text-xs text-gray-900 placeholder-gray-400 font-extrabold focus:outline-none focus:ring-0 leading-none"
                 />
               </div>
-              <div className="border-t border-white/5"></div>
+              <div className="border-t border-[#E5E5E5]"></div>
               <div className="relative">
                 <input
                   type="text"
                   value={dropoffInput}
                   onChange={(e) => setDropoffInput(e.target.value)}
                   placeholder="Where to?"
-                  className="w-full bg-transparent border-none p-0 text-xs text-white placeholder-gray-500 font-extrabold focus:outline-none focus:ring-0 leading-none"
+                  className="w-full bg-transparent border-none p-0 text-xs text-gray-900 placeholder-gray-400 font-extrabold focus:outline-none focus:ring-0 leading-none"
                 />
               </div>
             </div>
@@ -132,11 +132,11 @@ export default function RideHome() {
             disabled={!dropoffInput}
             className={`w-full py-4 font-black rounded-2xl flex items-center justify-center gap-2 text-xs uppercase tracking-widest transition-all duration-300 font-display shadow-lg ${
               dropoffInput 
-                ? 'btn-grad-yellow shadow-yellow-500/10'
-                : 'bg-gray-800 text-gray-550 border border-gray-800 cursor-not-allowed'
+                ? 'btn-grad-orange shadow-orange-500/10'
+                : 'bg-gray-200 text-gray-400 border border-gray-200 cursor-not-allowed'
             }`}
           >
-            Find Lady Pilots
+            Find Drivers
           </motion.button>
         </div>
       </div>
@@ -151,10 +151,10 @@ export default function RideHome() {
             {/* Backdrop overlay */}
             <motion.div
               initial={{ opacity: 0 }}
-              animate={{ opacity: 0.6 }}
+              animate={{ opacity: 0.4 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsDrawerOpen(false)}
-              className="absolute inset-0 bg-black/80 backdrop-blur-xs"
+              className="absolute inset-0 bg-black/50 backdrop-blur-xs"
             />
 
             {/* Left slide-in Drawer Panel (75% width) */}
@@ -163,17 +163,17 @@ export default function RideHome() {
               animate={{ x: 0 }}
               exit={{ x: '-100%' }}
               transition={{ type: 'spring', damping: 28, stiffness: 260 }}
-              className="relative w-3/4 h-full bg-[#1A1822] flex flex-col justify-between z-10 shadow-2xl text-white border-r border-white/5"
+              className="relative w-3/4 h-full bg-white flex flex-col justify-between z-10 shadow-2xl text-gray-900 border-r border-[#E5E5E5]"
             >
-              {/* Purple Header Section */}
-              <div className="bg-[#7C3AED] p-5 pt-8 text-white relative overflow-hidden">
+              {/* Orange Header Section */}
+              <div className="bg-[#FF7A00] p-5 pt-8 text-black relative overflow-hidden">
                 {/* mesh lights */}
-                <div className="absolute top-0 right-0 w-24 h-24 bg-pink-500/20 rounded-full blur-xl"></div>
+                <div className="absolute top-0 right-0 w-24 h-24 bg-white/20 rounded-full blur-xl"></div>
                 
                 {/* Close Button X */}
                 <button
                   onClick={() => setIsDrawerOpen(false)}
-                  className="absolute top-4 right-4 p-1.5 rounded-full bg-black/10 hover:bg-black/20 text-white transition-colors"
+                  className="absolute top-4 right-4 p-1.5 rounded-full bg-black/10 hover:bg-black/20 text-black transition-colors"
                 >
                   <X className="w-5 h-5" />
                 </button>
@@ -184,14 +184,14 @@ export default function RideHome() {
                     <img src="/avatar.png" className="w-full h-full object-cover" alt="Profile" />
                   </div>
                   <div className="text-left">
-                    <h3 className="font-extrabold text-base leading-tight font-display">
+                    <h3 className="font-extrabold text-base leading-tight font-display text-black">
                       {user?.name || 'Rahul Sharma'}
                     </h3>
                     <div className="flex items-center gap-1.5 mt-1 text-[10px]">
-                      <span className="font-extrabold bg-white/20 px-1.5 py-0.5 rounded flex items-center gap-0.5 font-display leading-none">
+                      <span className="font-extrabold bg-black/10 px-1.5 py-0.5 rounded flex items-center gap-0.5 font-display leading-none">
                         ⭐ 4.8
                       </span>
-                      <span className="text-purple-200 font-semibold">
+                      <span className="text-gray-900 font-semibold">
                         {user?.phone || '+91 98765 43210'}
                       </span>
                     </div>
@@ -200,33 +200,33 @@ export default function RideHome() {
               </div>
 
               {/* White Body Menu Items */}
-              <div className="flex-1 px-5 py-4 overflow-y-auto divide-y divide-white/5 text-gray-200">
-                <button onClick={() => { setIsDrawerOpen(false); setIsProfileOpen(true); }} className="w-full flex items-center gap-4 py-4 text-left font-bold text-sm hover:text-purple-400 transition-colors">
-                  <User className="w-5 h-5 text-gray-500" />
+              <div className="flex-1 px-5 py-4 overflow-y-auto divide-y divide-[#E5E5E5] text-gray-800">
+                <button onClick={() => { setIsDrawerOpen(false); setIsProfileOpen(true); }} className="w-full flex items-center gap-4 py-4 text-left font-bold text-sm hover:text-orange-600 transition-colors">
+                  <User className="w-5 h-5 text-gray-400" />
                   <span>Profile</span>
                 </button>
-                <button onClick={() => { setIsDrawerOpen(false); setIsHistoryOpen(true); }} className="w-full flex items-center gap-4 py-4 text-left font-bold text-sm hover:text-purple-400 transition-colors">
-                  <Clock className="w-5 h-5 text-gray-500" />
+                <button onClick={() => { setIsDrawerOpen(false); setIsHistoryOpen(true); }} className="w-full flex items-center gap-4 py-4 text-left font-bold text-sm hover:text-orange-600 transition-colors">
+                  <Clock className="w-5 h-5 text-gray-400" />
                   <span>Ride History</span>
                 </button>
-                <button onClick={() => { setIsDrawerOpen(false); setIsOffersOpen(true); }} className="w-full flex items-center gap-4 py-4 text-left font-bold text-sm hover:text-purple-400 transition-colors">
-                  <Tag className="w-5 h-5 text-gray-500" />
+                <button onClick={() => { setIsDrawerOpen(false); setIsOffersOpen(true); }} className="w-full flex items-center gap-4 py-4 text-left font-bold text-sm hover:text-orange-600 transition-colors">
+                  <Tag className="w-5 h-5 text-gray-400" />
                   <span>Offers & Promos</span>
                 </button>
-                <button onClick={() => { setIsDrawerOpen(false); setIsSettingsOpen(true); }} className="w-full flex items-center gap-4 py-4 text-left font-bold text-sm hover:text-purple-400 transition-colors">
-                  <Settings className="w-5 h-5 text-gray-500" />
+                <button onClick={() => { setIsDrawerOpen(false); setIsSettingsOpen(true); }} className="w-full flex items-center gap-4 py-4 text-left font-bold text-sm hover:text-orange-600 transition-colors">
+                  <Settings className="w-5 h-5 text-gray-400" />
                   <span>Settings</span>
                 </button>
-                <button onClick={() => { setIsDrawerOpen(false); setIsHelpOpen(true); }} className="w-full flex items-center gap-4 py-4 text-left font-bold text-sm hover:text-purple-400 transition-colors">
-                  <HelpCircle className="w-5 h-5 text-gray-500" />
+                <button onClick={() => { setIsDrawerOpen(false); setIsHelpOpen(true); }} className="w-full flex items-center gap-4 py-4 text-left font-bold text-sm hover:text-orange-600 transition-colors">
+                  <HelpCircle className="w-5 h-5 text-gray-400" />
                   <span>Help & Support</span>
                 </button>
               </div>
 
               {/* Footer Panel */}
-              <div className="p-4 border-t border-white/5 text-center bg-[#100E16]">
+              <div className="p-4 border-t border-[#E5E5E5] text-center bg-[#F8F8F8]">
                 <span className="text-[10px] text-gray-500 font-bold uppercase tracking-widest font-display">
-                  LADY PILOT v1.0.0
+                  SWIFTGO v1.0.0
                 </span>
               </div>
             </motion.div>

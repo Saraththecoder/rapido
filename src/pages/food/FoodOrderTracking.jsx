@@ -234,7 +234,7 @@ export default function FoodOrderTracking() {
                   <span className="text-orange-500">₹329</span>
                 </div>
                 <div className="mt-2 text-[10px] text-gray-400 leading-tight">
-                  Payment Mode: Lady Pilot Wallet balance deduction.
+                  Payment Mode: SwiftGo Wallet balance deduction.
                 </div>
               </motion.div>
             )}

@@ -10,7 +10,7 @@ export default function BottomNav() {
   // Hiding bottom nav on specific sub-flows
   const isTracking = path.includes('/tracking');
   const isBookFlow = path.includes('/book') || path.includes('/restaurant');
-  const isConsoleOrAdmin = path.includes('/rider') || path.includes('/admin');
+  const isConsoleOrAdmin = path.includes('/rider') || path.includes('/admin') || path.includes('/vendor');
 
   if (isTracking || isBookFlow || isConsoleOrAdmin) {
     return null;
@@ -24,7 +24,7 @@ export default function BottomNav() {
   ];
 
   return (
-    <div className="absolute bottom-5 left-4 right-4 h-16 bg-[#110E16]/95 border border-white/5 rounded-2xl flex items-center justify-around px-3.5 z-40 shadow-2xl">
+    <div className="absolute bottom-5 left-4 right-4 h-16 bg-white/95 border border-[#E5E5E5] rounded-2xl flex items-center justify-around px-3.5 z-40 shadow-xl shadow-gray-200/50">
       {items.map((item) => {
         // Match active route
         const isActive = item.route === '/' 
@@ -37,8 +37,8 @@ export default function BottomNav() {
             onClick={() => navigate(item.route)}
             className={`flex items-center gap-2 py-1.5 px-3.5 transition-all duration-350 select-none ${
               isActive
-                ? 'bg-[#221F2D] text-[#C3B1E1] border border-purple-500/20 rounded-2xl scale-[1.03]'
-                : 'text-gray-500 hover:text-gray-300'
+                ? 'bg-[#FFF4E5] text-[#FF7A00] border border-[#FF7A00]/20 rounded-2xl scale-[1.03]'
+                : 'text-gray-400 hover:text-gray-600'
             }`}
           >
             <item.icon className="w-5 h-5 stroke-[2]" />

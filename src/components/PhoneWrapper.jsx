@@ -18,7 +18,7 @@ export default function PhoneWrapper() {
     islandContent = (
       <div className="flex items-center justify-between w-full px-2 text-[9px] font-bold text-white uppercase tracking-wider">
         <span className="text-xs shrink-0">🛵</span>
-        <span className="text-lp-yellow font-black truncate max-w-[110px] mx-1 font-display">Priya • TS09</span>
+        <span className="text-lp-orange font-black truncate max-w-[110px] mx-1 font-display">Priya • TS09</span>
         <span className="text-[8px] bg-green-500/20 text-green-400 border border-green-500/30 px-1.5 py-0.5 rounded leading-none shrink-0 font-display animate-pulse">En Route</span>
       </div>
     );
@@ -38,7 +38,7 @@ export default function PhoneWrapper() {
     islandContent = (
       <div className="flex items-center justify-between w-full px-2 text-[9px] font-bold text-white uppercase tracking-wider">
         <span className="text-xs shrink-0">📦</span>
-        <span className="text-lp-yellow font-black truncate max-w-[110px] mx-1 font-display">Transit</span>
+        <span className="text-lp-orange font-black truncate max-w-[110px] mx-1 font-display">Transit</span>
         <span className="text-[8px] bg-blue-500/20 text-blue-400 border border-blue-500/30 px-1.5 py-0.5 rounded leading-none shrink-0 font-display">Meena K.</span>
       </div>
     );

@@ -21,9 +21,8 @@ export default function StatusBar() {
 
   // Determine whether to use dark text (light theme) or light text (dark theme)
   // Food theme is light (bg-white), others are dark (taxi, parcel, hub)
-  const isFood = location.pathname.startsWith('/food');
-  const textColorClass = isFood ? 'text-gray-800' : 'text-white';
-  const batteryColorClass = isFood ? 'bg-gray-800' : 'bg-white';
+  const textColorClass = 'text-gray-850';
+  const batteryColorClass = 'bg-gray-850';
 
   return (
     <div className={`h-11 px-5 flex items-center justify-between z-40 select-none text-[13px] font-semibold ${textColorClass} transition-colors duration-300`}>

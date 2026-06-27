@@ -15,6 +15,7 @@ import FoodHome from './pages/food/FoodHome';
 import FoodRestaurant from './pages/food/FoodRestaurant';
 import FoodCart from './pages/food/FoodCart';
 import FoodOrderTracking from './pages/food/FoodOrderTracking';
+import FoodVendorConsole from './pages/food/FoodVendorConsole';
 
 // Courier pages
 import CourierHome from './pages/courier/CourierHome';
@@ -55,6 +56,10 @@ const router = createHashRouter([
       {
         path: 'food',
         element: <FoodHome />
+      },
+      {
+        path: 'food/vendor',
+        element: <FoodVendorConsole />
       },
       {
         path: 'food/:restaurantId',

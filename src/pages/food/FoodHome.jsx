@@ -122,7 +122,7 @@ export default function FoodHome() {
               50% OFF on First Order
             </h3>
             <p className="text-[10px] text-orange-100 font-semibold">
-              Use Code: <strong className="font-extrabold text-white">LADYPILOT50</strong>
+              Use Code: <strong className="font-extrabold text-white">SWIFTGO50</strong>
             </p>
           </div>
           
