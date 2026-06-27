@@ -1,335 +1,127 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
-import { useAuthStore } from '../store/useAuthStore';
-import { User, Mail, Phone, Lock, ArrowRight, Shield, Store, Bike } from 'lucide-react';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { User, Bike, Store, Shield, ChevronRight } from 'lucide-react';
+
+const roles = [
+  {
+    key: 'user',
+    label: 'Customer',
+    desc: 'Book rides, order food & send parcels',
+    icon: User,
+    path: '/auth/user',
+    gradient: 'from-orange-400 to-amber-500',
+    shadow: 'shadow-orange-300/30',
+    ring: 'ring-orange-200',
+    bg: 'hover:bg-orange-50',
+    textColor: 'text-orange-500',
+    emoji: '👤',
+  },
+  {
+    key: 'rider',
+    label: 'Delivery Rider',
+    desc: 'Deliver orders & earn on your schedule',
+    icon: Bike,
+    path: '/auth/rider',
+    gradient: 'from-indigo-500 to-violet-600',
+    shadow: 'shadow-indigo-300/30',
+    ring: 'ring-indigo-200',
+    bg: 'hover:bg-indigo-50',
+    textColor: 'text-indigo-500',
+    emoji: '🛵',
+  },
+  {
+    key: 'vendor',
+    label: 'Food Vendor',
+    desc: 'Manage your restaurant & grow sales',
+    icon: Store,
+    path: '/auth/vendor',
+    gradient: 'from-emerald-400 to-teal-500',
+    shadow: 'shadow-emerald-300/30',
+    ring: 'ring-emerald-200',
+    bg: 'hover:bg-emerald-50',
+    textColor: 'text-emerald-600',
+    emoji: '🍕',
+  },
+  {
+    key: 'admin',
+    label: 'Admin',
+    desc: 'Platform control & analytics console',
+    icon: Shield,
+    path: '/auth/admin',
+    gradient: 'from-rose-500 to-slate-700',
+    shadow: 'shadow-rose-300/20',
+    ring: 'ring-rose-200',
+    bg: 'hover:bg-rose-50',
+    textColor: 'text-rose-500',
+    emoji: '🛠️',
+  },
+];
 
 export default function Auth() {
-  const navigate = useNavigate();
-  const { login, register } = useAuthStore();
-
-  const [isSignUp, setIsSignUp] = useState(false);
-  const [error, setError] = useState('');
-  
-  // Form fields
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
-  const [password, setPassword] = useState('');
-  const [role, setRole] = useState('user'); // 'user' | 'rider' | 'vendor' | 'admin'
-
-  const handleSignIn = (e) => {
-    e.preventDefault();
-    setError('');
-
-    if (!email || !password) {
-      setError('Please fill in all fields.');
-      return;
-    }
-
-    const success = login(email, password);
-    if (success) {
-      navigate('/');
-    } else {
-      setError('Invalid credentials. Check sandbox pre-fills below.');
-    }
-  };
-
-  const handleSignUp = (e) => {
-    e.preventDefault();
-    setError('');
-
-    if (!name || !email || !phone || !password) {
-      setError('Please fill in all fields.');
-      return;
-    }
-
-    const success = register(name, email, phone, password, role);
-    if (success) {
-      navigate('/');
-    } else {
-      setError('Registration failed.');
-    }
-  };
-
-  const prefillLogin = (prefillEmail, prefillPassword) => {
-    setError('');
-    const success = login(prefillEmail, prefillPassword);
-    if (success) {
-      navigate('/');
-    }
-  };
-
   return (
-    <div className="flex-1 flex flex-col justify-center bg-gradient-to-b from-orange-50/40 via-white to-white p-6 relative select-none">
-      
-      {/* Background glow elements */}
-      <div className="absolute top-[-5%] left-[-10%] w-[250px] h-[250px] rounded-full bg-orange-500/5 blur-[80px] pointer-events-none"></div>
-      
-      <div className="space-y-6 w-full max-w-[340px] mx-auto z-10">
-        
-        {/* Logo and Brand Title */}
-        <div className="text-center space-y-1">
-          <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-[#FF7A00] text-black font-black text-xl shadow-lg shadow-orange-500/20 mb-2 font-display">
-            S
-          </div>
-          <h1 className="text-2xl font-black tracking-tight text-gray-900 font-display">
-            SWIFTGO
-          </h1>
-          <p className="text-[11px] text-gray-500 font-bold uppercase tracking-wider">
-            Your city. On demand.
-          </p>
-        </div>
+    <div className="flex-1 flex flex-col bg-gradient-to-b from-gray-50 via-white to-white relative overflow-hidden select-none">
+      {/* Background blobs */}
+      <div className="absolute top-[-40px] left-[-30px] w-[180px] h-[180px] rounded-full bg-orange-400/8 blur-[60px] pointer-events-none" />
+      <div className="absolute bottom-[60px] right-[-20px] w-[160px] h-[160px] rounded-full bg-indigo-400/8 blur-[50px] pointer-events-none" />
 
-        {/* Tab switch */}
-        <div className="flex p-1 bg-gray-100 rounded-xl">
-          <button
-            type="button"
-            onClick={() => { setIsSignUp(false); setError(''); }}
-            className={`flex-1 py-2 text-xs font-black rounded-lg transition-all font-display ${!isSignUp ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-500 hover:text-gray-800'}`}
-          >
-            Sign In
-          </button>
-          <button
-            type="button"
-            onClick={() => { setIsSignUp(true); setError(''); }}
-            className={`flex-1 py-2 text-xs font-black rounded-lg transition-all font-display ${isSignUp ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-500 hover:text-gray-800'}`}
-          >
-            Sign Up
-          </button>
-        </div>
+      <div className="flex-1 flex flex-col justify-center px-5 py-8 z-10">
+        <div className="w-full max-w-[340px] mx-auto space-y-6">
 
-        {/* Error Message */}
-        {error && (
+          {/* Logo + Title */}
           <motion.div
-            initial={{ opacity: 0, y: -5 }}
+            initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="p-3 rounded-xl bg-rose-50 text-rose-600 text-xs font-bold border border-rose-100 text-center"
+            transition={{ duration: 0.4 }}
+            className="text-center space-y-1.5"
           >
-            {error}
+            <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-[#FF7A00] text-white font-black text-xl shadow-lg shadow-orange-400/25 mb-2 font-display">
+              S
+            </div>
+            <h1 className="text-2xl font-black tracking-tight text-gray-900 font-display">SWIFTGO</h1>
+            <p className="text-[11px] text-gray-500 font-bold uppercase tracking-wider">Who are you logging in as?</p>
           </motion.div>
-        )}
 
-        <AnimatePresence mode="wait">
-          {!isSignUp ? (
-            <motion.form
-              key="signin"
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: 10 }}
-              transition={{ duration: 0.15 }}
-              onSubmit={handleSignIn}
-              className="space-y-4"
-            >
-              <div className="space-y-3 text-left">
-                <div className="space-y-1">
-                  <label className="text-[10px] font-black text-gray-500 uppercase tracking-widest block pl-1">
-                    Phone Number or Email
-                  </label>
-                  <div className="relative">
-                    <input
-                      type="text"
-                      placeholder="8074244332 or hasini@swiftgo.com"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      className="w-full bg-gray-50 border border-gray-200 rounded-xl pl-9 pr-4 py-3 text-xs font-bold text-gray-850 focus:outline-none focus:border-[#FF7A00] transition-colors"
-                    />
-                    <Mail className="w-4 h-4 text-gray-400 absolute left-3 top-3.5" />
-                  </div>
-                </div>
+          {/* Role Cards */}
+          <div className="space-y-3">
+            {roles.map((role, i) => {
+              const Icon = role.icon;
+              return (
+                <motion.div
+                  key={role.key}
+                  initial={{ opacity: 0, x: -16 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.35, delay: 0.1 + i * 0.07 }}
+                >
+                  <Link
+                    to={role.path}
+                    className={`flex items-center gap-4 p-3.5 rounded-2xl bg-white border border-gray-100 shadow-sm ${role.bg} transition-all group ring-1 ring-transparent hover:${role.ring} hover:shadow-md`}
+                  >
+                    {/* Icon bubble */}
+                    <div className={`w-11 h-11 rounded-xl bg-gradient-to-br ${role.gradient} shadow-md ${role.shadow} flex items-center justify-center flex-shrink-0`}>
+                      <Icon className="w-5 h-5 text-white" />
+                    </div>
 
-                <div className="space-y-1">
-                  <label className="text-[10px] font-black text-gray-500 uppercase tracking-widest block pl-1">
-                    Password
-                  </label>
-                  <div className="relative">
-                    <input
-                      type="password"
-                      placeholder="••••••••"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      className="w-full bg-gray-50 border border-gray-200 rounded-xl pl-9 pr-4 py-3 text-xs font-bold text-gray-850 focus:outline-none focus:border-[#FF7A00] transition-colors"
-                    />
-                    <Lock className="w-4 h-4 text-gray-400 absolute left-3 top-3.5" />
-                  </div>
-                </div>
-              </div>
+                    {/* Text */}
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-black text-gray-900 font-display leading-tight">{role.label}</p>
+                      <p className="text-[10px] text-gray-500 font-medium mt-0.5 leading-tight truncate">{role.desc}</p>
+                    </div>
 
-              <motion.button
-                whileTap={{ scale: 0.97 }}
-                type="submit"
-                className="w-full py-3.5 bg-[#FF7A00] text-black font-black text-xs uppercase tracking-widest rounded-xl shadow-lg shadow-orange-500/10 flex items-center justify-center gap-1.5 hover:bg-[#ff9133] transition-colors font-display"
-              >
-                <span>Sign In</span>
-                <ArrowRight className="w-4 h-4" />
-              </motion.button>
-            </motion.form>
-          ) : (
-            <motion.form
-              key="signup"
-              initial={{ opacity: 0, x: 10 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -10 }}
-              transition={{ duration: 0.15 }}
-              onSubmit={handleSignUp}
-              className="space-y-4"
-            >
-              <div className="space-y-3.5 text-left">
-                <div className="space-y-1">
-                  <label className="text-[10px] font-black text-gray-500 uppercase tracking-widest block pl-1">
-                    Full Name
-                  </label>
-                  <div className="relative">
-                    <input
-                      type="text"
-                      placeholder="Malli Hasini Sarath"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      className="w-full bg-gray-50 border border-gray-200 rounded-xl pl-9 pr-4 py-2.5 text-xs font-bold text-gray-850 focus:outline-none focus:border-[#FF7A00] transition-colors"
-                    />
-                    <User className="w-4 h-4 text-gray-400 absolute left-3 top-3" />
-                  </div>
-                </div>
-
-                <div className="space-y-1">
-                  <label className="text-[10px] font-black text-gray-500 uppercase tracking-widest block pl-1">
-                    Phone Number
-                  </label>
-                  <div className="relative">
-                    <input
-                      type="tel"
-                      placeholder="8074244332"
-                      value={phone}
-                      onChange={(e) => setPhone(e.target.value)}
-                      className="w-full bg-gray-50 border border-gray-200 rounded-xl pl-9 pr-4 py-2.5 text-xs font-bold text-gray-850 focus:outline-none focus:border-[#FF7A00] transition-colors"
-                    />
-                    <Phone className="w-4 h-4 text-gray-400 absolute left-3 top-3" />
-                  </div>
-                </div>
-
-                <div className="space-y-1">
-                  <label className="text-[10px] font-black text-gray-500 uppercase tracking-widest block pl-1">
-                    Email Address
-                  </label>
-                  <div className="relative">
-                    <input
-                      type="email"
-                      placeholder="hasini@swiftgo.com"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      className="w-full bg-gray-50 border border-gray-200 rounded-xl pl-9 pr-4 py-2.5 text-xs font-bold text-gray-850 focus:outline-none focus:border-[#FF7A00] transition-colors"
-                    />
-                    <Mail className="w-4 h-4 text-gray-400 absolute left-3 top-3" />
-                  </div>
-                </div>
-
-                <div className="space-y-1">
-                  <label className="text-[10px] font-black text-gray-500 uppercase tracking-widest block pl-1">
-                    Password
-                  </label>
-                  <div className="relative">
-                    <input
-                      type="password"
-                      placeholder="••••••••"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      className="w-full bg-gray-50 border border-gray-200 rounded-xl pl-9 pr-4 py-2.5 text-xs font-bold text-gray-850 focus:outline-none focus:border-[#FF7A00] transition-colors"
-                    />
-                    <Lock className="w-4 h-4 text-gray-400 absolute left-3 top-3" />
-                  </div>
-                </div>
-
-                {/* Role Selector Grid */}
-                <div className="space-y-1">
-                  <label className="text-[10px] font-black text-gray-500 uppercase tracking-widest block pl-1">
-                    Choose Role
-                  </label>
-                  <div className="grid grid-cols-2 gap-2">
-                    <button
-                      type="button"
-                      onClick={() => setRole('user')}
-                      className={`flex items-center gap-2 p-2.5 border rounded-xl text-left transition-all ${role === 'user' ? 'border-[#FF7A00] bg-orange-50/30 text-gray-900' : 'border-gray-200 bg-white text-gray-550'}`}
-                    >
-                      <User className="w-4 h-4 text-[#FF7A00]" />
-                      <span className="text-[11px] font-black font-display">User</span>
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setRole('rider')}
-                      className={`flex items-center gap-2 p-2.5 border rounded-xl text-left transition-all ${role === 'rider' ? 'border-[#FF7A00] bg-orange-50/30 text-gray-900' : 'border-gray-200 bg-white text-gray-550'}`}
-                    >
-                      <Bike className="w-4 h-4 text-[#FF7A00]" />
-                      <span className="text-[11px] font-black font-display">Rider</span>
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setRole('vendor')}
-                      className={`flex items-center gap-2 p-2.5 border rounded-xl text-left transition-all ${role === 'vendor' ? 'border-[#FF7A00] bg-orange-50/30 text-gray-900' : 'border-gray-200 bg-white text-gray-550'}`}
-                    >
-                      <Store className="w-4 h-4 text-[#FF7A00]" />
-                      <span className="text-[11px] font-black font-display">Vendor</span>
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setRole('admin')}
-                      className={`flex items-center gap-2 p-2.5 border rounded-xl text-left transition-all ${role === 'admin' ? 'border-[#FF7A00] bg-orange-50/30 text-gray-900' : 'border-gray-200 bg-white text-gray-550'}`}
-                    >
-                      <Shield className="w-4 h-4 text-[#FF7A00]" />
-                      <span className="text-[11px] font-black font-display">Admin</span>
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              <motion.button
-                whileTap={{ scale: 0.97 }}
-                type="submit"
-                className="w-full py-3 bg-[#FF7A00] text-black font-black text-xs uppercase tracking-widest rounded-xl shadow-lg shadow-orange-500/10 flex items-center justify-center gap-1.5 hover:bg-[#ff9133] transition-colors font-display"
-              >
-                <span>Register</span>
-                <ArrowRight className="w-4 h-4" />
-              </motion.button>
-            </motion.form>
-          )}
-        </AnimatePresence>
-
-        {/* Sandbox Prefills */}
-        <div className="bg-gray-50 border border-gray-150 rounded-2xl p-4 text-[11px] text-gray-700 text-left">
-          <span className="block font-bold text-gray-400 mb-2 uppercase tracking-widest text-[9px]">
-            Developer Sandbox Accounts
-          </span>
-          <div className="space-y-2">
-            <button
-              onClick={() => prefillLogin('8074244332', 'password')}
-              className="w-full flex items-center justify-between p-1.5 rounded bg-white hover:bg-orange-50 border border-gray-200 text-gray-700 font-bold transition-all text-[10px]"
-            >
-              <span>👤 User (Hasini)</span>
-              <span className="text-gray-400 font-normal">Tap to Login</span>
-            </button>
-            <button
-              onClick={() => prefillLogin('rider@swiftgo.com', 'password')}
-              className="w-full flex items-center justify-between p-1.5 rounded bg-white hover:bg-orange-50 border border-gray-200 text-gray-700 font-bold transition-all text-[10px]"
-            >
-              <span>🛵 Rider (Priya)</span>
-              <span className="text-gray-400 font-normal">Tap to Login</span>
-            </button>
-            <button
-              onClick={() => prefillLogin('vendor@swiftgo.com', 'password')}
-              className="w-full flex items-center justify-between p-1.5 rounded bg-white hover:bg-orange-50 border border-gray-200 text-gray-700 font-bold transition-all text-[10px]"
-            >
-              <span>🍕 Food Vendor (Bistro)</span>
-              <span className="text-gray-400 font-normal">Tap to Login</span>
-            </button>
-            <button
-              onClick={() => prefillLogin('admin@swiftgo.com', 'SwiftGo@2026')}
-              className="w-full flex items-center justify-between p-1.5 rounded bg-white hover:bg-rose-50 border border-gray-200 text-gray-700 font-bold transition-all text-[10px]"
-            >
-              <span>🛠️ Admin Console</span>
-              <span className="text-gray-400 font-normal">Tap to Login</span>
-            </button>
+                    {/* Arrow */}
+                    <ChevronRight className={`w-4 h-4 ${role.textColor} opacity-50 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all flex-shrink-0`} />
+                  </Link>
+                </motion.div>
+              );
+            })}
           </div>
-        </div>
 
+          {/* Footer note */}
+          <p className="text-center text-[10px] text-gray-400 font-medium">
+            SwiftGo — Your city, on demand.
+          </p>
+
+        </div>
       </div>
     </div>
   );

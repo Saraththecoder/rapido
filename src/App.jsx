@@ -3,6 +3,10 @@ import { createHashRouter, RouterProvider, Navigate } from 'react-router-dom';
 import PhoneWrapper from './components/PhoneWrapper';
 import Hub from './pages/Hub';
 import Auth from './pages/Auth';
+import AuthUser from './pages/AuthUser';
+import AuthRider from './pages/AuthRider';
+import AuthVendor from './pages/AuthVendor';
+import AuthAdmin from './pages/AuthAdmin';
 import UserDashboard from './pages/UserDashboard';
 import { useAuthStore } from './store/useAuthStore';
 
@@ -57,6 +61,22 @@ const router = createHashRouter([
       {
         path: 'auth',
         element: <Auth />
+      },
+      {
+        path: 'auth/user',
+        element: <AuthUser />
+      },
+      {
+        path: 'auth/rider',
+        element: <AuthRider />
+      },
+      {
+        path: 'auth/vendor',
+        element: <AuthVendor />
+      },
+      {
+        path: 'auth/admin',
+        element: <AuthAdmin />
       },
       // Ride routes
       {
