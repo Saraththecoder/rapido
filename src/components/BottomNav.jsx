@@ -1,55 +1,55 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { LayoutGrid, Car, Utensils, Box } from 'lucide-react';
+import { Home, Compass, Palmtree, User } from 'lucide-react';
 
 export default function BottomNav() {
   const navigate = useNavigate();
   const location = useLocation();
   const path = location.pathname;
 
-  // Hiding bottom nav on specific sub-flows
+  // Hiding bottom nav on specific sub-flows and the main dashboard route (dashboard renders its own)
   const isTracking = path.includes('/tracking');
   const isBookFlow = path.includes('/book') || path.includes('/restaurant');
   const isConsoleOrAdmin = path.includes('/rider') || path.includes('/admin') || path.includes('/vendor');
+  const isMainDashboard = path === '/';
 
-  if (isTracking || isBookFlow || isConsoleOrAdmin) {
+  if (isTracking || isBookFlow || isConsoleOrAdmin || isMainDashboard) {
     return null;
   }
 
+  const queryParams = new URLSearchParams(location.search);
+  const currentTab = queryParams.get('tab') || 'ride';
+
   const items = [
-    { label: 'Hub', icon: LayoutGrid, route: '/' },
-    { label: 'Ride', icon: Car, route: '/ride' },
-    { label: 'Food', icon: Utensils, route: '/food' },
-    { label: 'Courier', icon: Box, route: '/courier' }
+    { label: 'Ride', icon: Home, route: '/?tab=ride', tab: 'ride' },
+    { label: 'All Services', icon: Compass, route: '/?tab=services', tab: 'services' },
+    { label: 'Travel', icon: Palmtree, route: '/?tab=travel', tab: 'travel' },
+    { label: 'Profile', icon: User, route: '/?tab=profile', tab: 'profile' }
   ];
 
   return (
-    <div className="absolute bottom-5 left-4 right-4 h-16 bg-white/95 border border-[#E5E5E5] rounded-2xl flex items-center justify-around px-3.5 z-40 shadow-xl shadow-gray-200/50">
+    <div className="absolute bottom-0 left-0 right-0 h-16 bg-white border-t border-gray-150 flex items-center justify-around z-40 px-2 shadow-lg">
       {items.map((item) => {
-        // Match active route
-        const isActive = item.route === '/' 
-          ? path === '/' 
-          : path.startsWith(item.route);
+        const isActive = path === '/' && currentTab === item.tab;
 
         return (
           <button
             key={item.label}
             onClick={() => navigate(item.route)}
-            className={`flex items-center gap-2 py-1.5 px-3.5 transition-all duration-350 select-none ${
+            className={`flex flex-col items-center justify-center gap-0.5 w-16 h-full transition-all ${
               isActive
-                ? 'bg-[#FFF4E5] text-[#FF7A00] border border-[#FF7A00]/20 rounded-2xl scale-[1.03]'
+                ? 'text-[#0C1E36] scale-105'
                 : 'text-gray-400 hover:text-gray-600'
             }`}
           >
-            <item.icon className="w-5 h-5 stroke-[2]" />
-            {isActive && (
-              <span className="text-[10px] font-black tracking-wider uppercase font-display leading-none">
-                {item.label}
-              </span>
-            )}
+            <item.icon className="w-5 h-5 stroke-[2.2]" />
+            <span className="text-[9px] font-black tracking-wide font-display">
+              {item.label}
+            </span>
           </button>
         );
       })}
     </div>
   );
 }
+

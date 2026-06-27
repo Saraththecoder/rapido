@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ArrowRight, ToggleLeft, ToggleRight, DollarSign, Clock, Bike, Compass, MapPin } from 'lucide-react';
+import { ChevronLeft, ArrowRight, ToggleLeft, ToggleRight, DollarSign, Clock, Bike, Compass, MapPin, LogOut } from 'lucide-react';
 import { applyTheme } from '../../utils/theme';
 import { useWalletStore } from '../../store/useWalletStore';
+import { useAuthStore } from '../../store/useAuthStore';
 
 const MOCK_JOB = {
   id: 'JOB-9021',
@@ -18,6 +19,7 @@ const MOCK_JOB = {
 export default function RideRiderConsole() {
   const navigate = useNavigate();
   const { add } = useWalletStore();
+  const logout = useAuthStore((state) => state.logout);
   
   const [isOnline, setIsOnline] = useState(false);
   const [incomingJob, setIncomingJob] = useState(null);
@@ -100,10 +102,14 @@ export default function RideRiderConsole() {
       <div className="flex items-center justify-between px-4 py-3 bg-white border-b border-[#E5E5E5] z-10">
         <div className="flex items-center gap-2">
           <button 
-            onClick={() => navigate('/')}
-            className="p-1 rounded-full hover:bg-gray-100 transition-colors"
+            onClick={() => {
+              logout();
+              navigate('/auth');
+            }}
+            className="p-1 rounded-full text-rose-500 hover:bg-rose-50 transition-colors"
+            title="Logout"
           >
-            <ChevronLeft className="w-5 h-5 text-gray-805" />
+            <LogOut className="w-5 h-5" />
           </button>
           <h2 className="text-base font-extrabold uppercase tracking-wider text-gray-900">
             Rider Console

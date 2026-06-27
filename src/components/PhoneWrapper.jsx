@@ -1,11 +1,23 @@
 import React from 'react';
-import { Outlet, useLocation } from 'react-router-dom';
+import { Outlet, useLocation, Navigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import StatusBar from './StatusBar';
+import { useAuthStore } from '../store/useAuthStore';
 
 export default function PhoneWrapper() {
   const location = useLocation();
   const path = location.pathname;
+  const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
+
+  // Global Auth Guard: if unauthenticated and not on /auth, redirect to /auth
+  if (!isAuthenticated && path !== '/auth') {
+    return <Navigate to="/auth" replace />;
+  }
+
+  // If already authenticated and trying to visit /auth, redirect back to home /
+  if (isAuthenticated && path === '/auth') {
+    return <Navigate to="/" replace />;
+  }
 
   // Determine Dynamic Island sizing and content dynamically
   let islandContent = null;

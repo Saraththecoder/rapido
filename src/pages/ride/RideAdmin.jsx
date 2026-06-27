@@ -56,7 +56,7 @@ export default function RideAdmin() {
 
   const handleLogout = () => {
     logout();
-    navigate('/');
+    navigate('/auth');
   };
 
   return (
@@ -71,7 +71,7 @@ export default function RideAdmin() {
       <div className="flex items-center justify-between px-4 py-3 bg-white border-b border-[#E5E5E5] z-10">
         <div className="flex items-center gap-2">
           <button 
-            onClick={() => navigate('/')}
+            onClick={() => navigate('/auth')}
             className="p-1 rounded-full hover:bg-gray-100 transition-colors"
           >
             <ChevronLeft className="w-5 h-5 text-gray-805" />

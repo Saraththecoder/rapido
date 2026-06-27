@@ -144,7 +144,7 @@ export default function FoodVendorConsole() {
 
   const handleLogout = () => {
     logout();
-    navigate('/');
+    navigate('/auth');
   };
 
   // Order Flow operations

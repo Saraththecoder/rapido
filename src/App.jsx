@@ -1,7 +1,10 @@
 import React from 'react';
-import { createHashRouter, RouterProvider } from 'react-router-dom';
+import { createHashRouter, RouterProvider, Navigate } from 'react-router-dom';
 import PhoneWrapper from './components/PhoneWrapper';
 import Hub from './pages/Hub';
+import Auth from './pages/Auth';
+import UserDashboard from './pages/UserDashboard';
+import { useAuthStore } from './store/useAuthStore';
 
 // Ride pages
 import RideHome from './pages/ride/RideHome';
@@ -22,6 +25,26 @@ import CourierHome from './pages/courier/CourierHome';
 import CourierBook from './pages/courier/CourierBook';
 import CourierTracking from './pages/courier/CourierTracking';
 
+function DashboardRedirector() {
+  const { isAuthenticated, role } = useAuthStore();
+
+  if (!isAuthenticated) {
+    return <Navigate to="/auth" replace />;
+  }
+
+  switch (role) {
+    case 'rider':
+      return <Navigate to="/ride/rider" replace />;
+    case 'vendor':
+      return <Navigate to="/food/vendor" replace />;
+    case 'admin':
+      return <Navigate to="/ride/admin" replace />;
+    case 'user':
+    default:
+      return <UserDashboard />;
+  }
+}
+
 const router = createHashRouter([
   {
     path: '/',
@@ -29,12 +52,16 @@ const router = createHashRouter([
     children: [
       {
         path: '',
-        element: <Hub />
+        element: <DashboardRedirector />
+      },
+      {
+        path: 'auth',
+        element: <Auth />
       },
       // Ride routes
       {
         path: 'ride',
-        element: <RideHome />
+        element: <Navigate to="/?tab=ride" replace />
       },
       {
         path: 'ride/book',
@@ -93,3 +120,4 @@ const router = createHashRouter([
 export default function App() {
   return <RouterProvider router={router} />;
 }
+
