@@ -298,7 +298,8 @@ export default function FoodVendorConsole() {
         {[
           { id: 'orders', label: 'Orders', count: orders.length },
           { id: 'menu', label: 'Manage Menu', count: null },
-          { id: 'analytics', label: 'Kitchen Analytics', count: null }
+          { id: 'analytics', label: 'Kitchen Analytics', count: null },
+          { id: 'settings', label: 'Settings', count: null }
         ].map(tab => (
           <button
             key={tab.id}
@@ -576,6 +577,65 @@ export default function FoodVendorConsole() {
                 ))}
               </div>
             </div>
+          </div>
+        )}
+
+        {/* 4. SETTINGS TAB */}
+        {activeTab === 'settings' && (
+          <div className="space-y-4 text-left">
+            <h3 className="text-[10px] font-black text-gray-500 uppercase tracking-widest block mb-1">Restaurant Profile Settings</h3>
+            
+            <div className="bg-[#F8F8F8] border border-[#E5E5E5] rounded-2xl p-4.5 space-y-4">
+              <div>
+                <label className="text-[9px] font-bold text-gray-400 uppercase tracking-wide block mb-1">Restaurant Name</label>
+                <input 
+                  type="text" 
+                  defaultValue={defaultRestaurant.name}
+                  className="w-full bg-white border border-gray-200 rounded-xl px-3 py-2 text-xs font-semibold text-gray-900 focus:outline-none focus:border-orange-500 border-2"
+                />
+              </div>
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label className="text-[9px] font-bold text-gray-400 uppercase tracking-wide block mb-1">Business Hours</label>
+                  <input 
+                    type="text" 
+                    defaultValue="11:00 AM - 11:00 PM"
+                    className="w-full bg-white border border-gray-200 rounded-xl px-3 py-2 text-xs font-semibold text-gray-900 focus:outline-none focus:border-orange-500 border-2"
+                  />
+                </div>
+                <div>
+                  <label className="text-[9px] font-bold text-gray-400 uppercase tracking-wide block mb-1">Min. Order Value</label>
+                  <input 
+                    type="text" 
+                    defaultValue="₹99"
+                    className="w-full bg-white border border-gray-200 rounded-xl px-3 py-2 text-xs font-semibold text-gray-900 focus:outline-none focus:border-orange-500 border-2"
+                  />
+                </div>
+              </div>
+              <div>
+                <label className="text-[9px] font-bold text-gray-400 uppercase tracking-wide block mb-1">Cuisines Offered</label>
+                <input 
+                  type="text" 
+                  defaultValue={defaultRestaurant.cuisines.join(', ')}
+                  className="w-full bg-white border border-gray-200 rounded-xl px-3 py-2 text-xs font-semibold text-gray-900 focus:outline-none focus:border-orange-500 border-2"
+                />
+              </div>
+            </div>
+
+            <div className="bg-[#F8F8F8] border border-[#E5E5E5] rounded-2xl p-4">
+              <span className="text-[9px] font-bold text-gray-400 uppercase tracking-widest block mb-2">VAT / Tax Settings</span>
+              <div className="flex justify-between items-center text-xs">
+                <span className="font-semibold text-gray-700">GSTIN Registered</span>
+                <span className="font-mono font-bold text-gray-800">36AAAAA1111A1Z1</span>
+              </div>
+            </div>
+            
+            <button 
+              onClick={() => alert('Restaurant configuration updated successfully!')}
+              className="w-full py-3.5 bg-orange-500 hover:bg-orange-600 text-white font-black text-xs uppercase tracking-widest rounded-xl shadow-md font-display"
+            >
+              Save Configuration
+            </button>
           </div>
         )}
       </div>

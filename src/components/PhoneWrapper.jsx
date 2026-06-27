@@ -67,7 +67,7 @@ export default function PhoneWrapper() {
   return (
     <div className="min-h-screen w-full flex items-center justify-center bg-gradient-to-br from-purple-950 via-slate-950 to-black md:p-6 select-none font-sans overflow-x-hidden">
       {/* Phone simulator outer shell */}
-      <div className="w-full h-[100vh] h-[100dvh] md:w-[390px] md:h-[844px] md:rounded-[3rem] md:border-[10px] md:border-gray-800 md:shadow-2xl md:bg-gray-900 flex flex-col relative overflow-hidden transition-all duration-300">
+      <div className="w-full h-[100vh] h-[100dvh] md:w-[390px] md:h-[min(844px,92vh)] md:rounded-[3rem] md:border-[10px] md:border-gray-800 md:shadow-2xl md:bg-gray-900 flex flex-col relative overflow-hidden transition-all duration-300">
         
         {/* Dynamic Island Capsule (Only on Desktop) */}
         <motion.div 

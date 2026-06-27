@@ -22,7 +22,9 @@ import {
   ChevronRight,
   Sparkles,
   ArrowRight,
-  TrendingUp
+  TrendingUp,
+  Utensils,
+  Box
 } from 'lucide-react';
 
 export default function UserDashboard() {
@@ -95,40 +97,36 @@ export default function UserDashboard() {
         <button
           onClick={() => navigate('/?tab=ride')}
           className={`flex flex-col items-center justify-center gap-0.5 w-16 h-full transition-all ${
-            activeTab === 'ride' ? 'text-[#0C1E36] scale-105' : 'text-gray-400 hover:text-gray-600'
+            activeTab === 'ride' ? 'text-[#FF7A00] scale-105' : 'text-gray-400 hover:text-gray-600'
           }`}
         >
           <Home className="w-5 h-5 stroke-[2.2]" />
           <span className="text-[9px] font-black tracking-wide font-display">Ride</span>
         </button>
 
-        {/* All Services Tab */}
+        {/* Food Tab */}
         <button
-          onClick={() => navigate('/?tab=services')}
-          className={`flex flex-col items-center justify-center gap-0.5 w-16 h-full transition-all ${
-            activeTab === 'services' ? 'text-[#0C1E36] scale-105' : 'text-gray-400 hover:text-gray-600'
-          }`}
+          onClick={() => navigate('/food')}
+          className="flex flex-col items-center justify-center gap-0.5 w-16 h-full transition-all text-gray-400 hover:text-gray-600"
         >
-          <Compass className="w-5 h-5 stroke-[2.2]" />
-          <span className="text-[9px] font-black tracking-wide font-display">All Services</span>
+          <Utensils className="w-5 h-5 stroke-[2.2]" />
+          <span className="text-[9px] font-black tracking-wide font-display">Food</span>
         </button>
 
-        {/* Travel Tab */}
+        {/* Parcel Tab */}
         <button
-          onClick={() => navigate('/?tab=travel')}
-          className={`flex flex-col items-center justify-center gap-0.5 w-16 h-full transition-all ${
-            activeTab === 'travel' ? 'text-[#0C1E36] scale-105' : 'text-gray-400 hover:text-gray-600'
-          }`}
+          onClick={() => navigate('/courier')}
+          className="flex flex-col items-center justify-center gap-0.5 w-16 h-full transition-all text-gray-400 hover:text-gray-600"
         >
-          <Palmtree className="w-5 h-5 stroke-[2.2]" />
-          <span className="text-[9px] font-black tracking-wide font-display">Travel</span>
+          <Box className="w-5 h-5 stroke-[2.2]" />
+          <span className="text-[9px] font-black tracking-wide font-display">Parcel</span>
         </button>
 
         {/* Profile Tab */}
         <button
           onClick={() => navigate('/?tab=profile')}
           className={`flex flex-col items-center justify-center gap-0.5 w-16 h-full transition-all ${
-            activeTab === 'profile' ? 'text-[#0C1E36] scale-105' : 'text-gray-400 hover:text-gray-600'
+            activeTab === 'profile' ? 'text-[#FF7A00] scale-105' : 'text-gray-400 hover:text-gray-600'
           }`}
         >
           <User className="w-5 h-5 stroke-[2.2]" />
